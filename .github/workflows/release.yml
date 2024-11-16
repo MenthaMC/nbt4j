@@ -9,7 +9,6 @@ on:
     inputs:
       tag:
         type: string
-        default: 'tag'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -38,6 +37,6 @@ jobs:
     - name: Upload artifacts
       uses: softprops/action-gh-release@v2
       with:
-        tag_name: ${{ tag }}
+        tag_name: '${{ tag }}'
         name: NBT-1.0.0
         files: build/libs/NBT-1.0.0.jar
