@@ -10,7 +10,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "greet"
-  greet:
+  build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -23,8 +23,9 @@ jobs:
         java-version: '22'
         distribution: 'temurin'
         architecture: x64
-        
-    - uses: gradle/actions/setup-gradle@af1da67850ed9a4cedd57bfd976089dd991e2582
+
+    - name: Make gradlew executable
+      run: chmod +x ./gradlew
 
     - name: build jar
       run: ./gradlew build
