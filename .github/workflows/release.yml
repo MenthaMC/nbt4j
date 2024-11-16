@@ -6,6 +6,9 @@ name: release
 # or API.
 on:
   workflow_dispatch:
+    inputs:
+      token:
+        type: string
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -37,3 +40,4 @@ jobs:
         tag_name: 'v1.0.0'
         name: NBT-1.0.0
         files: build/libs/NBT-1.0.0.jar
+        token: '${{ token }}'
