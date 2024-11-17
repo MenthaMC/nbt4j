@@ -52,8 +52,9 @@ import java.io.File;
 public class NBTest {
     public static void main(String[] args) {
         File output = new File("你要读取的NBT文件");
-        System.out.println(NBTReader.readNBTFile(output).getString("test"));
-        System.out.println(NBTReader.readNBTFile(output).getCompound("test1").getInt("test3"));
+        TagCompound compound = NBTReader.readNBTFile(output);
+        System.out.println(compound.getString("test"));
+        System.out.println(compound.getCompound("test1").getInt("test3"));
     }
 }
 ```
