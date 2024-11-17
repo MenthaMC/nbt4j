@@ -10,10 +10,10 @@ on:
       tag:
         type: string
         default: tag
-    release-name:
-      tag:
-        type: string
-        default: NBT
+      release-name:
+        tag:
+          type: string
+          default: NBT
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
