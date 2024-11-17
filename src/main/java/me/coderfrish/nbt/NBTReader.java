@@ -29,4 +29,8 @@ public class NBTReader {
             throw new RuntimeException(e);
         }
     }
+
+    public NBTReader() {
+        throw new UnsupportedOperationException("This class can be used directly without initialization.");
+    }
 }

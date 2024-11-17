@@ -33,4 +33,8 @@ public class NBTWriter {
     public static void writeNBTFile(TagCompound tag, File file) {
         writeNBTFile("", tag, file);
     }
+
+    public NBTWriter() {
+        throw new UnsupportedOperationException("This class can be used directly without initialization.");
+    }
 }
