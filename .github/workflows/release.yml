@@ -6,6 +6,10 @@ name: release
 # or API.
 on:
   workflow_dispatch:
+    inputs:
+      tag:
+        type: string
+        default: tag
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -35,6 +39,6 @@ jobs:
       uses: softprops/action-gh-release@v2
       with:
         token: ${{ secrets.CREATE_RELEASE }}
-        tag_name: 'v1.0.0'
+        tag_name: '${{ inputs.tag }}'
         name: NBT-1.0.0
         files: build/libs/NBT-1.0.0.jar

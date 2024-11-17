@@ -41,15 +41,15 @@ public class NBTTest {
 //        }
 
         /* read */
-        try(InputStream os = new FileInputStream("D:\\NBT\\src\\test\\resources\\servers.dat")) {
-            TagCompound servers = NBTReader.readNBTFile(os);
-            for (ITagBase tag: servers.getList("servers").entry()) {
-                TagCompound server = (TagCompound) tag;
-                System.out.println(server.getString("ip"));
-                System.out.println(server.getString("name"));
-            }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+//        try(InputStream os = new FileInputStream("D:\\NBT\\src\\test\\resources\\servers.dat")) {
+//            TagCompound servers = NBTReader.readNBTFile(os);
+//            for (ITagBase tag: servers.getList("servers").entry()) {
+//                TagCompound server = (TagCompound) tag;
+//                System.out.println(server.getString("ip"));
+//                System.out.println(server.getString("name"));
+//            }
+//        } catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
     }
 }
