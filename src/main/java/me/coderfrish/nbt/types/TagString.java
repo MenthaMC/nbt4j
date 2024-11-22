@@ -6,13 +6,13 @@ import me.coderfrish.nbt.TagType;
 import java.io.DataOutputStream;
 import java.nio.charset.StandardCharsets;
 
+import static me.coderfrish.nbt.util.CommonUtil.writeString;
+
 @SuppressWarnings("all")
 public record TagString(String value) implements ITagBase {
     @Override
     public void write(DataOutputStream out) throws Exception {
-        byte[] bytes = value.getBytes(StandardCharsets.UTF_8);
-        out.writeChar(bytes.length);
-        out.write(bytes);
+        writeString(out, value);
     }
 
     @Override
