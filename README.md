@@ -38,7 +38,7 @@ public class NBTest {
 }
 ```
 
-### 读操作
+### 读操作(NBT)
 #### 源码
 ```java
 public class NBTest {
@@ -67,6 +67,23 @@ public class NBTest {
 ```
 Frish2021
 123456
+```
+
+### 读操作(SNBT)
+#### 源码
+```java
+public class NBTest {
+    public static void main(String[] args) {
+        CompoundTag tag = NBTReader.readSNBT("{name: Frish2021}");
+        System.out.println(tag.get("name"));
+    }
+}
+```
+
+#### 效果
+控制台输出
+```
+Frish2021
 ```
 
 ## (2) 其他
