@@ -2,8 +2,8 @@ plugins {
     id("java")
 }
 
-group = "me.coderfrish2021"
-version = "1.0.1"
+group = "me.coderfrish"
+version = "2.0.0"
 
 repositories {
     mavenCentral()
@@ -16,4 +16,13 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_22
+    targetCompatibility = JavaVersion.VERSION_22
+}
+
+tasks.withType<Jar>() {
+    destinationDirectory = layout.buildDirectory.dir("targets")
 }
