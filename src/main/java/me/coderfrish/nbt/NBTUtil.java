@@ -141,7 +141,7 @@ public class NBTUtil {
             }
 
             if (INT_PATTERN.matcher(value).matches()) {
-                return new IntegerTag(Integer.parseInt(value.substring(0, value.length() - 1)));
+                return new IntegerTag(Integer.parseInt(value));
             }
 
             if (DOUBLE_PATTERN.matcher(value).matches()) {
