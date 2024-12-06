@@ -6,12 +6,14 @@ on:
 
 env:
   version: 2.0.2
-  name: 'NBT-${{ env.version }}'
 
 jobs:
   build:
     name: Build NBT-jar
     runs-on: ubuntu-latest
+
+    env:
+      name: 'NBT-${{ env.version }}'
 
     steps:
     - uses: actions/checkout@v4
