@@ -3,6 +3,9 @@ name: release
 
 on:
   workflow_dispatch:
+    inputs:
+      version:
+        type: string
 
 env:
   version: 2.0.2
@@ -13,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      name: 'NBT-${{ env.version }}'
+      name: 'NBT-${{ inputs.version }}'
 
     steps:
     - uses: actions/checkout@v4
@@ -33,6 +36,6 @@ jobs:
       uses: softprops/action-gh-release@v2
       with:
         token: ${{ secrets.CREATE_RELEASE }}
-        tag_name: '${{ env.version }}'
-        name: '${{ env.name }}'
-        files: 'build/targets/${{ env.name }}.jar'
+        tag_name: '${{ inputs.version }}'
+        name: '$name'
+        files: 'build/targets/$name.jar'
