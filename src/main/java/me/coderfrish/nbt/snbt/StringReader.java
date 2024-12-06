@@ -1,7 +1,5 @@
 package me.coderfrish.nbt.snbt;
 
-import me.coderfrish.nbt.exceptions.NBTException;
-
 public class StringReader {
     private final String string;
     private int readerIndex = 0;
@@ -56,7 +54,7 @@ public class StringReader {
         if (this.canRead() && this.peek() == c) {
             this.skip();
         } else {
-            throw new NBTException("String is not read.");
+            throw new StringReaderException("String is not read.");
         }
     }
 
@@ -74,7 +72,7 @@ public class StringReader {
     public String readKey() {
         this.skipWhitespace();
         if (!this.canRead()) {
-            throw new NBTException("String is not read.");
+            throw new StringReaderException("String is not read.");
         } else {
             return this.readString();
         }
@@ -121,7 +119,7 @@ public class StringReader {
             if (escaped) {
                 if (c != terminator && c != '\\') {
                     this.setReaderIndex(this.getReaderIndex() - 1);
-                    throw new NBTException("String is not read.");
+                    throw new StringReaderException("String is not read.");
                 }
 
                 result.append(c);
@@ -137,7 +135,7 @@ public class StringReader {
             }
         }
 
-        throw new NBTException("String is not read.");
+        throw new StringReaderException("String is not read.");
     }
 
     public String readQuotedString() {
@@ -146,11 +144,17 @@ public class StringReader {
         } else {
             char next = this.peek();
             if (!isQuotedStringStart(next)) {
-                throw new NBTException("String is not read.");
+                throw new StringReaderException("String is not read.");
             } else {
                 this.skip();
                 return this.readStringUntil(next);
             }
+        }
+    }
+
+    private static class StringReaderException extends RuntimeException {
+        public StringReaderException(String message) {
+            super(message);
         }
     }
 }

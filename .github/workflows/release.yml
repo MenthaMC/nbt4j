@@ -3,14 +3,10 @@ name: release
 
 on:
   workflow_dispatch:
-    inputs:
-      tag:
-        type: string
-        default: tag
-      release-name:
-        tag:
-          type: string
-          default: NBT
+
+env:
+  version: 2.0.2
+  name: 'NBT-${{ env.version }}'
 
 jobs:
   build:
@@ -35,6 +31,6 @@ jobs:
       uses: softprops/action-gh-release@v2
       with:
         token: ${{ secrets.CREATE_RELEASE }}
-        tag_name: '${{ inputs.tag }}'
-        name: '${{ inputs.release-name }}'
-        files: build/targets/NBT-2.0.1.jar
+        tag_name: '${{ env.version }}'
+        name: '${{ env.name }}'
+        files: 'build/targets/${{ env.name }}.jar'
