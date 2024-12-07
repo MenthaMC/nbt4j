@@ -1,9 +1,10 @@
 plugins {
     id("java")
+    id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
-group = "me.coderfrish"
-version = "2.0.2"
+group = "io.github.xiefrish2021"
+version = "3.0.0"
 
 repositories {
     mavenCentral()
@@ -12,6 +13,8 @@ repositories {
 dependencies {
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
+
+    implementation("org.jetbrains:annotations:26.0.1")
 }
 
 tasks.test {
@@ -25,4 +28,15 @@ java {
 
 tasks.withType<Jar>() {
     destinationDirectory = layout.buildDirectory.dir("targets")
+}
+
+tasks.shadowJar {
+    val jarFileName = "${archiveBaseName.get()}-${archiveVersion.get()}"
+
+    archiveFileName = "$jarFileName.jar"
+    delete(layout.buildDirectory.file("targets/$jarFileName-all.jar"))
+}
+
+tasks.build {
+    dependsOn(tasks.shadowJar)
 }

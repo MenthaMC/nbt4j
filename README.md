@@ -11,7 +11,9 @@ NBT(全称：二进制命名标签(`N`amed`B`inary `T`ags))\
 ```java
 public class NBTest {
     public static void main(String[] args) {
+        NBT nbt = new NBT();
         File output = new File("NBT文件输出路径");
+        
         CompoundTag tag = new CompoundTag();
         tag.put("test", new StringTag("Frish2021"));
 
@@ -20,7 +22,7 @@ public class NBTest {
         tag1.put("test3", new IntegerTag(123456));
         
         tag.put("test1", tag1);
-        NBTWriter.writeNBT(tag, output);
+        nbt.writeUnnamedNBT(tag, output);
     }
 }
 ```
@@ -43,10 +45,12 @@ public class NBTest {
 ```java
 public class NBTest {
     public static void main(String[] args) {
+        NBT nbt = new NBT();
         File output = new File("你要读取的NBT文件");
-        TagCompound compound = NBTReader.readNBT(output);
-        System.out.println(((StringTag) compound.get("test")));
-        System.out.println(((IntegerTag) ((CompoundTag) compound.get("test1")).get("test3")));
+        
+        CompoundTag compound = nbt.readUnnamedNBT(output);
+        System.out.println(compound.getString("test"));
+        System.out.println(compound.getCompound("test1").getInt("test3"));
     }
 }
 ```
@@ -74,7 +78,9 @@ Frish2021
 ```java
 public class NBTest {
     public static void main(String[] args) {
-        CompoundTag tag = NBTReader.readSNBT("{name: Frish2021}");
+        NBT nbt = new NBT();
+        
+        CompoundTag tag = nbt.readUnnamedSNBT("{name: Frish2021}");
         System.out.println(tag.get("name"));
     }
 }
@@ -86,9 +92,34 @@ public class NBTest {
 Frish2021
 ```
 
+### 新特性 - 生成SNBT
+#### 源码
+```java
+public class NBTest {
+    public static void main(String[] args) {
+        NBT nbt = new NBT();
+        CompoundTag tag = new CompoundTag();
+        tag.put("test", new StringTag("Frish2021"));
+
+        CompoundTag tag1 = new CompoundTag();
+        tag1.put("test2", new StringTag("CoderFrish"));
+        tag1.put("test3", new IntegerTag(123456));
+
+        tag.put("test1", tag1);
+
+        System.out.println(nbt.generateSNBT(tag));
+    }
+}
+```
+
+#### 效果
+控制台输出
+```
+{test: Frish2021,test1: {test2: CoderFrish,test3: 123456}}
+```
+
 ## (2) 其他
-接下来的基本就是Bug修复，性能优化什么的。这个NBT库也没什么可以更新的。\
-该NBT库的新代码是写Ankair 1.17.1的时候顺便写的，因为Minecraft 1.17.1服务端的Join Game封包要求写NBT格式的Codec \
+接下来的基本就是Bug修复，性能优化，Chunk区块的格式什么的。这个NBT库也没什么可以更新的。\
 如果要贡献代码的话可以把仓库Fork下来，写上你的代码，并把写了你的代码的Fork 仓库地址通过邮件发送给我。
 邮件：`1573880184@qq.com`
 如果有BUG，请发布Issues.
