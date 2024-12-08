@@ -9,6 +9,7 @@ NBT(全称：二进制命名标签(`N`amed`B`inary `T`ags))\
  - 把Compound，Array<V extends ITag>等等的接口迁移到了`xyz.frish2021.nbt.api`包
  - 修改了NBT类的基本用法由`new NBT()` 修改成`NBT.newInstance()` 并且添加了单例模式
  - `NBT.newInstance()` 添加了synchronized关键字以防止多次初始化影响线程安全
+ - 修复了生成IntArray和ByteArray的SNBT却生成成了List的SNBT。
 
 ## (1) 用法
 
