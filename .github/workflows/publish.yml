@@ -19,6 +19,9 @@ jobs:
         distribution: 'temurin'
         architecture: x64
 
+    - name: Make gradlew executable
+      run: chmod +x ./gradlew
+
     - name: Publish package
       run: ./gradlew publish
       env:
