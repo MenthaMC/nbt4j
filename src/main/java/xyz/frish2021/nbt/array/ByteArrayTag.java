@@ -16,7 +16,7 @@ public class ByteArrayTag extends ArrayTag<Byte> {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("[");
+        builder.append("[B;");
 
         int i = 0;
         for (byte value : this) {

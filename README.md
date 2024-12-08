@@ -4,6 +4,12 @@ NBT(全称：二进制命名标签(`N`amed`B`inary `T`ags))\
 是Minecraft游戏存档及一些游戏数据的存储格式。\
 作者：Frish2021
 
+## (0) 3.1.0版本 - 更新内容
+ - 修改了SNBTReader里面readArray的会报unchecked的某条代码
+ - 把Compound，Array<V extends ITag>等等的接口迁移到了`xyz.frish2021.nbt.api`包
+ - 修改了NBT类的基本用法由`new NBT()` 修改成`NBT.newInstance()` 并且添加了单例模式
+ - `NBT.newInstance()` 添加了synchronized关键字以防止多次初始化影响线程安全
+
 ## (1) 用法
 
 ### 写操作
@@ -124,6 +130,11 @@ public class NBTest {
 邮件：`1573880184@qq.com`
 如果有BUG，请发布Issues.
 
-## (3) 最后
+## (3) 历史更新 (3.0.0开始算起)：
+#### 3.0.0 - 更新
+ - 重写了库的代码
+ - 允许通过Compound实例生成SNBT
+
+## (4) 最后
 该NBT库的其他用法就靠你自己发掘把 :)\
 那些比如IntArray，ByteArray，List可以自己看test模块或者源码。

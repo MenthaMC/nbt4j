@@ -1,8 +1,9 @@
 package xyz.frish2021.nbt.list;
 
 import org.jetbrains.annotations.NotNull;
+import xyz.frish2021.nbt.api.List;
 import xyz.frish2021.nbt.exception.NBTWriteException;
-import xyz.frish2021.nbt.tag.ITag;
+import xyz.frish2021.nbt.api.ITag;
 import xyz.frish2021.nbt.tag.TagType;
 
 import java.util.ArrayList;

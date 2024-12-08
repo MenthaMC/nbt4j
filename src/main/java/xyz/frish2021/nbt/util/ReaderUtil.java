@@ -1,14 +1,12 @@
 package xyz.frish2021.nbt.util;
 
-import xyz.frish2021.nbt.array.ByteArrayTag;
-import xyz.frish2021.nbt.array.IntArrayTag;
-import xyz.frish2021.nbt.array.LongArrayTag;
+import org.jetbrains.annotations.NotNull;
 import xyz.frish2021.nbt.compound.CompoundTag;
 import xyz.frish2021.nbt.exception.NBTReaderException;
 import xyz.frish2021.nbt.list.ListTag;
 import xyz.frish2021.nbt.primitive.StringTag;
 import xyz.frish2021.nbt.primitive.number.*;
-import xyz.frish2021.nbt.tag.ITag;
+import xyz.frish2021.nbt.api.ITag;
 import xyz.frish2021.nbt.tag.TagType;
 
 import java.io.DataInput;
@@ -56,79 +54,25 @@ public class ReaderUtil {
             case INT -> new IntTag(in.readInt());
             case SHORT -> new ShortTag(in.readShort());
             case COMPOUND -> readCompound(in);
-            case BYTE_ARRAY -> {
-                int length = in.readInt();
-                if (length < 0) {
-                    throw new NBTReaderException("Invalid array length: " + length);
-                }
-
-                byte[] bytes = new byte[length];
-                in.readFully(bytes);
-
-                yield new ByteArrayTag(bytes);
-            }
-            case LONG_ARRAY -> {
-                int length = in.readInt();
-                if (length < 0) {
-                    throw new NBTReaderException("Invalid array length: " + length);
-                } else if (length == 0) {
-                    yield new LongArrayTag(new long[0]);
-                }
-
-                byte[] bytes = new byte[length * 8];
-                in.readFully(bytes);
-                int byteIndex = 0;
-
-                long[] longArray = new long[length];
-                for (int i = 0; i < length; i++, byteIndex += 8) {
-                    long element = 0;
-                    int bitOffset = 56;
-                    for (int b = 0; b < 8; b++, bitOffset -= 8) {
-                        element |= ((long) (bytes[byteIndex + b] & 0xFF)) << bitOffset;
-                    }
-                    longArray[i] = element;
-                }
-                yield new LongArrayTag(longArray);
-            }
-            case INT_ARRAY -> {
-                int length = in.readInt();
-                if (length < 0) {
-                    throw new NBTReaderException("Invalid array length: " + length);
-                }
-
-                byte[] bytes = new byte[length * 4];
-                in.readFully(bytes);
-                int byteIndex = 0;
-
-                int[] intArray = new int[length];
-                for (int i = 0; i < length; i++, byteIndex += 4) {
-                    int element = 0;
-                    int bitOffset = 24;
-                    for (int b = 0; b < 4; b++, bitOffset -= 8) {
-                        element |= (bytes[byteIndex + b] & 0xFF) << bitOffset;
-                    }
-                    intArray[i] = element;
-                }
-
-                yield new IntArrayTag(intArray);
-            }
-            case LIST -> {
-                ListTag<ITag> list = new ListTag<>();
-                TagType type0 = readType(in);
-                if (type0 == TagType.END) {
-                    yield new ListTag<>();
-                }
-
-                int length = in.readInt();
-                for (int i = 0; i < length; i++) {
-                    list.add(readValue(in, type0));
-                }
-
-                yield list;
-            }
+            case BYTE_ARRAY, LONG_ARRAY, INT_ARRAY, LIST -> readList(in);
 
             default ->  throw new NBTReaderException("Unknown type: " + type);
         };
+    }
+
+    private static @NotNull ListTag<ITag> readList(DataInput in) throws IOException {
+        ListTag<ITag> list = new ListTag<>();
+        TagType type0 = readType(in);
+        if (type0 == TagType.END) {
+            return new ListTag<>();
+        }
+
+        int length = in.readInt();
+        for (int i = 0; i < length; i++) {
+            list.add(readValue(in, type0));
+        }
+
+        return list;
     }
 
     public static ITag snbtType(String value) {

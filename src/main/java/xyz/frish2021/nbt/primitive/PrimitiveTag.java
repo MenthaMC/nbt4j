@@ -1,5 +1,6 @@
 package xyz.frish2021.nbt.primitive;
 
+import xyz.frish2021.nbt.api.Primitive;
 import xyz.frish2021.nbt.exception.NBTWriteException;
 
 public class PrimitiveTag<V> implements Primitive<V> {

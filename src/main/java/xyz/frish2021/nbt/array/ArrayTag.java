@@ -1,6 +1,7 @@
 package xyz.frish2021.nbt.array;
 
 import org.jetbrains.annotations.NotNull;
+import xyz.frish2021.nbt.api.Array;
 import xyz.frish2021.nbt.exception.NBTWriteException;
 
 import java.util.Arrays;

@@ -1,6 +1,4 @@
-package xyz.frish2021.nbt.primitive;
-
-import xyz.frish2021.nbt.tag.ITag;
+package xyz.frish2021.nbt.api;
 
 public interface Primitive<V> extends ITag {
     V value();

@@ -11,7 +11,7 @@ import xyz.frish2021.nbt.primitive.StringTag;
 import xyz.frish2021.nbt.primitive.number.ByteTag;
 import xyz.frish2021.nbt.primitive.number.IntTag;
 import xyz.frish2021.nbt.primitive.number.LongTag;
-import xyz.frish2021.nbt.tag.ITag;
+import xyz.frish2021.nbt.api.ITag;
 import xyz.frish2021.nbt.tag.TagType;
 import xyz.frish2021.nbt.util.CommonUtil;
 import xyz.frish2021.nbt.util.ReaderUtil;
@@ -19,7 +19,6 @@ import xyz.frish2021.nbt.util.ReaderUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-@SuppressWarnings("all")
 public class SNBTReader {
     private final StringReader reader;
 
@@ -112,19 +111,19 @@ public class SNBTReader {
         if (!this.reader.canRead()) {
             throw new SNBTReaderException("Unexpected end of tag.");
         } else if (c0 == 'B') {
-            return new ByteArrayTag(CommonUtil.byteList2Array(this.readArray(TagType.BYTE)));
+            return new ByteArrayTag(CommonUtil.numberList2ByteArray(this.readArray(TagType.BYTE)));
         } else if (c0 == 'L') {
-            return new LongArrayTag(CommonUtil.longList2Array(this.readArray(TagType.LONG)));
+            return new LongArrayTag(CommonUtil.numberList2LongArray(this.readArray(TagType.LONG)));
         } else if (c0 == 'I') {
-            return new IntArrayTag(CommonUtil.intList2Array(this.readArray(TagType.INT)));
+            return new IntArrayTag(CommonUtil.numberList2IntArray(this.readArray(TagType.INT)));
         } else {
             this.reader.setReaderIndex(i);
             throw new SNBTReaderException("String can no longer be read.");
         }
     }
 
-    private <T extends Number> List<T> readArray(TagType p_129363_) {
-        List<T> list = new ArrayList<>();
+    private List<Number> readArray(TagType p_129363_) {
+        List<Number> list = new ArrayList<>();
 
         while(true) {
             if (this.reader.peek() != ']') {
@@ -137,11 +136,11 @@ public class SNBTReader {
                 }
 
                 if (p_129363_ == TagType.BYTE) {
-                    list.add((T)((ByteTag)tag).value());
+                    list.add(((ByteTag)tag).value());
                 } else if (p_129363_ == TagType.LONG) {
-                    list.add((T)((LongTag)tag).value());
+                    list.add(((LongTag)tag).value());
                 } else {
-                    list.add((T)((IntTag)tag).value());
+                    list.add(((IntTag)tag).value());
                 }
 
                 if (this.reader.hasElementSeparator()) {

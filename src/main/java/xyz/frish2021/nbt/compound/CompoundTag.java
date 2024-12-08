@@ -1,13 +1,14 @@
 package xyz.frish2021.nbt.compound;
 
 import org.jetbrains.annotations.NotNull;
+import xyz.frish2021.nbt.api.Compound;
 import xyz.frish2021.nbt.array.ByteArrayTag;
 import xyz.frish2021.nbt.array.IntArrayTag;
 import xyz.frish2021.nbt.array.LongArrayTag;
 import xyz.frish2021.nbt.primitive.PrimitiveTag;
 import xyz.frish2021.nbt.primitive.StringTag;
 import xyz.frish2021.nbt.primitive.number.*;
-import xyz.frish2021.nbt.tag.ITag;
+import xyz.frish2021.nbt.api.ITag;
 import xyz.frish2021.nbt.tag.TagType;
 
 import java.util.*;
@@ -170,8 +171,8 @@ public class CompoundTag implements Compound {
 
     @Override
     @SuppressWarnings("unchecked")
-    public <V extends ITag> xyz.frish2021.nbt.list.List<V> getList(String key) {
-        return ((xyz.frish2021.nbt.list.List<V>) get(key));
+    public <V extends ITag> xyz.frish2021.nbt.api.List<V> getList(String key) {
+        return ((xyz.frish2021.nbt.api.List<V>) get(key));
     }
 
     @Override

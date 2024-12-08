@@ -16,7 +16,7 @@ public class LongArrayTag extends ArrayTag<Long> {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("[");
+        builder.append("[L;");
 
         int i = 0;
         for (long value : this) {

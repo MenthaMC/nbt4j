@@ -16,7 +16,7 @@ public class IntArrayTag extends ArrayTag<Integer> {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("[");
+        builder.append("[I;");
 
         int i = 0;
         for (int value : this) {

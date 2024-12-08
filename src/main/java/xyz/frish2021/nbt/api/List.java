@@ -1,6 +1,4 @@
-package xyz.frish2021.nbt.list;
-
-import xyz.frish2021.nbt.tag.ITag;
+package xyz.frish2021.nbt.api;
 
 public interface List<V extends ITag> extends ITag, Iterable<V> {
     List<V> add(V value);

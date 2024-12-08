@@ -1,6 +1,5 @@
-package xyz.frish2021.nbt;
+package xyz.frish2021.nbt.api;
 
-import xyz.frish2021.nbt.compound.Compound;
 import xyz.frish2021.nbt.compound.CompoundTag;
 import xyz.frish2021.nbt.exception.NBTException;
 import xyz.frish2021.nbt.snbt.SNBTReader;
@@ -13,7 +12,9 @@ import java.io.*;
 /**
  * @author Frish2021
  */
-public class NBT {
+public final class NBT {
+    private static NBT instance;
+
     /**
      * @param name NBT name.
      * @param out NBT file output stream.
@@ -65,5 +66,16 @@ public class NBT {
      */
     public CompoundTag readUnnamedSNBT(String snbt) {
         return new SNBTReader(snbt).parserSNBT();
+    }
+
+    /**
+     * New a NBT instance.
+     */
+    public synchronized static NBT newInstance() {
+        if (instance == null) {
+            instance = new NBT();
+        }
+
+        return instance;
     }
 }

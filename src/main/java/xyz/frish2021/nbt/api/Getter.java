@@ -1,11 +1,10 @@
-package xyz.frish2021.nbt.compound;
+package xyz.frish2021.nbt.api;
 
 import xyz.frish2021.nbt.array.ByteArrayTag;
 import xyz.frish2021.nbt.array.IntArrayTag;
 import xyz.frish2021.nbt.array.LongArrayTag;
-import xyz.frish2021.nbt.list.List;
+import xyz.frish2021.nbt.compound.CompoundTag;
 import xyz.frish2021.nbt.primitive.PrimitiveTag;
-import xyz.frish2021.nbt.tag.ITag;
 
 public interface Getter {
     ITag get(String key);

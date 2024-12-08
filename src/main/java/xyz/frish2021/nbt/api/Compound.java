@@ -1,6 +1,4 @@
-package xyz.frish2021.nbt.compound;
-
-import xyz.frish2021.nbt.tag.ITag;
+package xyz.frish2021.nbt.api;
 
 public interface Compound extends Iterable<Compound.Entry>, ITag, Getter {
     Compound put(String key, ITag value);

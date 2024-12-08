@@ -1,16 +1,12 @@
 package xyz.frish2021.nbt.util;
 
-import xyz.frish2021.nbt.array.Array;
+import xyz.frish2021.nbt.api.*;
 import xyz.frish2021.nbt.array.ByteArrayTag;
 import xyz.frish2021.nbt.array.IntArrayTag;
 import xyz.frish2021.nbt.array.LongArrayTag;
-import xyz.frish2021.nbt.compound.Compound;
 import xyz.frish2021.nbt.exception.NBTWriteException;
-import xyz.frish2021.nbt.list.List;
-import xyz.frish2021.nbt.primitive.Primitive;
 import xyz.frish2021.nbt.primitive.StringTag;
 import xyz.frish2021.nbt.primitive.number.*;
-import xyz.frish2021.nbt.tag.ITag;
 import xyz.frish2021.nbt.tag.TagType;
 
 import java.io.DataOutput;
