@@ -18,7 +18,7 @@ NBT(全称：二进制命名标签(`N`amed`B`inary `T`ags))\
 ```java
 public class NBTest {
     public static void main(String[] args) {
-        NBT nbt = new NBT();
+        NBT nbt = new NBT.newInstance();
         File output = new File("NBT文件输出路径");
         
         CompoundTag tag = new CompoundTag();
@@ -52,7 +52,7 @@ public class NBTest {
 ```java
 public class NBTest {
     public static void main(String[] args) {
-        NBT nbt = new NBT();
+        NBT nbt = new NBT.newInstance();
         File output = new File("你要读取的NBT文件");
         
         CompoundTag compound = nbt.readUnnamedNBT(output);
@@ -85,7 +85,7 @@ Frish2021
 ```java
 public class NBTest {
     public static void main(String[] args) {
-        NBT nbt = new NBT();
+        NBT nbt = new NBT.newInstance();
         
         CompoundTag tag = nbt.readUnnamedSNBT("{name: Frish2021}");
         System.out.println(tag.get("name"));
@@ -104,7 +104,7 @@ Frish2021
 ```java
 public class NBTest {
     public static void main(String[] args) {
-        NBT nbt = new NBT();
+        NBT nbt = new NBT.newInstance();
         CompoundTag tag = new CompoundTag();
         tag.put("test", new StringTag("Frish2021"));
 
