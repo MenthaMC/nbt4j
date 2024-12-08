@@ -1,14 +1,7 @@
 package me.coderfrish.test;
 
 import org.junit.jupiter.api.Test;
-import xyz.frish2021.nbt.api.ITag;
-import xyz.frish2021.nbt.api.NBT;
-import xyz.frish2021.nbt.array.ByteArrayTag;
-import xyz.frish2021.nbt.array.IntArrayTag;
-import xyz.frish2021.nbt.compound.CompoundTag;
-import xyz.frish2021.nbt.primitive.StringTag;
-import xyz.frish2021.nbt.primitive.number.ByteTag;
-import xyz.frish2021.nbt.primitive.number.IntTag;
+import io.github.xiefrish2021.api.NBT;
 
 public class NBTest {
     @Test
