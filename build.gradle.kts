@@ -66,7 +66,7 @@ publishing {
     publications {
         create<MavenPublication>("mavenJava") {
             groupId = "io.github.xiefrish2021"
-            artifactId = project.name
+            artifactId = project.name.lowercase()
             version = project.version.toString()
 
             from(components["java"])
