@@ -71,7 +71,7 @@ public final class NBT {
     /**
      * New a NBT instance.
      */
-    public synchronized static NBT newInstance() {
+    public synchronized static NBT getInstance() {
         if (instance == null) {
             instance = new NBT();
         }

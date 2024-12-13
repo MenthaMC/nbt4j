@@ -1,18 +1,29 @@
 package me.coderfrish.test;
 
-import org.junit.jupiter.api.Test;
+import io.github.xiefrish2021.api.Compound;
+import io.github.xiefrish2021.compound.CompoundTag;
+import io.github.xiefrish2021.primitive.StringTag;
 import io.github.xiefrish2021.api.NBT;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+
 public class NBTest {
-    @Test
-    public void test() {
-        NBT nbt = NBT.newInstance();
-//        CompoundTag tag = new CompoundTag();
-//        tag.put("test", new StringTag("Frish2021"));
-//
-//        CompoundTag tag1 = new CompoundTag();
-//        tag1.put("test2", new StringTag("CoderFrish"));
-//        tag1.put("test3", new IntTag(123456));
+    public static void main(String[] args) {
+        test();
+    }
+
+//    @Test
+    public static void test() {
+        NBT nbt = NBT.getInstance();
+        Compound tag = new CompoundTag();
+        tag.put("test", new StringTag("Frish2021"));
+
+        try {
+            nbt.writeUnnamedNBT(tag, new FileOutputStream("D:\\NBT\\src\\test\\resources\\test.nbt"));
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
 //
 //        tag.put("test1", tag1);
 //

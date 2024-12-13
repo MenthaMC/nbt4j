@@ -1,6 +1,8 @@
 package io.github.xiefrish2021.util;
 
 import io.github.xiefrish2021.api.*;
+import io.github.xiefrish2021.array.ArrayTag;
+import io.github.xiefrish2021.primitive.PrimitiveTag;
 import io.github.xiefrish2021.primitive.number.*;
 import io.github.xiefrish2021.array.ByteArrayTag;
 import io.github.xiefrish2021.array.IntArrayTag;
@@ -44,8 +46,8 @@ public class WriteUtil {
     private static void writeValue(ITag tag, DataOutput output) throws Exception {
         if (tag instanceof Compound compound) {
             writeCompound(compound, output);
-        } else if (tag instanceof Primitive<?>) {
-            switch (tag) {
+        } else if (tag instanceof PrimitiveTag<?> primitiveTag) {
+            switch (primitiveTag) {
                 case ByteTag byteTag -> output.writeByte(byteTag.value());
                 case ShortTag shortTag -> output.writeShort(shortTag.value());
                 case IntTag intTag -> output.writeInt(intTag.value());
@@ -54,8 +56,8 @@ public class WriteUtil {
                 case StringTag stringTag -> output.writeUTF(stringTag.value());
                 default -> throw new NBTWriteException("Unknown tag: " + tag);
             }
-        } else if (tag instanceof Array<?>) {
-            switch (tag) {
+        } else if (tag instanceof ArrayTag<?> arrayTag) {
+            switch (arrayTag) {
                 case ByteArrayTag byteArray -> {
                     output.writeInt(byteArray.size());
                     for (Byte item : byteArray) {

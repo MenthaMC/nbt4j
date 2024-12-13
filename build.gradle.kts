@@ -1,5 +1,3 @@
-import java.net.URI
-
 plugins {
     id("java")
     id("maven-publish")
@@ -7,16 +5,13 @@ plugins {
 }
 
 group = "io.github.xiefrish2021"
-version = "3.1.0"
+version = "3.2.0"
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testImplementation(platform("org.junit:junit-bom:5.10.0"))
-    testImplementation("org.junit.jupiter:junit-jupiter")
-
     implementation("org.jetbrains:annotations:26.0.1")
 }
 
@@ -51,7 +46,6 @@ java {
 
 publishing {
     repositories {
-//        maven(layout.buildDirectory.dir("targets"))
         repositories {
             maven("https://maven.pkg.github.com/XieFrish2021/NBT") {
                 name = "GitHubPackages"
