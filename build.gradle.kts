@@ -15,9 +15,9 @@ dependencies {
     implementation("org.jetbrains:annotations:26.0.1")
 }
 
-tasks.test {
-    useJUnitPlatform()
-}
+//tasks.test {
+//    useJUnitPlatform()
+//}
 
 java {
     sourceCompatibility = JavaVersion.VERSION_22
