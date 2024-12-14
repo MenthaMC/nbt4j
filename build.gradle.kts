@@ -47,14 +47,13 @@ java {
 publishing {
     repositories {
         repositories {
-//            maven("") {
-//                name = "nexus"
-//                isAllowInsecureProtocol = true
-//                credentials {
-//                    username = System.getenv("MAVEN_USERNAME")
-//                    password = System.getenv("MAVEN_PASSWORD")
-//                }
-//            }
+            maven("https://repo.menthamc.com/repository/maven-public/") {
+                name = "MenthaMC"
+                credentials {
+                    username = System.getenv("MAVEN_USERNAME")
+                    password = System.getenv("MAVEN_PASSWORD")
+                }
+            }
 
             maven("https://maven.pkg.github.com/XieFrish2021/NBT") {
                 name = "GitHubPackages"

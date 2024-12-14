@@ -10,6 +10,65 @@ NBT(全称：二进制命名标签(`N`amed`B`inary `T`ags))\
 
 ## (1) 用法
 
+### 引入依赖
+#### 添加仓库
+Maven
+```xml
+<repositories>
+    <repository>
+        <id>mentha</id>
+        <url>https://repo.menthamc.com/repository/maven-public/</url>
+    </repository>
+</repositories>
+```
+
+Gradle
+```groovy
+repositories {
+    maven {
+        url 'https://repo.menthamc.com/repository/maven-public/'
+        name 'mentha'
+    }
+    mavenLocal()
+    mavenCentral()
+}
+```
+
+Gradle (Kotlin)
+```groovy
+repositories {
+    maven("https://repo.menthamc.com/repository/maven-public/")
+    mavenLocal()
+    mavenCentral()
+}
+```
+
+#### 添加依赖
+Maven
+```xml
+<dependencies>
+    <dependency>
+        <groupId>io.github.xiefrish2021</groupId>
+        <artifactId>nbt</artifactId>
+        <version>${LATEST_VERSION}</version>
+    </dependency>
+</dependencies>
+```
+
+Gradle
+```groovy
+dependencies {
+    implementation group: 'io.github.xiefrish2021', name: 'nbt', version: '${LATEST_VERSION}'
+}
+```
+
+Gradle (Kotlin)
+```groovy
+dependencies {
+    implementation("io.github.xiefrish2021:nbt:${LATEST_VERSION}")
+}
+```
+
 ### 写操作
 #### 源码
 ```java
