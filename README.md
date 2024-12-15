@@ -9,9 +9,6 @@ NBT(全称：二进制命名标签(`N`amed`B`inary `T`ags))\
  - `NBT.newInstance()`用法更改为 `NBT.getInstance()`
 
 ## (1) 用法
-
-### 引入依赖
-#### 添加仓库
 Maven
 ```xml
 <repositories>
@@ -20,6 +17,14 @@ Maven
         <url>https://repo.menthamc.com/repository/maven-public/</url>
     </repository>
 </repositories>
+
+<dependencies>
+    <dependency>
+        <groupId>io.github.xiefrish2021</groupId>
+        <artifactId>nbt</artifactId>
+        <version>${LATEST_VERSION}</version>
+    </dependency>
+</dependencies>
 ```
 
 Gradle
@@ -32,6 +37,10 @@ repositories {
     mavenLocal()
     mavenCentral()
 }
+
+dependencies {
+    implementation group: 'io.github.xiefrish2021', name: 'nbt', version: '${LATEST_VERSION}'
+}
 ```
 
 Gradle (Kotlin)
@@ -41,29 +50,7 @@ repositories {
     mavenLocal()
     mavenCentral()
 }
-```
 
-#### 添加依赖
-Maven
-```xml
-<dependencies>
-    <dependency>
-        <groupId>io.github.xiefrish2021</groupId>
-        <artifactId>nbt</artifactId>
-        <version>${LATEST_VERSION}</version>
-    </dependency>
-</dependencies>
-```
-
-Gradle
-```groovy
-dependencies {
-    implementation group: 'io.github.xiefrish2021', name: 'nbt', version: '${LATEST_VERSION}'
-}
-```
-
-Gradle (Kotlin)
-```groovy
 dependencies {
     implementation("io.github.xiefrish2021:nbt:${LATEST_VERSION}")
 }
