@@ -14,8 +14,4 @@ public enum TagType {
     COMPOUND,
     INT_ARRAY,
     LONG_ARRAY;
-
-    public int id() {
-        return ordinal();
-    }
 }

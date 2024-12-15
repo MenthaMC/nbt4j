@@ -1,15 +1,11 @@
 package io.github.xiefrish2021.compound;
 
-import io.github.xiefrish2021.primitive.number.*;
+import kotlin.reflect.KProperty;
 import org.jetbrains.annotations.NotNull;
 import io.github.xiefrish2021.api.Compound;
-import io.github.xiefrish2021.array.ByteArrayTag;
-import io.github.xiefrish2021.array.IntArrayTag;
-import io.github.xiefrish2021.array.LongArrayTag;
-import io.github.xiefrish2021.primitive.PrimitiveTag;
-import io.github.xiefrish2021.primitive.StringTag;
 import io.github.xiefrish2021.api.ITag;
 import io.github.xiefrish2021.tag.TagType;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 import java.util.function.Consumer;
@@ -76,13 +72,13 @@ public class CompoundTag implements Compound {
     }
 
     @Override
-    public Compound put(String key, ITag value) {
+    public @NotNull Compound put(@NotNull String key, @NotNull ITag value) {
         compounds.put(key, value);
         return this;
     }
 
     @Override
-    public Compound putAll(Compound compound) {
+    public @NotNull Compound putAll(@NotNull Compound compound) {
         for (Entry entry : this) {
             if (compound.containsKey(entry.key())) {
                 replace(entry.key(), entry.value());
@@ -96,7 +92,7 @@ public class CompoundTag implements Compound {
 
     @Override
     public Compound remove(String key) {
-        this.remove(key, get(key));
+        this.remove(key, get(key).asTag());
         return this;
     }
 
@@ -114,85 +110,18 @@ public class CompoundTag implements Compound {
 
     @Override
     public Compound replace(String key, ITag newValue) {
-        this.replace(key, get(key), newValue);
+        this.replace(key, get(key).asTag(), newValue);
         return this;
     }
 
     @Override
-    public ITag get(String key) {
-        return compounds.get(key);
+    public @NotNull NBTElement get(@NotNull String key) {
+        return new NBTElement(compounds.get(key));
     }
 
     @Override
-    public ITag get(String key, ITag defaultValue) {
-        return compounds.getOrDefault(key, defaultValue);
-    }
-
-    @Override
-    @SuppressWarnings("unchecked")
-    public <V> PrimitiveTag<V> getPrimitive(String key) {
-        return (PrimitiveTag<V>) get(key);
-    }
-
-    @Override
-    public String getString(String key) {
-        return ((StringTag) get(key)).value();
-    }
-
-    @Override
-    public int getInt(String key) {
-        return ((IntTag) get(key)).value();
-    }
-
-    @Override
-    public float getFloat(String key) {
-        return ((FloatTag) get(key)).value();
-    }
-
-    @Override
-    public double getDouble(String key) {
-        return ((DoubleTag) get(key)).value();
-    }
-
-    @Override
-    public byte getByte(String key) {
-        return ((ByteTag) get(key)).value();
-    }
-
-    @Override
-    public long getLong(String key) {
-        return ((LongTag) get(key)).value();
-    }
-
-    @Override
-    public short getShort(String key) {
-        return ((ShortTag) get(key)).value();
-    }
-
-    @Override
-    @SuppressWarnings("unchecked")
-    public <V extends ITag> io.github.xiefrish2021.api.List<V> getList(String key) {
-        return ((io.github.xiefrish2021.api.List<V>) get(key));
-    }
-
-    @Override
-    public ByteArrayTag getByteArray(String key) {
-        return (ByteArrayTag) get(key);
-    }
-
-    @Override
-    public IntArrayTag getIntArray(String key) {
-        return (IntArrayTag) get(key);
-    }
-
-    @Override
-    public LongArrayTag getLongArray(String key) {
-        return (LongArrayTag) get(key);
-    }
-
-    @Override
-    public CompoundTag getCompound(String key) {
-        return ((CompoundTag) get(key));
+    public @NotNull NBTElement get(@NotNull String key, @NotNull ITag defaultValue) {
+        return new NBTElement(compounds.getOrDefault(key, defaultValue));
     }
 
     @Override
@@ -244,5 +173,10 @@ public class CompoundTag implements Compound {
         builder.append("}");
 
         return builder.toString();
+    }
+
+    @Override
+    public @NotNull NBTElement getValue(@Nullable Void nothing, @NotNull KProperty<?> property) {
+        return get(property.getName());
     }
 }

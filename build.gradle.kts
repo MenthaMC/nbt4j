@@ -1,11 +1,12 @@
 plugins {
     id("java")
     id("maven-publish")
+    kotlin("jvm") version "2.0.0"
     id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 group = "io.github.xiefrish2021"
-version = "3.2.0"
+version = "3.3.0"
 
 repositories {
     mavenCentral()
