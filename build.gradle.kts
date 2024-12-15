@@ -56,13 +56,13 @@ publishing {
                 }
             }
 
-            maven("https://maven.pkg.github.com/XieFrish2021/NBT") {
-                name = "GitHubPackages"
-                credentials {
-                    username = System.getenv("GITHUB_ACTOR")
-                    password = System.getenv("GITHUB_TOKEN")
-                }
-            }
+//            maven("https://maven.pkg.github.com/XieFrish2021/NBT") {
+//                name = "GitHubPackages"
+//                credentials {
+//                    username = System.getenv("GITHUB_ACTOR")
+//                    password = System.getenv("GITHUB_TOKEN")
+//                }
+//            }
         }
     }
 
