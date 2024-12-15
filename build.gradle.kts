@@ -48,7 +48,7 @@ java {
 publishing {
     repositories {
         repositories {
-            maven("https://repo.menthamc.com/repository/maven-release/") {
+            maven("https://repo.menthamc.com/repository/maven-releases/") {
                 name = "MenthaMC"
                 credentials {
                     username = System.getenv("MAVEN_USERNAME")
