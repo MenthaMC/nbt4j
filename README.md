@@ -11,13 +11,11 @@
 NBT(全称：二进制命名标签(`N`amed`B`inary `T`ags))\
 是Minecraft游戏存档及一些游戏数据的存储格式。
 
-<p align="center">
-    <a href="https://github.com/XieFrish2021/NBT/wiki">Wiki</a>
-    &nbsp;·&nbsp;
-    <a href="https://github.com/XieFrish2021/NBT/issues">Issues</a>
-    &nbsp;·&nbsp;
-    <a href="https://github.com/XieFrish2021/NBT/blob/master/CHANGES.md">Updates</a>
-</p>
+<a href="https://github.com/XieFrish2021/NBT/wiki">Wiki</a>
+&nbsp;|&nbsp;
+<a href="https://github.com/XieFrish2021/NBT/issues">Issues</a>
+&nbsp;|&nbsp;
+<a href="https://github.com/XieFrish2021/NBT/blob/master/CHANGES.md">Updates</a>
 
 ## (2) 用法
 Maven
