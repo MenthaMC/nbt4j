@@ -67,5 +67,5 @@ dependencies {
 如果有BUG，请发布Issues.
 
 ## (3) 最后
-该NBT库的其他用法就靠你自己发掘把 :)\
-那些比如IntArray，ByteArray，List可以自己看test模块或者源码。
+### 请给我们一个免费的 Star⭐
+> 礼轻情谊重，你们每一个Star⭐是我们继续前进的动力
