@@ -1,7 +1,7 @@
 # NBT
 
 [![MIT License](https://img.shields.io/github/license/XieFrish2021/NBT?style=flat-square)](LICENSE)
-![Version](https://img.shields.io/badge/version-preview-version?style=flat-square)
+![Version](https://img.shields.io/badge/version-Preview-yellow?style=flat-square)
 ![GitHub all releases](https://img.shields.io/github/downloads/XieFrish2021/NBT/total?style=flat-square)
 
 > 注意：该版本为Preview版本，如有bug请反馈Issues
