@@ -1,26 +1,27 @@
-package io.github.xiefrish2021.array;
+package io.github.xiefrish2021.tag.array;
 
-import io.github.xiefrish2021.tag.TagType;
+import io.github.xiefrish2021.TagType;
 import io.github.xiefrish2021.util.CommonUtil;
 
-public class IntArrayTag extends ArrayTag<Integer> {
-    public IntArrayTag(int[] array) {
+@SuppressWarnings("all")
+public class ByteArrayTag extends ArrayTag<Byte> {
+    public ByteArrayTag(byte[] array) {
         super(CommonUtil.toPrimitive(array));
     }
 
     @Override
     public TagType type() {
-        return TagType.INT_ARRAY;
+        return TagType.BYTE_ARRAY;
     }
 
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("[I;");
+        builder.append("[B;");
 
         int i = 0;
-        for (int value : this) {
-            builder.append(value);
+        for (byte value : this) {
+            builder.append(value).append("B");
             if (i < size() - 1) {
                 builder.append(", ");
             }

@@ -1,26 +1,27 @@
-package io.github.xiefrish2021.array;
+package io.github.xiefrish2021.tag.array;
 
-import io.github.xiefrish2021.tag.TagType;
+import io.github.xiefrish2021.TagType;
 import io.github.xiefrish2021.util.CommonUtil;
 
-public class LongArrayTag extends ArrayTag<Long> {
-    public LongArrayTag(long[] array) {
+@SuppressWarnings("all")
+public class IntArrayTag extends ArrayTag<Integer> {
+    public IntArrayTag(int[] array) {
         super(CommonUtil.toPrimitive(array));
     }
 
     @Override
     public TagType type() {
-        return TagType.LONG_ARRAY;
+        return TagType.INT_ARRAY;
     }
 
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("[L;");
+        builder.append("[I;");
 
         int i = 0;
-        for (long value : this) {
-            builder.append(value).append("L");
+        for (int value : this) {
+            builder.append(value);
             if (i < size() - 1) {
                 builder.append(", ");
             }

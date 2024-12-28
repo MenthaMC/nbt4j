@@ -1,13 +1,12 @@
 package io.github.xiefrish2021.util;
 
-import io.github.xiefrish2021.primitive.number.*;
+import io.github.xiefrish2021.TagType;
+import io.github.xiefrish2021.tag.*;
 import org.jetbrains.annotations.NotNull;
-import io.github.xiefrish2021.compound.CompoundTag;
+import io.github.xiefrish2021.tag.compound.CompoundTag;
 import io.github.xiefrish2021.exception.NBTReaderException;
-import io.github.xiefrish2021.list.ListTag;
-import io.github.xiefrish2021.primitive.StringTag;
-import io.github.xiefrish2021.api.ITag;
-import io.github.xiefrish2021.tag.TagType;
+import io.github.xiefrish2021.tag.list.ListTag;
+import io.github.xiefrish2021.ITag;
 
 import java.io.DataInput;
 import java.io.IOException;

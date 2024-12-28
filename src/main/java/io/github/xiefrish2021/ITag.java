@@ -1,6 +1,4 @@
-package io.github.xiefrish2021.api;
-
-import io.github.xiefrish2021.tag.TagType;
+package io.github.xiefrish2021;
 
 public interface ITag {
     default TagType type() {

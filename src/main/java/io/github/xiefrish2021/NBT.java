@@ -1,9 +1,8 @@
-package io.github.xiefrish2021.api;
+package io.github.xiefrish2021;
 
-import io.github.xiefrish2021.compound.CompoundTag;
+import io.github.xiefrish2021.tag.compound.CompoundTag;
 import io.github.xiefrish2021.exception.NBTException;
 import io.github.xiefrish2021.snbt.SNBTReader;
-import io.github.xiefrish2021.tag.TagType;
 import io.github.xiefrish2021.util.ReaderUtil;
 import io.github.xiefrish2021.util.WriteUtil;
 
@@ -20,7 +19,7 @@ public final class NBT {
      * @param out NBT file output stream.
      * @param tag NBT compound tag.
      */
-    public void writeNamedNBT(String name, Compound tag, OutputStream out) {
+    public void writeNamedNBT(String name, CompoundTag tag, OutputStream out) {
         try(DataOutputStream buffer = new DataOutputStream(out)) {
             WriteUtil.writeType(tag.type(), buffer);
             WriteUtil.writeString(name, buffer);
@@ -34,14 +33,14 @@ public final class NBT {
      * @param out NBT file output stream.
      * @param tag NBT compound tag.
      */
-    public void writeUnnamedNBT(Compound tag, OutputStream out) {
+    public void writeUnnamedNBT(CompoundTag tag, OutputStream out) {
         writeNamedNBT("", tag, out);
     }
 
     /**
      * @param tag NBT compound tag.
      */
-    public String generateSNBT(Compound tag) {
+    public String generateSNBT(CompoundTag tag) {
         return tag.toString();
     }
 

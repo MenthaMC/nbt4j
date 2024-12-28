@@ -1,5 +1,11 @@
 # NBT
 
+[![MIT License](https://img.shields.io/github/license/XieFrish2021/NBT?style=flat-square)](LICENSE)
+![Version](https://img.shields.io/badge/version-preview-version?style=flat-square)
+![GitHub all releases](https://img.shields.io/github/downloads/XieFrish2021/NBT/total?style=flat-square)
+
+> 注意：该版本为Preview版本，如有bug请反馈Issues
+
 NBT(全称：二进制命名标签(`N`amed`B`inary `T`ags))\
 是Minecraft游戏存档及一些游戏数据的存储格式。\
 版本更新：[CHANGES.md](CHANGES.md)
@@ -9,7 +15,7 @@ Maven
 ```xml
 <repositories>
     <repository>
-        <id>mentha</id>
+        <id>mentha-mc</id>
         <url>https://repo.menthamc.com/repository/maven-public/</url>
     </repository>
 </repositories>
@@ -28,7 +34,7 @@ Gradle
 repositories {
     maven {
         url 'https://repo.menthamc.com/repository/maven-public/'
-        name 'mentha'
+        name 'mentha-mc'
     }
     mavenLocal()
     mavenCentral()
@@ -113,8 +119,8 @@ fun main() {
     val nbt = NBT.getInstance()
     val compound = nbt.readUnnamedNBT(FileOutputStream("你要读取的NBT文件"))
     
-    println(compound["test"].asString());
-    println(compound["test1"].asCompound()["test3"].asInt());
+    println(compound["test"].asString())
+    println(compound["test1"].asCompound()["test3"].asInt())
 }
 ```
 
@@ -130,8 +136,8 @@ fun main() {
     val test1: NBTElement by compound
     val test3: NBTElement by test1.asCompound()
     
-    println(test.asString());
-    println(test3.asInt());
+    println(test.asString())
+    println(test3.asInt())
 }
 ```
 

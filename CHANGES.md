@@ -1,5 +1,9 @@
 # 版本更新 (3.0.0开始算起)：
 
+### 3.4.0-pre - 更新
+ - 修改了部分代码
+ - 删除了一些无用api，如`Compound`和`List<? extends ITag>`
+
 ### 3.3.0 - 更新
  - 修改了部分代码
  - `get(String)Lio/github/xiefrish2021/api/ITag`方法修改成 `get(String)Lio/github/xiefrish2021/compound/NBTElement`
@@ -19,4 +23,3 @@
 #### 3.0.0 - 更新
  - 重写了库的代码
  - 允许通过Compound实例生成SNBT
- -

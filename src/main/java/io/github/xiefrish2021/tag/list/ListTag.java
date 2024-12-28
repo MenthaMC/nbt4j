@@ -1,27 +1,24 @@
-package io.github.xiefrish2021.list;
+package io.github.xiefrish2021.tag.list;
 
 import org.jetbrains.annotations.NotNull;
-import io.github.xiefrish2021.api.List;
 import io.github.xiefrish2021.exception.NBTWriteException;
-import io.github.xiefrish2021.api.ITag;
-import io.github.xiefrish2021.tag.TagType;
+import io.github.xiefrish2021.ITag;
+import io.github.xiefrish2021.TagType;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 
-public class ListTag<V extends ITag> implements List<V> {
+public class ListTag<V extends ITag> implements Iterable<V>, ITag {
     private final java.util.List<V> list = new ArrayList<>();
 
-    @Override
-    public List<V> add(V value) {
+    public ListTag<V> add(V value) {
         list.add(value);
         return this;
     }
 
-    @Override
-    public List<V> addAll(List<V> value) {
+    public ListTag<V> addAll(ListTag<V> value) {
         for (V v : value) {
             list.add(v);
         }
@@ -29,34 +26,28 @@ public class ListTag<V extends ITag> implements List<V> {
         return this;
     }
 
-    @Override
-    public List<V> remove(V value) {
+    public ListTag<V> remove(V value) {
         list.remove(value);
 
         return this;
     }
 
-    @Override
     public V get(int index) {
         return list.get(index);
     }
 
-    @Override
     public int size() {
         return list.size();
     }
 
-    @Override
     public boolean isEmpty() {
         return list.isEmpty();
     }
 
-    @Override
     public boolean contains(V value) {
         return list.contains(value);
     }
 
-    @Override
     public V getFirst() {
         if (list.isEmpty()) {
             throw new NBTWriteException("This list is empty.");
@@ -65,7 +56,6 @@ public class ListTag<V extends ITag> implements List<V> {
         return get(0);
     }
 
-    @Override
     public V getLast() {
         return get(size());
     }

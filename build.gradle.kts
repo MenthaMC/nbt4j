@@ -2,11 +2,10 @@ plugins {
     id("java")
     id("maven-publish")
     kotlin("jvm") version "2.0.0"
-    id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 group = "io.github.xiefrish2021"
-version = "3.3.0"
+version = "3.4.0-pre"
 
 repositories {
     mavenCentral()
@@ -14,11 +13,8 @@ repositories {
 
 dependencies {
     implementation("org.jetbrains:annotations:26.0.1")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.6.0")
 }
-
-//tasks.test {
-//    useJUnitPlatform()
-//}
 
 java {
     sourceCompatibility = JavaVersion.VERSION_22
@@ -27,17 +23,6 @@ java {
 
 tasks.withType<Jar>() {
     destinationDirectory = layout.buildDirectory.dir("targets")
-}
-
-tasks.shadowJar {
-    val jarFileName = "${archiveBaseName.get()}-${archiveVersion.get()}"
-
-    archiveFileName = "$jarFileName.jar"
-    delete(layout.buildDirectory.file("targets/$jarFileName-all.jar"))
-}
-
-tasks.build {
-    dependsOn(tasks.shadowJar)
 }
 
 java {
@@ -55,14 +40,6 @@ publishing {
                     password = System.getenv("MAVEN_PASSWORD")
                 }
             }
-
-//            maven("https://maven.pkg.github.com/XieFrish2021/NBT") {
-//                name = "GitHubPackages"
-//                credentials {
-//                    username = System.getenv("GITHUB_ACTOR")
-//                    password = System.getenv("GITHUB_TOKEN")
-//                }
-//            }
         }
     }
 
@@ -97,6 +74,11 @@ publishing {
                     connection = "scm:git:git@github.com:XieFrish2021/NBT.git"
                     developerConnection = "scm:git:ssh://github.com/XieFrish2021/NBT.git"
                     url = "https://github.com/XieFrish2021/NBT"
+                }
+
+                dependencies {
+                    implementation("org.jetbrains:annotations:26.0.1")
+                    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.6.0")
                 }
             }
         }

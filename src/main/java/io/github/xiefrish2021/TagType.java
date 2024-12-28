@@ -1,4 +1,4 @@
-package io.github.xiefrish2021.tag;
+package io.github.xiefrish2021;
 
 public enum TagType {
     END,

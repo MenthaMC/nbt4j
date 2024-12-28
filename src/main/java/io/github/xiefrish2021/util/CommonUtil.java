@@ -1,8 +1,5 @@
 package io.github.xiefrish2021.util;
 
-import io.github.xiefrish2021.api.ITag;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings("all")
@@ -100,15 +97,5 @@ public class CommonUtil {
             array[i] = list[i].intValue();
         }
         return array;
-    }
-
-    private static <V extends ITag> List<V> ListTagToList(io.github.xiefrish2021.api.List<V> list) {
-        List<V> result = new ArrayList<>();
-
-        for(V v : list) {
-            result.add(v);
-        }
-
-        return result;
     }
 }

@@ -1,11 +1,8 @@
 package me.coderfrish.test
 
-import io.github.xiefrish2021.api.NBT
-import io.github.xiefrish2021.compound.CompoundTag
-import io.github.xiefrish2021.compound.NBTElement
-import io.github.xiefrish2021.primitive.StringTag
+import io.github.xiefrish2021.NBT
+import io.github.xiefrish2021.tag.compound.NBTElement
 import java.io.FileInputStream
-import java.io.FileOutputStream
 
 fun main() {
     val nbt = NBT.getInstance()
@@ -16,7 +13,8 @@ fun main() {
 
     val compound = nbt.readUnnamedNBT(FileInputStream("D:\\NBT\\src\\test\\resources\\test1.nbt"))
 //    println(compound["hello"].asString())
-    val hello: NBTElement by compound
-    println(hello.asString())
+//    val hello: NBTElement by compound
+//    println(hello.asString)
+    println(compound["hello"].asString)
 //    println(hello)
 }
