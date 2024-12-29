@@ -1,7 +1,6 @@
 package io.github.xiefrish2021;
 
 import io.github.xiefrish2021.tag.compound.CompoundTag;
-import io.github.xiefrish2021.exception.NBTException;
 import io.github.xiefrish2021.snbt.SNBTReader;
 import io.github.xiefrish2021.util.ReaderUtil;
 import io.github.xiefrish2021.util.WriteUtil;
@@ -11,6 +10,7 @@ import java.io.*;
 /**
  * @author Frish2021
  */
+@SuppressWarnings("unused")
 public final class NBT {
     private static NBT instance;
 
@@ -41,7 +41,11 @@ public final class NBT {
      * @param tag NBT compound tag.
      */
     public String generateSNBT(CompoundTag tag) {
-        return tag.toString();
+        try {
+            return tag.toString();
+        } catch (Exception e) {
+            throw new NBTException(e);
+        }
     }
 
     /**
@@ -55,7 +59,7 @@ public final class NBT {
 
             ReaderUtil.readString(buffer);
             return ReaderUtil.readCompound(buffer);
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new NBTException(e);
         }
     }
@@ -64,17 +68,25 @@ public final class NBT {
      * @param snbt SNBT input.
      */
     public CompoundTag readUnnamedSNBT(String snbt) {
-        return new SNBTReader(snbt).parserSNBT();
+        try {
+            return new SNBTReader(snbt).parserSNBT();
+        } catch (Exception e) {
+            throw new NBTException(e);
+        }
     }
 
     /**
      * New a NBT instance.
      */
     public synchronized static NBT getInstance() {
-        if (instance == null) {
-            instance = new NBT();
-        }
+        try {
+            if (instance == null) {
+                instance = new NBT();
+            }
 
-        return instance;
+            return instance;
+        } catch (Exception e) {
+            throw new NBTException(e);
+        }
     }
 }

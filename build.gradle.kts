@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "io.github.xiefrish2021"
-version = "3.4.0-pre"
+version = "3.4.0-20241229-pre"
 
 repositories {
     mavenCentral()

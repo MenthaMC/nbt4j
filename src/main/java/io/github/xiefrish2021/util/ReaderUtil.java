@@ -1,10 +1,13 @@
 package io.github.xiefrish2021.util;
 
 import io.github.xiefrish2021.TagType;
+import io.github.xiefrish2021.NBTException;
 import io.github.xiefrish2021.tag.*;
+import io.github.xiefrish2021.tag.array.ByteArrayTag;
+import io.github.xiefrish2021.tag.array.IntArrayTag;
+import io.github.xiefrish2021.tag.array.LongArrayTag;
 import org.jetbrains.annotations.NotNull;
 import io.github.xiefrish2021.tag.compound.CompoundTag;
-import io.github.xiefrish2021.exception.NBTReaderException;
 import io.github.xiefrish2021.tag.list.ListTag;
 import io.github.xiefrish2021.ITag;
 
@@ -53,9 +56,65 @@ public class ReaderUtil {
             case INT -> new IntTag(in.readInt());
             case SHORT -> new ShortTag(in.readShort());
             case COMPOUND -> readCompound(in);
-            case BYTE_ARRAY, LONG_ARRAY, INT_ARRAY, LIST -> readList(in);
+            case INT_ARRAY -> {
+                int length = in.readInt();
+                if (length < 0) {
+                    throw new NBTException("TAG_Int_Array was prefixed with a negative length");
+                }
 
-            default ->  throw new NBTReaderException("Unknown type: " + type);
+                byte[] bytes = new byte[length * 4];
+                in.readFully(bytes);
+                int byteIndex = 0;
+
+                int[] intArray = new int[length];
+                for (int i = 0; i < length; i++, byteIndex += 4) {
+                    int element = 0;
+                    int bitOffset = 24;
+                    for (int b = 0; b < 4; b++, bitOffset -= 8) {
+                        element |= (bytes[byteIndex + b] & 0xFF) << bitOffset;
+                    }
+                    intArray[i] = element;
+                }
+
+                yield new IntArrayTag(intArray);
+            }
+            case BYTE_ARRAY -> {
+                int length = in.readInt();
+                if (length < 0) {
+                    throw new NBTException("TAG_Byte_Array was prefixed with a negative length");
+                }
+
+                byte[] bytes = new byte[length];
+                in.readFully(bytes);
+
+                yield new ByteArrayTag(bytes);
+            }
+            case LONG_ARRAY -> {
+                int length = in.readInt();
+                if (length < 0) {
+                    throw new NBTException("TAG_Long_Array was prefixed with a negative length");
+                } else if (length == 0) {
+                    yield new LongArrayTag(0);
+                }
+
+                byte[] bytes = new byte[length * 8];
+                in.readFully(bytes);
+                int byteIndex = 0;
+
+                long[] longArray = new long[length];
+                for (int i = 0; i < length; i++, byteIndex += 8) {
+                    long element = 0;
+                    int bitOffset = 56;
+                    for (int b = 0; b < 8; b++, bitOffset -= 8) {
+                        element |= ((long) (bytes[byteIndex + b] & 0xFF)) << bitOffset;
+                    }
+                    longArray[i] = element;
+                }
+                yield new LongArrayTag(longArray);
+            }
+            case LIST -> readList(in);
+
+            default ->  throw new NBTException("Unknown type: " + type);
         };
     }
 
@@ -112,7 +171,7 @@ public class ReaderUtil {
                 return new ByteTag((byte) 0);
             }
         } catch (NumberFormatException numberformatexception) {
-            throw new NBTReaderException(numberformatexception);
+            throw new NBTException(numberformatexception);
         }
 
         return new StringTag(value);

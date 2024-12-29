@@ -31,7 +31,7 @@ Maven
     <dependency>
         <groupId>io.github.xiefrish2021</groupId>
         <artifactId>nbt</artifactId>
-        <version>${LATEST_VERSION}</version>
+        <version>最新版本</version>
     </dependency>
 </dependencies>
 ```
@@ -48,7 +48,7 @@ repositories {
 }
 
 dependencies {
-    implementation group: 'io.github.xiefrish2021', name: 'nbt', version: '${LATEST_VERSION}'
+    implementation group: 'io.github.xiefrish2021', name: 'nbt', version: '最新版本'
 }
 ```
 
@@ -61,14 +61,13 @@ repositories {
 }
 
 dependencies {
-    implementation("io.github.xiefrish2021:nbt:${LATEST_VERSION}")
+    implementation("io.github.xiefrish2021:nbt:最新版本")
 }
 ```
 
 ## (3) 其他
-接下来的基本就是Bug修复，性能优化，Chunk区块的格式什么的。这个NBT库也没什么可以更新的。\
-如果要贡献代码的话可以把仓库Fork下来，写上你的代码，并把写了你的代码的Fork 仓库地址通过邮件发送给我。\
-邮件：`1573880184@qq.com`，如果有BUG，请发布Issues.
+如果要贡献代码的话可以把仓库Fork下来，并把你的代码提交到你的Fork上。\
+如果有BUG，请发布Issues，我们会尽量帮助你。
 
 ## (4) 请给我们一个免费的 Star⭐
 > 礼轻情谊重，你们每一个Star⭐是我们继续前进的动力

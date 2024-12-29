@@ -1,9 +1,9 @@
 package io.github.xiefrish2021.tag.compound;
 
+import io.github.xiefrish2021.NBTException;
 import io.github.xiefrish2021.tag.array.ByteArrayTag;
 import io.github.xiefrish2021.tag.array.IntArrayTag;
 import io.github.xiefrish2021.tag.array.LongArrayTag;
-import io.github.xiefrish2021.exception.NBTReaderException;
 import io.github.xiefrish2021.tag.list.ListTag;
 import io.github.xiefrish2021.tag.*;
 import io.github.xiefrish2021.ITag;
@@ -14,7 +14,7 @@ public record NBTElement(ITag tag) {
         try {
             return (ListTag<V>) tag;
         } catch (ClassCastException exception) {
-            throw new NBTReaderException("Value is not a list");
+            throw new NBTException("Value is not a list");
         }
     }
 
@@ -22,7 +22,7 @@ public record NBTElement(ITag tag) {
         try {
             return ((LongArrayTag) tag);
         } catch (ClassCastException exception) {
-            throw new NBTReaderException("Value is not a long array");
+            throw new NBTException("Value is not a long array");
         }
     }
 
@@ -30,7 +30,7 @@ public record NBTElement(ITag tag) {
         try {
             return ((ByteArrayTag) tag);
         } catch (ClassCastException exception) {
-            throw new NBTReaderException("Value is not a byte array");
+            throw new NBTException("Value is not a byte array");
         }
     }
 
@@ -38,7 +38,7 @@ public record NBTElement(ITag tag) {
         try {
             return ((IntArrayTag) tag);
         } catch (ClassCastException exception) {
-            throw new NBTReaderException("Value is not a int array");
+            throw new NBTException("Value is not a int array");
         }
     }
 
@@ -46,7 +46,7 @@ public record NBTElement(ITag tag) {
         try {
             return ((ShortTag) tag).value();
         } catch (ClassCastException exception) {
-            throw new NBTReaderException("Value is not a short");
+            throw new NBTException("Value is not a short");
         }
     }
 
@@ -54,7 +54,7 @@ public record NBTElement(ITag tag) {
         try {
             return ((LongTag) tag).value();
         } catch (ClassCastException exception) {
-            throw new NBTReaderException("Value is not a long");
+            throw new NBTException("Value is not a long");
         }
     }
 
@@ -62,7 +62,7 @@ public record NBTElement(ITag tag) {
         try {
             return ((IntTag) tag).value();
         } catch (ClassCastException exception) {
-            throw new NBTReaderException("Value is not a int");
+            throw new NBTException("Value is not a int");
         }
     }
 
@@ -70,7 +70,7 @@ public record NBTElement(ITag tag) {
         try {
             return ((ByteTag) tag).value();
         } catch (ClassCastException exception) {
-            throw new NBTReaderException("Value is not a byte");
+            throw new NBTException("Value is not a byte");
         }
     }
 
@@ -78,7 +78,7 @@ public record NBTElement(ITag tag) {
         try {
             return ((DoubleTag) tag).value();
         } catch (ClassCastException exception) {
-            throw new NBTReaderException("Value is not a double");
+            throw new NBTException("Value is not a double");
         }
     }
 
@@ -86,7 +86,7 @@ public record NBTElement(ITag tag) {
         try {
             return ((FloatTag) tag).value();
         } catch (ClassCastException exception) {
-            throw new NBTReaderException("Value is not a float");
+            throw new NBTException("Value is not a float");
         }
     }
 
@@ -94,7 +94,7 @@ public record NBTElement(ITag tag) {
         try {
             return ((StringTag) tag).value();
         } catch (ClassCastException exception) {
-            throw new NBTReaderException("Value is not a string");
+            throw new NBTException("Value is not a string");
         }
     }
 

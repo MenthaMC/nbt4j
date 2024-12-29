@@ -1,11 +1,10 @@
 package io.github.xiefrish2021.util;
 
 import io.github.xiefrish2021.TagType;
-import io.github.xiefrish2021.tag.array.ArrayTag;
 import io.github.xiefrish2021.tag.array.ByteArrayTag;
 import io.github.xiefrish2021.tag.array.IntArrayTag;
 import io.github.xiefrish2021.tag.array.LongArrayTag;
-import io.github.xiefrish2021.exception.NBTWriteException;
+import io.github.xiefrish2021.NBTException;
 import io.github.xiefrish2021.tag.*;
 import io.github.xiefrish2021.ITag;
 import io.github.xiefrish2021.tag.compound.CompoundTag;
@@ -46,8 +45,23 @@ public class WriteUtil {
     private static void writeValue(ITag tag, DataOutput output) throws Exception {
         switch (tag) {
             case CompoundTag compound -> writeCompound(compound, output);
-            case ArrayTag<?> arrayTag -> {
-                switch (arrayTag) {
+            case ListTag<?> list -> {
+                if (list.isEmpty()) {
+                    writeType(TagType.END, output);
+                    output.writeInt(0);
+                    return;
+                }
+
+                writeList(list, output);
+            }
+            default -> {
+                switch (tag) {
+                    case ByteTag byteTag -> output.writeByte(byteTag.value());
+                    case ShortTag shortTag -> output.writeShort(shortTag.value());
+                    case IntTag intTag -> output.writeInt(intTag.value());
+                    case FloatTag floatTag -> output.writeFloat(floatTag.value());
+                    case DoubleTag doubleTag -> output.writeDouble(doubleTag.value());
+                    case StringTag stringTag -> output.writeUTF(stringTag.value());
                     case ByteArrayTag byteArray -> {
                         output.writeInt(byteArray.size());
                         for (Byte item : byteArray) {
@@ -68,28 +82,7 @@ public class WriteUtil {
                             output.writeLong(item);
                         }
                     }
-
-                    default -> throw new NBTWriteException("Unknown tag: " + tag);
-                }
-            }
-            case ListTag<?> list -> {
-                if (list.isEmpty()) {
-                    writeType(TagType.END, output);
-                    output.writeInt(0);
-                    return;
-                }
-
-                writeList(list, output);
-            }
-            default -> {
-                switch (tag) {
-                    case ByteTag byteTag -> output.writeByte(byteTag.value());
-                    case ShortTag shortTag -> output.writeShort(shortTag.value());
-                    case IntTag intTag -> output.writeInt(intTag.value());
-                    case FloatTag floatTag -> output.writeFloat(floatTag.value());
-                    case DoubleTag doubleTag -> output.writeDouble(doubleTag.value());
-                    case StringTag stringTag -> output.writeUTF(stringTag.value());
-                    default -> throw new NBTWriteException("Unknown tag: " + tag);
+                    default -> throw new NBTException("Unknown tag: " + tag);
                 }
             }
         }

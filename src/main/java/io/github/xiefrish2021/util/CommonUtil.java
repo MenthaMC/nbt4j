@@ -2,53 +2,7 @@ package io.github.xiefrish2021.util;
 
 import java.util.List;
 
-@SuppressWarnings("all")
 public class CommonUtil {
-    public static Byte[] toPrimitive(byte[] bytes) {
-        if (bytes == null) {
-            return null;
-        } else if (bytes.length == 0) {
-            return new Byte[0];
-        }
-
-        Byte[] buffer = new Byte[bytes.length];
-        for (int i = 0; i < bytes.length; i++) {
-            buffer[i] = bytes[i];
-        }
-
-        return buffer;
-    }
-
-    public static Long[] toPrimitive(long[] longs) {
-        if (longs == null) {
-            return null;
-        } else if (longs.length == 0) {
-            return new Long[0];
-        }
-
-        Long[] buffer = new Long[longs.length];
-        for (int i = 0; i < longs.length; i++) {
-            buffer[i] = longs[i];
-        }
-
-        return buffer;
-    }
-
-    public static Integer[] toPrimitive(int[] ints) {
-        if (ints == null) {
-            return null;
-        } else if (ints.length == 0) {
-            return new Integer[0];
-        }
-
-        Integer[] buffer = new Integer[ints.length];
-        for (int i = 0; i < ints.length; i++) {
-            buffer[i] = ints[i];
-        }
-
-        return buffer;
-    }
-
     public static int[] numberList2IntArray(List<Number> list) {
         return numberArray2intArray(numberList2Array(list));
     }

@@ -1,12 +1,14 @@
 package me.coderfrish.test;
 
 import io.github.xiefrish2021.tag.IntTag;
+import io.github.xiefrish2021.tag.array.ByteArrayTag;
 import io.github.xiefrish2021.tag.compound.CompoundTag;
 import io.github.xiefrish2021.tag.StringTag;
 import io.github.xiefrish2021.NBT;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.nio.charset.StandardCharsets;
 
 public class NBTest {
     public static void main(String[] args) {
@@ -19,6 +21,7 @@ public class NBTest {
         CompoundTag tag = new CompoundTag();
         tag.put("test", new StringTag("Frish2021"));
         tag.put("sfsdfs", new IntTag(4654));
+        tag.put("he", new ByteArrayTag("sss".getBytes(StandardCharsets.UTF_8)));
 
         try {
             nbt.writeUnnamedNBT(tag, new FileOutputStream("D:\\NBT\\src\\test\\resources\\test.nbt"));

@@ -1,5 +1,11 @@
 # 版本更新 (3.0.0开始算起)：
 
+### 3.4.0-20241229-pre - 更新
+ - 修改了部分代码
+ - 删除了多余的Exception并把他们的用法全改成了NBTException
+ - 正式删除了`io.github.xiefrish2021.tag.array.ArrayTag`
+ - Array类型的NBT数据类型皆添加了`set(I,Ljava/lang/Object;)Ljava/lang/Object;`方法
+
 ### 3.4.0-pre - 更新
  - 修改了部分代码
  - 删除了一些无用api，如`Compound`和`List<? extends ITag>`

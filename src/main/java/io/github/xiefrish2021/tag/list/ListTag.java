@@ -1,7 +1,7 @@
 package io.github.xiefrish2021.tag.list;
 
 import org.jetbrains.annotations.NotNull;
-import io.github.xiefrish2021.exception.NBTWriteException;
+import io.github.xiefrish2021.NBTException;
 import io.github.xiefrish2021.ITag;
 import io.github.xiefrish2021.TagType;
 
@@ -50,7 +50,7 @@ public class ListTag<V extends ITag> implements Iterable<V>, ITag {
 
     public V getFirst() {
         if (list.isEmpty()) {
-            throw new NBTWriteException("This list is empty.");
+            throw new NBTException("This list is empty.");
         }
 
         return get(0);

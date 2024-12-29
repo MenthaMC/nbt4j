@@ -1,4 +1,4 @@
-package io.github.xiefrish2021.exception;
+package io.github.xiefrish2021;
 
 public class NBTException extends RuntimeException {
     public NBTException(String message) {
@@ -7,5 +7,9 @@ public class NBTException extends RuntimeException {
 
     public NBTException(Throwable cause) {
         super(cause);
+    }
+
+    public NBTException() {
+        super("Unknown exception.");
     }
 }

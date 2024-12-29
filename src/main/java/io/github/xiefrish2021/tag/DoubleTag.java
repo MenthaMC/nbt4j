@@ -2,14 +2,14 @@ package io.github.xiefrish2021.tag;
 
 import io.github.xiefrish2021.ITag;
 import io.github.xiefrish2021.TagType;
-import io.github.xiefrish2021.exception.NBTWriteException;
+import io.github.xiefrish2021.NBTException;
 
 public class DoubleTag implements ITag {
     private Double value;
 
     public DoubleTag(Double value) {
         if (value == null) {
-            throw new NBTWriteException("The primitive type cannot be null.");
+            throw new NBTException("The primitive type cannot be null.");
         }
 
         this.value = value;
