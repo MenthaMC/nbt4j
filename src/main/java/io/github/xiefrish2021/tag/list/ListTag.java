@@ -56,6 +56,11 @@ public class ListTag<V extends ITag> implements Iterable<V>, ITag {
         return get(0);
     }
 
+    public ListTag<V> set(int index, V value) {
+        list.set(index, value);
+        return this;
+    }
+
     public V getLast() {
         return get(size());
     }

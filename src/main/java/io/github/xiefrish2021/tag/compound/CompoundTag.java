@@ -1,6 +1,5 @@
 package io.github.xiefrish2021.tag.compound;
 
-import kotlin.reflect.KProperty;
 import org.jetbrains.annotations.NotNull;
 import io.github.xiefrish2021.ITag;
 import io.github.xiefrish2021.TagType;
@@ -154,10 +153,6 @@ public class CompoundTag implements Iterable<CompoundTag.Entry>, ITag {
         builder.append("}");
 
         return builder.toString();
-    }
-
-    public @NotNull NBTElement getValue(@Nullable Void nothing, @NotNull KProperty<?> property) {
-        return get(property.getName());
     }
 
     public interface Entry {
