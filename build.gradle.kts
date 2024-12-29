@@ -1,11 +1,10 @@
 plugins {
-    id("java")
-    id("maven-publish")
-    kotlin("jvm") version "2.0.0"
+    java
+    `maven-publish`
 }
 
 group = "io.github.xiefrish2021"
-version = "3.4.0-20241229-pre"
+version = "3.4.0"
 
 repositories {
     mavenCentral()
@@ -13,21 +12,18 @@ repositories {
 
 dependencies {
     implementation("org.jetbrains:annotations:26.0.1")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.6.0")
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_22
-    targetCompatibility = JavaVersion.VERSION_22
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+
+    withJavadocJar()
+    withSourcesJar()
 }
 
 tasks.withType<Jar>() {
     destinationDirectory = layout.buildDirectory.dir("targets")
-}
-
-java {
-    withJavadocJar()
-    withSourcesJar()
 }
 
 publishing {
@@ -36,8 +32,10 @@ publishing {
             maven("https://repo.menthamc.com/repository/maven-releases/") {
                 name = "MenthaMC"
                 credentials {
-                    username = System.getenv("MAVEN_USERNAME")
-                    password = System.getenv("MAVEN_PASSWORD")
+//                    username = System.getenv("MAVEN_USERNAME")
+//                    password = System.getenv("MAVEN_PASSWORD")
+                    username = "coderfrish"
+                    password = "20100422Frish2021"
                 }
             }
         }
@@ -74,11 +72,6 @@ publishing {
                     connection = "scm:git:git@github.com:XieFrish2021/NBT.git"
                     developerConnection = "scm:git:ssh://github.com/XieFrish2021/NBT.git"
                     url = "https://github.com/XieFrish2021/NBT"
-                }
-
-                dependencies {
-                    implementation("org.jetbrains:annotations:26.0.1")
-                    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.6.0")
                 }
             }
         }
