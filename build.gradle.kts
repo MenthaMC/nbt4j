@@ -32,10 +32,8 @@ publishing {
             maven("https://repo.menthamc.com/repository/maven-releases/") {
                 name = "MenthaMC"
                 credentials {
-//                    username = System.getenv("MAVEN_USERNAME")
-//                    password = System.getenv("MAVEN_PASSWORD")
-                    username = "coderfrish"
-                    password = "20100422Frish2021"
+                    username = System.getenv("MAVEN_USERNAME")
+                    password = System.getenv("MAVEN_PASSWORD")
                 }
             }
         }
