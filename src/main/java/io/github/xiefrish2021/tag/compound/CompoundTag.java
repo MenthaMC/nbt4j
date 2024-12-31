@@ -83,7 +83,7 @@ public class CompoundTag implements Iterable<CompoundTag.Entry>, ITag {
     }
 
     public boolean remove(String key) {
-        return this.remove(key, get(key).asTag());
+        return this.remove(key, get(key).getAsTag());
     }
 
     public boolean remove(String key, ITag value) {
@@ -96,7 +96,7 @@ public class CompoundTag implements Iterable<CompoundTag.Entry>, ITag {
     }
 
     public CompoundTag replace(String key, ITag newValue) {
-        this.replace(key, get(key).asTag(), newValue);
+        this.replace(key, get(key).getAsTag(), newValue);
         return this;
     }
 

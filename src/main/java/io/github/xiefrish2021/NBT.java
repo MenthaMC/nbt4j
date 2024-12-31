@@ -1,7 +1,8 @@
 package io.github.xiefrish2021;
 
-import io.github.xiefrish2021.tag.compound.CompoundTag;
+import io.github.xiefrish2021.object.ObjectToNbt;
 import io.github.xiefrish2021.snbt.SNBTReader;
+import io.github.xiefrish2021.tag.compound.CompoundTag;
 import io.github.xiefrish2021.util.ReaderUtil;
 import io.github.xiefrish2021.util.WriteUtil;
 
@@ -12,14 +13,33 @@ import java.io.*;
  */
 @SuppressWarnings("unused")
 public final class NBT {
-    private static NBT instance;
+    /**
+     * @param name NBT name.
+     * @param out NBT file output stream.
+     * @param object Java Bean.
+     * The authors of this method cannot guarantee its stability and may be removed in the future.
+     */
+    @Preview
+    public static void writeNamedNBT(String name, Object object, OutputStream out) {
+        writeNamedNBT(name, new ObjectToNbt(object).toNBT(), out);
+    }
+
+    /**
+     * @param out NBT file output stream.
+     * @param object Java Bean.
+     * The authors of this method cannot guarantee its stability and may be removed in the future.
+     */
+    @Preview
+    public static void writeUnnamedNBT(Object object, OutputStream out) {
+        writeUnnamedNBT(new ObjectToNbt(object).toNBT(), out);
+    }
 
     /**
      * @param name NBT name.
      * @param out NBT file output stream.
      * @param tag NBT compound tag.
      */
-    public void writeNamedNBT(String name, CompoundTag tag, OutputStream out) {
+    public static void writeNamedNBT(String name, CompoundTag tag, OutputStream out) {
         try(DataOutputStream buffer = new DataOutputStream(out)) {
             WriteUtil.writeType(tag.type(), buffer);
             WriteUtil.writeString(name, buffer);
@@ -33,14 +53,14 @@ public final class NBT {
      * @param out NBT file output stream.
      * @param tag NBT compound tag.
      */
-    public void writeUnnamedNBT(CompoundTag tag, OutputStream out) {
+    public static void writeUnnamedNBT(CompoundTag tag, OutputStream out) {
         writeNamedNBT("", tag, out);
     }
 
     /**
      * @param tag NBT compound tag.
      */
-    public String generateSNBT(CompoundTag tag) {
+    public static String generateSNBT(CompoundTag tag) {
         try {
             return tag.toString();
         } catch (Exception e) {
@@ -51,7 +71,7 @@ public final class NBT {
     /**
      * @param in NBT file input stream.
      */
-    public CompoundTag readUnnamedNBT(InputStream in) {
+    public static CompoundTag readUnnamedNBT(InputStream in) {
         try(DataInputStream buffer = new DataInputStream(in)) {
             if (ReaderUtil.readType(buffer) != TagType.COMPOUND) {
                 throw new NBTException("Invalid nbt.");
@@ -67,24 +87,9 @@ public final class NBT {
     /**
      * @param snbt SNBT input.
      */
-    public CompoundTag readUnnamedSNBT(String snbt) {
+    public static CompoundTag readUnnamedSNBT(String snbt) {
         try {
             return new SNBTReader(snbt).parserSNBT();
-        } catch (Exception e) {
-            throw new NBTException(e);
-        }
-    }
-
-    /**
-     * New a NBT instance.
-     */
-    public synchronized static NBT getInstance() {
-        try {
-            if (instance == null) {
-                instance = new NBT();
-            }
-
-            return instance;
         } catch (Exception e) {
             throw new NBTException(e);
         }

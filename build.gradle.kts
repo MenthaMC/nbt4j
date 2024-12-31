@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "io.github.xiefrish2021"
-version = "3.4.0"
+version = "4.0.0"
 
 repositories {
     mavenCentral()

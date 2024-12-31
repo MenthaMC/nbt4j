@@ -1,97 +1,188 @@
 package io.github.xiefrish2021.snbt;
 
+import io.github.xiefrish2021.ITag;
+import io.github.xiefrish2021.NBTException;
+import io.github.xiefrish2021.TagType;
+import io.github.xiefrish2021.tag.ByteTag;
+import io.github.xiefrish2021.tag.IntTag;
+import io.github.xiefrish2021.tag.LongTag;
+import io.github.xiefrish2021.tag.StringTag;
 import io.github.xiefrish2021.tag.array.ByteArrayTag;
 import io.github.xiefrish2021.tag.array.IntArrayTag;
 import io.github.xiefrish2021.tag.array.LongArrayTag;
 import io.github.xiefrish2021.tag.compound.CompoundTag;
-import io.github.xiefrish2021.NBTException;
 import io.github.xiefrish2021.tag.list.ListTag;
-import io.github.xiefrish2021.tag.StringTag;
-import io.github.xiefrish2021.tag.ByteTag;
-import io.github.xiefrish2021.tag.IntTag;
-import io.github.xiefrish2021.tag.LongTag;
-import io.github.xiefrish2021.ITag;
-import io.github.xiefrish2021.TagType;
 import io.github.xiefrish2021.util.CommonUtil;
 import io.github.xiefrish2021.util.ReaderUtil;
-import org.jetbrains.annotations.ApiStatus;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@ApiStatus.Internal
 public class SNBTReader {
-    private final StringReader reader;
+    private final String snbt;
+    private int readerIndex = 0;
 
     public SNBTReader(String snbt) {
-        this(new StringReader(snbt));
+        this.snbt = snbt;
     }
 
-    private SNBTReader(StringReader reader) {
-        this.reader = reader;
+    private char readChar() {
+        if (canRead()) {
+            return snbt.charAt(readerIndex++);
+        } throw new NBTException("The string is no longer readable.");
     }
 
-    public CompoundTag parserSNBT() {
-        CompoundTag compoundtag = this.readStruct();
-        this.reader.skipWhitespace();
-        if (this.reader.canRead()) {
-            throw new NBTException("Failed to parser SNBT.");
+    private boolean canRead(int offset) {
+        return this.readerIndex + offset <= snbt.length();
+    }
+
+    private boolean canRead() {
+        return canRead(1);
+    }
+
+    private void expect(char c) {
+        if (this.canRead() && this.peek() == c) {
+            this.skip();
         } else {
-            return compoundtag;
+            throw new NBTException("String can no longer be read.");
         }
     }
 
-    private CompoundTag readStruct() {
-        this.reader.expect('{');
-        CompoundTag compoundtag = new CompoundTag();
-        this.reader.skipWhitespace();
+    private char peek() {
+        return peek(0);
+    }
 
-        while(this.reader.canRead() && this.reader.peek() != '}') {
-            int i = this.reader.getReaderIndex();
-            String s = this.reader.readKey();
-            if (s.isEmpty()) {
-                this.reader.setReaderIndex(i);
-                throw new NBTException("Empty tag found.");
+    private char peek(int offset) {
+        return snbt.charAt(this.readerIndex + offset);
+    }
+
+    private void skip() {
+        readerIndex++;
+    }
+
+    private void skipWhitespace() {
+        while(this.canRead() && Character.isWhitespace(this.peek())) {
+            this.skip();
+        }
+    }
+
+    private boolean hasElementSeparator() {
+        this.skipWhitespace();
+        if (this.canRead() && this.peek() == ',') {
+            this.skip();
+            this.skipWhitespace();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private String readKey() {
+        this.skipWhitespace();
+        if (!this.canRead()) {
+            throw new NBTException("String can no longer be read.");
+        } else {
+            return this.readString();
+        }
+    }
+
+    private String readString() {
+        if (!this.canRead()) {
+            return "";
+        } else {
+            char next = this.peek();
+            if (isQuotedStringStart(next)) {
+                this.skip();
+                return this.readStringUntil(next);
+            } else {
+                return this.readUnquotedString();
             }
+        }
+    }
 
-            this.reader.expect(':');
-            compoundtag.put(s, this.readValue());
-            if (!this.reader.hasElementSeparator()) {
-                break;
-            }
+    private boolean isQuotedStringStart(char c) {
+        return c == '"' || c == '\'';
+    }
 
-            if (!this.reader.canRead()) {
-                throw new NBTException("Unexpected end of tag.");
+    private boolean isAllowedInUnquotedString(char c) {
+        return c >= '0' && c <= '9' || c >= 'A' && c <= 'Z' || c >= 'a' && c <= 'z' || c == '_' || c == '-' || c == '.' || c == '+';
+    }
+
+    private String readUnquotedString() {
+        int start = this.readerIndex;
+
+        while(this.canRead() && isAllowedInUnquotedString(this.peek())) {
+            this.skip();
+        }
+
+        return snbt.substring(start, this.readerIndex);
+    }
+
+    private String readStringUntil(char terminator) {
+        StringBuilder result = new StringBuilder();
+        boolean escaped = false;
+
+        while(this.canRead()) {
+            char c = this.readChar();
+            if (escaped) {
+                if (c != terminator && c != '\\') {
+                    this.readerIndex = this.readerIndex - 1;
+                    throw new NBTException();
+                }
+
+                result.append(c);
+                escaped = false;
+            } else if (c == '\\') {
+                escaped = true;
+            } else {
+                if (c == terminator) {
+                    return result.toString();
+                }
+
+                result.append(c);
             }
         }
 
-        this.reader.expect('}');
-        return compoundtag;
+        throw new NBTException();
+    }
+
+    private String readQuotedString() {
+        if (!this.canRead()) {
+            return "";
+        } else {
+            char next = this.peek();
+            if (!isQuotedStringStart(next)) {
+                throw new NBTException("String is not quoted string start.");
+            } else {
+                this.skip();
+                return this.readStringUntil(next);
+            }
+        }
     }
 
     private ITag readValue() {
-        this.reader.skipWhitespace();
-        if (!this.reader.canRead()) {
+        skipWhitespace();
+        if (!canRead()) {
             throw new NBTException("Unexpected end of tag.");
         } else {
-            char c0 = this.reader.peek();
+            char c0 = peek();
             if (c0 == '{') {
                 return this.readStruct();
             } else {
-                return c0 == '[' ? this.readList() : this.readTypedValue();
+                return c0 == '[' ? readList() : readTypedValue();
             }
         }
     }
 
-    protected ITag readTypedValue() {
-        this.reader.skipWhitespace();
-        int i = this.reader.getReaderIndex();
-        if (StringReader.isQuotedStringStart(this.reader.peek())) {
-            return new StringTag(this.reader.readQuotedString());
+    private ITag readTypedValue() {
+        skipWhitespace();
+        int i = this.readerIndex;
+        if (isQuotedStringStart(peek())) {
+            return new StringTag(readQuotedString());
         } else {
-            String s = this.reader.readUnquotedString();
+            String s = this.readUnquotedString();
             if (s.isEmpty()) {
-                this.reader.setReaderIndex(i);
+                this.readerIndex = i;
                 throw new NBTException("Empty tag found.");
             } else {
                 return ReaderUtil.snbtType(s);
@@ -100,16 +191,16 @@ public class SNBTReader {
     }
 
     private ITag readList() {
-        return this.reader.canRead(3) && !StringReader.isQuotedStringStart(this.reader.peek(1)) && this.reader.peek(2) == ';' ? this.readArrayTag() : this.readListTag();
+        return this.canRead(3) && !isQuotedStringStart(peek(1)) && peek(2) == ';' ? this.readArrayTag() : this.readListTag();
     }
 
     private ITag readArrayTag() {
-        this.reader.expect('[');
-        int i = this.reader.getReaderIndex();
-        char c0 = this.reader.readChar();
-        this.reader.readChar();
-        this.reader.skipWhitespace();
-        if (!this.reader.canRead()) {
+        this.expect('[');
+        int i = this.readerIndex;
+        char c0 = this.readChar();
+        this.readChar();
+        this.skipWhitespace();
+        if (!this.canRead()) {
             throw new NBTException("Unexpected end of tag.");
         } else if (c0 == 'B') {
             return new ByteArrayTag(CommonUtil.numberList2ByteArray(this.readArray(TagType.BYTE)));
@@ -118,7 +209,7 @@ public class SNBTReader {
         } else if (c0 == 'I') {
             return new IntArrayTag(CommonUtil.numberList2IntArray(this.readArray(TagType.INT)));
         } else {
-            this.reader.setReaderIndex(i);
+            this.readerIndex = i;
             throw new NBTException("String can no longer be read.");
         }
     }
@@ -127,12 +218,12 @@ public class SNBTReader {
         List<Number> list = new ArrayList<>();
 
         while(true) {
-            if (this.reader.peek() != ']') {
-                int i = this.reader.getReaderIndex();
+            if (peek() != ']') {
+                int i = readerIndex;
                 ITag tag = this.readValue();
                 TagType tagtype = tag.type();
                 if (tagtype != p_129363_) {
-                    this.reader.setReaderIndex(i);
+                    this.readerIndex = i;
                     throw new NBTException("Unknown reason.");
                 }
 
@@ -144,205 +235,87 @@ public class SNBTReader {
                     list.add(((IntTag)tag).value());
                 }
 
-                if (this.reader.hasElementSeparator()) {
-                    if (!this.reader.canRead()) {
+                if (hasElementSeparator()) {
+                    if (!canRead()) {
                         throw new NBTException("Unexpected end of tag.");
                     }
                     continue;
                 }
             }
 
-            this.reader.expect(']');
+            expect(']');
             return list;
         }
     }
 
     private ITag readListTag() {
-        this.reader.expect('[');
-        this.reader.skipWhitespace();
-        if (!this.reader.canRead()) {
+        expect('[');
+        skipWhitespace();
+        if (!canRead()) {
             throw new NBTException("Unexpected end of tag.");
         } else {
             ListTag<ITag> listtag = new ListTag<>();
             TagType tagtype = null;
 
-            while(this.reader.peek() != ']') {
-                int i = this.reader.getReaderIndex();
+            while(peek() != ']') {
+                int i = this.readerIndex;
                 ITag tag = this.readValue();
                 TagType tagtype1 = tag.type();
                 if (tagtype == null) {
                     tagtype = tagtype1;
                 } else if (tagtype1 != tagtype) {
-                    this.reader.setReaderIndex(i);
+                    this.readerIndex = i;
                     throw new NBTException("Unknown reason.");
                 }
 
                 listtag.add(tag);
-                if (!this.reader.hasElementSeparator()) {
+                if (!hasElementSeparator()) {
                     break;
                 }
 
-                if (!this.reader.canRead()) {
+                if (!canRead()) {
                     throw new NBTException("Unexpected end of tag.");
                 }
             }
 
-            this.reader.expect(']');
+            expect(']');
             return listtag;
         }
     }
 
-    private static class StringReader {
-        private final String string;
-        private int readerIndex = 0;
+    private CompoundTag readStruct() {
+        CompoundTag entries = new CompoundTag();
 
-        public StringReader(String string) {
-            this.string = string;
-        }
+        expect('{');
+        skipWhitespace();
+        while (canRead() && peek() != '}'){
+            int mark = this.readerIndex;
+            String key = readKey();
+            if (key.isEmpty()) {
+                this.readerIndex = mark;
+                throw new NBTException("Empty tag found.");
+            }
 
-        public char readChar() {
-            return string.charAt(readerIndex++);
-        }
-
-        @SuppressWarnings("unused")
-        public String getString() {
-            return string;
-        }
-
-        public void setReaderIndex(int readerIndex) {
-            this.readerIndex = readerIndex;
-        }
-
-        public int getReaderIndex() {
-            return readerIndex;
-        }
-
-        public boolean canRead(int length) {
-            return this.readerIndex + length <= string.length();
-        }
-
-        public boolean canRead() {
-            return this.canRead(1);
-        }
-
-        public char peek() {
-            return this.string.charAt(this.readerIndex);
-        }
-
-        public char peek(int offset) {
-            return this.string.charAt(this.readerIndex + offset);
-        }
-
-        public void skip() {
-            ++this.readerIndex;
-        }
-
-        public void skipWhitespace() {
-            while(this.canRead() && Character.isWhitespace(this.peek())) {
-                this.skip();
+            expect(':');
+            entries.put(key, readValue());
+            if (!hasElementSeparator()) {
+                break;
+            }
+            if (!canRead()) {
+                throw new NBTException("Unexpected end of tag.");
             }
         }
 
-        public void expect(char c) {
-            if (this.canRead() && this.peek() == c) {
-                this.skip();
-            } else {
-                throw new NBTException("String can no longer be read.");
-            }
-        }
+        expect('}');
+        return entries;
+    }
 
-        public boolean hasElementSeparator() {
-            this.skipWhitespace();
-            if (this.canRead() && this.peek() == ',') {
-                this.skip();
-                this.skipWhitespace();
-                return true;
-            } else {
-                return false;
-            }
-        }
+    public CompoundTag parserSNBT() {
+        CompoundTag entries = this.readStruct();
+        skipWhitespace();
 
-        public String readKey() {
-            this.skipWhitespace();
-            if (!this.canRead()) {
-                throw new NBTException("String can no longer be read.");
-            } else {
-                return this.readString();
-            }
-        }
-
-        public String readString() {
-            if (!this.canRead()) {
-                return "";
-            } else {
-                char next = this.peek();
-                if (isQuotedStringStart(next)) {
-                    this.skip();
-                    return this.readStringUntil(next);
-                } else {
-                    return this.readUnquotedString();
-                }
-            }
-        }
-
-        public static boolean isQuotedStringStart(char c) {
-            return c == '"' || c == '\'';
-        }
-
-        public static boolean isAllowedInUnquotedString(char c) {
-            return c >= '0' && c <= '9' || c >= 'A' && c <= 'Z' || c >= 'a' && c <= 'z' || c == '_' || c == '-' || c == '.' || c == '+';
-        }
-
-        public String readUnquotedString() {
-            int start = this.readerIndex;
-
-            while(this.canRead() && isAllowedInUnquotedString(this.peek())) {
-                this.skip();
-            }
-
-            return this.string.substring(start, this.readerIndex);
-        }
-
-        public String readStringUntil(char terminator) {
-            StringBuilder result = new StringBuilder();
-            boolean escaped = false;
-
-            while(this.canRead()) {
-                char c = this.readChar();
-                if (escaped) {
-                    if (c != terminator && c != '\\') {
-                        this.setReaderIndex(this.getReaderIndex() - 1);
-                        throw new NBTException();
-                    }
-
-                    result.append(c);
-                    escaped = false;
-                } else if (c == '\\') {
-                    escaped = true;
-                } else {
-                    if (c == terminator) {
-                        return result.toString();
-                    }
-
-                    result.append(c);
-                }
-            }
-
-            throw new NBTException();
-        }
-
-        public String readQuotedString() {
-            if (!this.canRead()) {
-                return "";
-            } else {
-                char next = this.peek();
-                if (!isQuotedStringStart(next)) {
-                    throw new NBTException("String is not quoted string start.");
-                } else {
-                    this.skip();
-                    return this.readStringUntil(next);
-                }
-            }
-        }
+        if (canRead()) {
+            throw new NBTException("Failed to parser SNBT.");
+        } return entries;
     }
 }

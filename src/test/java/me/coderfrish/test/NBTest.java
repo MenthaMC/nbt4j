@@ -5,6 +5,8 @@ import io.github.xiefrish2021.tag.array.ByteArrayTag;
 import io.github.xiefrish2021.tag.compound.CompoundTag;
 import io.github.xiefrish2021.tag.StringTag;
 import io.github.xiefrish2021.NBT;
+import me.coderfrish.test.bean.TestBean;
+import me.coderfrish.test.bean.TestBean1;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -17,14 +19,14 @@ public class NBTest {
 
 //    @Test
     public static void test() {
-        NBT nbt = NBT.getInstance();
-        CompoundTag tag = new CompoundTag();
-        tag.put("test", new StringTag("Frish2021"));
-        tag.put("sfsdfs", new IntTag(4654));
-        tag.put("he", new ByteArrayTag("sss".getBytes(StandardCharsets.UTF_8)));
+//        NBT nbt = NBT.getInstance();
+//        CompoundTag tag = new CompoundTag();
+//        tag.put("test", new StringTag("Frish2021"));
+//        tag.put("sfsdfs", new IntTag(4654));
+//        tag.put("he", new ByteArrayTag("sss".getBytes(StandardCharsets.UTF_8)));
 
         try {
-            nbt.writeUnnamedNBT(tag, new FileOutputStream("D:\\NBT\\src\\test\\resources\\test.nbt"));
+            NBT.writeNamedNBT("ss", new TestBean("Frish", 15, 114514,  new TestBean1("Coderfrish", 15, 666)), new FileOutputStream("D:\\NBT\\src\\test\\resources\\test.nbt"));
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -37,6 +39,6 @@ public class NBTest {
 //            System.out.println(array);
 //        }
 
-//        System.out.println(nbt.readUnnamedSNBT("{sss: [I;1,2,3]}").get("sss").type());
+//        System.out.println(NBT.readUnnamedSNBT("{sss: [I;1,2,3]}").get("sss").getAsIntArray());
     }
 }

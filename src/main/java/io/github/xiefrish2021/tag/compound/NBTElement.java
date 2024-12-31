@@ -98,7 +98,7 @@ public record NBTElement(ITag tag) {
         }
     }
 
-    public ITag asTag() {
+    public ITag getAsTag() {
         return tag;
     }
 }
