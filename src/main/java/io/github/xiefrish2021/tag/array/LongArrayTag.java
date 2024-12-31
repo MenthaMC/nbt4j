@@ -1,7 +1,7 @@
 package io.github.xiefrish2021.tag.array;
 
 import io.github.xiefrish2021.ITag;
-import io.github.xiefrish2021.NBTException;
+import io.github.xiefrish2021.core.NBTException;
 import io.github.xiefrish2021.TagType;
 import org.jetbrains.annotations.NotNull;
 

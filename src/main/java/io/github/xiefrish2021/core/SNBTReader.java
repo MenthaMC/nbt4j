@@ -1,7 +1,6 @@
-package io.github.xiefrish2021.snbt;
+package io.github.xiefrish2021.core;
 
 import io.github.xiefrish2021.ITag;
-import io.github.xiefrish2021.NBTException;
 import io.github.xiefrish2021.TagType;
 import io.github.xiefrish2021.tag.ByteTag;
 import io.github.xiefrish2021.tag.IntTag;
@@ -14,10 +13,12 @@ import io.github.xiefrish2021.tag.compound.CompoundTag;
 import io.github.xiefrish2021.tag.list.ListTag;
 import io.github.xiefrish2021.util.CommonUtil;
 import io.github.xiefrish2021.util.ReaderUtil;
+import org.jetbrains.annotations.ApiStatus;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@ApiStatus.Internal
 public class SNBTReader {
     private final String snbt;
     private int readerIndex = 0;
@@ -254,7 +255,7 @@ public class SNBTReader {
         if (!canRead()) {
             throw new NBTException("Unexpected end of tag.");
         } else {
-            ListTag<ITag> listtag = new ListTag<>();
+            ListTag listtag = new ListTag();
             TagType tagtype = null;
 
             while(peek() != ']') {

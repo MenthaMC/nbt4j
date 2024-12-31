@@ -1,11 +1,12 @@
 package io.github.xiefrish2021.util;
 
 import io.github.xiefrish2021.TagType;
-import io.github.xiefrish2021.NBTException;
+import io.github.xiefrish2021.core.NBTException;
 import io.github.xiefrish2021.tag.*;
 import io.github.xiefrish2021.tag.array.ByteArrayTag;
 import io.github.xiefrish2021.tag.array.IntArrayTag;
 import io.github.xiefrish2021.tag.array.LongArrayTag;
+import io.github.xiefrish2021.tag.compound.NBTElement;
 import org.jetbrains.annotations.NotNull;
 import io.github.xiefrish2021.tag.compound.CompoundTag;
 import io.github.xiefrish2021.tag.list.ListTag;
@@ -13,6 +14,10 @@ import io.github.xiefrish2021.ITag;
 
 import java.io.DataInput;
 import java.io.IOException;
+import java.lang.reflect.Field;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class ReaderUtil {
@@ -118,11 +123,11 @@ public class ReaderUtil {
         };
     }
 
-    private static @NotNull ListTag<ITag> readList(DataInput in) throws IOException {
-        ListTag<ITag> list = new ListTag<>();
+    private static @NotNull ListTag readList(DataInput in) throws IOException {
+        ListTag list = new ListTag();
         TagType type0 = readType(in);
         if (type0 == TagType.END) {
-            return new ListTag<>();
+            return new ListTag();
         }
 
         int length = in.readInt();

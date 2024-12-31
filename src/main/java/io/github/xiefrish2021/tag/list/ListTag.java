@@ -1,38 +1,39 @@
 package io.github.xiefrish2021.tag.list;
 
 import org.jetbrains.annotations.NotNull;
-import io.github.xiefrish2021.NBTException;
+import io.github.xiefrish2021.core.NBTException;
 import io.github.xiefrish2021.ITag;
 import io.github.xiefrish2021.TagType;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 
-public class ListTag<V extends ITag> implements Iterable<V>, ITag {
-    private final java.util.List<V> list = new ArrayList<>();
+public class ListTag implements Iterable<ITag>, ITag {
+    private final List<ITag> list = new ArrayList<>();
 
-    public ListTag<V> add(V value) {
+    public ListTag add(ITag value) {
         list.add(value);
         return this;
     }
 
-    public ListTag<V> addAll(ListTag<V> value) {
-        for (V v : value) {
+    public ListTag addAll(ListTag value) {
+        for (ITag v : value) {
             list.add(v);
         }
 
         return this;
     }
 
-    public ListTag<V> remove(V value) {
+    public ListTag remove(ITag value) {
         list.remove(value);
 
         return this;
     }
 
-    public V get(int index) {
+    public ITag get(int index) {
         return list.get(index);
     }
 
@@ -44,11 +45,11 @@ public class ListTag<V extends ITag> implements Iterable<V>, ITag {
         return list.isEmpty();
     }
 
-    public boolean contains(V value) {
+    public boolean contains(ITag value) {
         return list.contains(value);
     }
 
-    public V getFirst() {
+    public ITag getFirst() {
         if (list.isEmpty()) {
             throw new NBTException("This list is empty.");
         }
@@ -56,29 +57,29 @@ public class ListTag<V extends ITag> implements Iterable<V>, ITag {
         return get(0);
     }
 
-    public ListTag<V> set(int index, V value) {
+    public ListTag set(int index, ITag value) {
         list.set(index, value);
         return this;
     }
 
-    public V getLast() {
+    public ITag getLast() {
         return get(size());
     }
 
     @Override
-    public @NotNull Iterator<V> iterator() {
+    public @NotNull Iterator<ITag> iterator() {
         return list.iterator();
     }
 
     @Override
-    public void forEach(Consumer<? super V> action) {
-        for (V v : this) {
+    public void forEach(Consumer<? super ITag> action) {
+        for (ITag v : this) {
             action.accept(v);
         }
     }
 
     @Override
-    public Spliterator<V> spliterator() {
+    public Spliterator<ITag> spliterator() {
         return list.spliterator();
     }
 
@@ -92,7 +93,7 @@ public class ListTag<V extends ITag> implements Iterable<V>, ITag {
         StringBuilder builder = new StringBuilder();
         builder.append("[");
         int i = 0;
-        for (V v : this) {
+        for (ITag v : this) {
             builder.append(v.toString());
             if (i < list.size() - 1) {
                 builder.append(", ");

@@ -1,6 +1,6 @@
 package io.github.xiefrish2021.tag.compound;
 
-import io.github.xiefrish2021.NBTException;
+import io.github.xiefrish2021.core.NBTException;
 import io.github.xiefrish2021.tag.array.ByteArrayTag;
 import io.github.xiefrish2021.tag.array.IntArrayTag;
 import io.github.xiefrish2021.tag.array.LongArrayTag;
@@ -9,10 +9,9 @@ import io.github.xiefrish2021.tag.*;
 import io.github.xiefrish2021.ITag;
 
 public record NBTElement(ITag tag) {
-    @SuppressWarnings({"unchecked", "unused"})
-    public <V extends ITag> ListTag<V> getAsList( Class<V> type) {
+    public ListTag getAsList() {
         try {
-            return (ListTag<V>) tag;
+            return (ListTag) tag;
         } catch (ClassCastException exception) {
             throw new NBTException("Value is not a list");
         }

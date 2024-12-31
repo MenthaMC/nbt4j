@@ -2,27 +2,14 @@ package io.github.xiefrish2021.tag;
 
 import io.github.xiefrish2021.ITag;
 import io.github.xiefrish2021.TagType;
-import io.github.xiefrish2021.NBTException;
+import io.github.xiefrish2021.core.NBTException;
 
-@SuppressWarnings("all")
-public class StringTag implements ITag {
-    private String value;
-
-    public StringTag(String value) {
+public record StringTag(String value) implements ITag {
+    public StringTag {
         if (value == null) {
             throw new NBTException("The primitive type cannot be null.");
         }
 
-        this.value = value;
-    }
-
-    public StringTag value(String value) {
-        this.value = value;
-        return this;
-    }
-
-    public String value() {
-        return value;
     }
 
     @Override

@@ -2,27 +2,15 @@ package io.github.xiefrish2021.tag;
 
 import io.github.xiefrish2021.ITag;
 import io.github.xiefrish2021.TagType;
-import io.github.xiefrish2021.NBTException;
+import io.github.xiefrish2021.core.NBTException;
 
-public class FloatTag implements ITag {
-    private Float value;
-
-    public FloatTag(Float value) {
+public record FloatTag(Float value) implements ITag {
+    public FloatTag {
         if (value == null) {
             throw new NBTException("The primitive type cannot be null.");
         }
-
-        this.value = value;
     }
 
-    public FloatTag value(Float value) {
-        this.value = value;
-        return this;
-    }
-
-    public Float value() {
-        return value;
-    }
     @Override
     public TagType type() {
         return TagType.FLOAT;

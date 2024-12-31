@@ -1,10 +1,11 @@
 package io.github.xiefrish2021.util;
 
 import io.github.xiefrish2021.TagType;
+import io.github.xiefrish2021.core.ObjectNBTMapper;
 import io.github.xiefrish2021.tag.array.ByteArrayTag;
 import io.github.xiefrish2021.tag.array.IntArrayTag;
 import io.github.xiefrish2021.tag.array.LongArrayTag;
-import io.github.xiefrish2021.NBTException;
+import io.github.xiefrish2021.core.NBTException;
 import io.github.xiefrish2021.tag.*;
 import io.github.xiefrish2021.ITag;
 import io.github.xiefrish2021.tag.compound.CompoundTag;
@@ -34,10 +35,10 @@ public class WriteUtil {
         writeType(TagType.END, output);
     }
 
-    private static <V extends ITag> void writeList(ListTag<V> list, DataOutput output) throws Exception {
+    private static <V extends ITag> void writeList(ListTag list, DataOutput output) throws Exception {
         writeType(list.getFirst().type(), output);
         output.writeInt(list.size());
-        for (V tag : list) {
+        for (ITag tag : list) {
             writeValue(tag, output);
         }
     }
@@ -45,7 +46,7 @@ public class WriteUtil {
     private static void writeValue(ITag tag, DataOutput output) throws Exception {
         switch (tag) {
             case CompoundTag compound -> writeCompound(compound, output);
-            case ListTag<?> list -> {
+            case ListTag list -> {
                 if (list.isEmpty()) {
                     writeType(TagType.END, output);
                     output.writeInt(0);

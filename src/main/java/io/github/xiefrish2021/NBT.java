@@ -1,10 +1,12 @@
 package io.github.xiefrish2021;
 
-import io.github.xiefrish2021.object.ObjectToNbt;
-import io.github.xiefrish2021.snbt.SNBTReader;
+import io.github.xiefrish2021.core.NBTException;
+import io.github.xiefrish2021.core.ObjectNBTMapper;
+import io.github.xiefrish2021.core.SNBTReader;
 import io.github.xiefrish2021.tag.compound.CompoundTag;
 import io.github.xiefrish2021.util.ReaderUtil;
 import io.github.xiefrish2021.util.WriteUtil;
+import org.jetbrains.annotations.ApiStatus;
 
 import java.io.*;
 
@@ -19,9 +21,9 @@ public final class NBT {
      * @param object Java Bean.
      * The authors of this method cannot guarantee its stability and may be removed in the future.
      */
-    @Preview
+    @ApiStatus.Experimental
     public static void writeNamedNBT(String name, Object object, OutputStream out) {
-        writeNamedNBT(name, new ObjectToNbt(object).toNBT(), out);
+        writeNamedNBT(name, new ObjectNBTMapper(object).toNBT(), out);
     }
 
     /**
@@ -29,9 +31,9 @@ public final class NBT {
      * @param object Java Bean.
      * The authors of this method cannot guarantee its stability and may be removed in the future.
      */
-    @Preview
+    @ApiStatus.Experimental
     public static void writeUnnamedNBT(Object object, OutputStream out) {
-        writeUnnamedNBT(new ObjectToNbt(object).toNBT(), out);
+        writeUnnamedNBT(new ObjectNBTMapper(object).toNBT(), out);
     }
 
     /**

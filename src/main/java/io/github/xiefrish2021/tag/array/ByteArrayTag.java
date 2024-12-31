@@ -1,17 +1,12 @@
 package io.github.xiefrish2021.tag.array;
 
 import io.github.xiefrish2021.ITag;
-import io.github.xiefrish2021.NBTException;
+import io.github.xiefrish2021.core.NBTException;
 import io.github.xiefrish2021.TagType;
-import io.github.xiefrish2021.util.CommonUtil;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Arrays;
 import java.util.Iterator;
-import java.util.List;
-import java.util.Spliterator;
 import java.util.function.Consumer;
-import java.util.stream.Stream;
 
 
 public class ByteArrayTag implements ITag, Iterable<Byte> {
