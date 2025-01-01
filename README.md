@@ -1,5 +1,7 @@
 # NBT
 
+> Bean转NBT特性暂不支持kotlin的`data class`只能支持Java class bean和java record bean.
+
 [![MIT License](https://img.shields.io/github/license/CoderFrish/NBT?style=flat-square)](LICENSE)
 ![Version](https://img.shields.io/badge/version-Lastest-light_green?style=flat-square)
 ![Releases Downloads](https://img.shields.io/github/downloads/CoderFrish/NBT/total?style=flat-square)
