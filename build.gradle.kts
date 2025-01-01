@@ -3,15 +3,11 @@ plugins {
     `maven-publish`
 }
 
-group = "io.github.xiefrish2021"
-version = "4.1.0"
+group = "me.coderfrish"
+version = "4.2.0"
 
 repositories {
     mavenCentral()
-}
-
-dependencies {
-    implementation("org.jetbrains:annotations:26.0.1")
 }
 
 java {
@@ -41,7 +37,7 @@ publishing {
 
     publications {
         create<MavenPublication>("mavenJava") {
-            groupId = "io.github.xiefrish2021"
+            groupId = project.group.toString()
             artifactId = project.name.lowercase()
             version = project.version.toString()
 
@@ -50,11 +46,11 @@ publishing {
             pom {
                 name = project.name
                 description = "A NBT parser library."
-                url = "https://www.github.com/XieFrish2021"
+                url = "https://www.github.com/CoderFrish"
                 licenses {
                     license {
                         name = "MIT LICENSE"
-                        url = "https://raw.githubusercontent.com/XieFrish2021/NBT/refs/heads/master/LICENSE"
+                        url = "https://raw.githubusercontent.com/CoderFrish/NBT/refs/heads/master/LICENSE"
                     }
                 }
 
@@ -63,13 +59,30 @@ publishing {
                         id = "Frish2021"
                         name = "Xu Zhixuan"
                         email = "1573880184@qq.com"
+                        url = "https://github.com/CoderFrish"
+                        organization {
+                            name = "MenthaMC"
+                            url = "https://www.menthamc.com"
+                        }
+                    }
+                }
+
+                contributors {
+                    contributor {
+                        name = "Kercute"
+                        email = "A3167717663@hotmail.com"
+                        url = "https://www.github.com/Kercute"
+                        organization {
+                            name = "MenthaMC"
+                            url = "https://www.menthamc.com"
+                        }
                     }
                 }
 
                 scm {
-                    connection = "scm:git:git@github.com:XieFrish2021/NBT.git"
-                    developerConnection = "scm:git:ssh://github.com/XieFrish2021/NBT.git"
-                    url = "https://github.com/XieFrish2021/NBT"
+                    connection = "scm:git:git@github.com:CoderFrish/NBT.git"
+                    developerConnection = "scm:git:ssh://github.com/CoderFrish/NBT.git"
+                    url = "https://github.com/CoderFrish/NBT"
                 }
             }
         }

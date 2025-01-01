@@ -1,15 +1,14 @@
-package io.github.xiefrish2021.util;
+package me.coderfrish.util;
 
-import io.github.xiefrish2021.TagType;
-import io.github.xiefrish2021.core.ObjectNBTMapper;
-import io.github.xiefrish2021.tag.array.ByteArrayTag;
-import io.github.xiefrish2021.tag.array.IntArrayTag;
-import io.github.xiefrish2021.tag.array.LongArrayTag;
-import io.github.xiefrish2021.core.NBTException;
-import io.github.xiefrish2021.tag.*;
-import io.github.xiefrish2021.ITag;
-import io.github.xiefrish2021.tag.compound.CompoundTag;
-import io.github.xiefrish2021.tag.list.ListTag;
+import me.coderfrish.TagType;
+import me.coderfrish.tag.*;
+import me.coderfrish.tag.array.ByteArrayTag;
+import me.coderfrish.tag.array.IntArrayTag;
+import me.coderfrish.tag.array.LongArrayTag;
+import me.coderfrish.core.NBTException;
+import me.coderfrish.ITag;
+import me.coderfrish.tag.compound.CompoundTag;
+import me.coderfrish.tag.list.ListTag;
 
 import java.io.DataOutput;
 import java.io.IOException;

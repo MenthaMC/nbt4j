@@ -1,23 +1,17 @@
-package io.github.xiefrish2021.util;
+package me.coderfrish.util;
 
-import io.github.xiefrish2021.TagType;
-import io.github.xiefrish2021.core.NBTException;
-import io.github.xiefrish2021.tag.*;
-import io.github.xiefrish2021.tag.array.ByteArrayTag;
-import io.github.xiefrish2021.tag.array.IntArrayTag;
-import io.github.xiefrish2021.tag.array.LongArrayTag;
-import io.github.xiefrish2021.tag.compound.NBTElement;
-import org.jetbrains.annotations.NotNull;
-import io.github.xiefrish2021.tag.compound.CompoundTag;
-import io.github.xiefrish2021.tag.list.ListTag;
-import io.github.xiefrish2021.ITag;
+import me.coderfrish.TagType;
+import me.coderfrish.core.NBTException;
+import me.coderfrish.tag.*;
+import me.coderfrish.tag.array.ByteArrayTag;
+import me.coderfrish.tag.array.IntArrayTag;
+import me.coderfrish.tag.array.LongArrayTag;
+import me.coderfrish.tag.list.ListTag;
+import me.coderfrish.tag.compound.CompoundTag;
+import me.coderfrish.ITag;
 
 import java.io.DataInput;
 import java.io.IOException;
-import java.lang.reflect.Field;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
 import java.util.regex.Pattern;
 
 public class ReaderUtil {
@@ -123,7 +117,7 @@ public class ReaderUtil {
         };
     }
 
-    private static @NotNull ListTag readList(DataInput in) throws IOException {
+    private static ListTag readList(DataInput in) throws IOException {
         ListTag list = new ListTag();
         TagType type0 = readType(in);
         if (type0 == TagType.END) {

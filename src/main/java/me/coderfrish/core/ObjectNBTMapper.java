@@ -1,13 +1,12 @@
-package io.github.xiefrish2021.core;
+package me.coderfrish.core;
 
-import io.github.xiefrish2021.ITag;
-import io.github.xiefrish2021.tag.*;
-import io.github.xiefrish2021.tag.array.ByteArrayTag;
-import io.github.xiefrish2021.tag.array.IntArrayTag;
-import io.github.xiefrish2021.tag.array.LongArrayTag;
-import io.github.xiefrish2021.tag.compound.CompoundTag;
-import io.github.xiefrish2021.tag.list.ListTag;
-import org.jetbrains.annotations.ApiStatus;
+import me.coderfrish.ITag;
+import me.coderfrish.tag.*;
+import me.coderfrish.tag.array.ByteArrayTag;
+import me.coderfrish.tag.array.IntArrayTag;
+import me.coderfrish.tag.array.LongArrayTag;
+import me.coderfrish.tag.compound.CompoundTag;
+import me.coderfrish.tag.list.ListTag;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -15,7 +14,6 @@ import java.lang.reflect.RecordComponent;
 import java.util.Collection;
 import java.util.Map;
 
-@ApiStatus.Internal
 public class ObjectNBTMapper {
     private final Object object;
 

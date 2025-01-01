@@ -1,24 +1,22 @@
-package io.github.xiefrish2021.core;
+package me.coderfrish.core;
 
-import io.github.xiefrish2021.ITag;
-import io.github.xiefrish2021.TagType;
-import io.github.xiefrish2021.tag.ByteTag;
-import io.github.xiefrish2021.tag.IntTag;
-import io.github.xiefrish2021.tag.LongTag;
-import io.github.xiefrish2021.tag.StringTag;
-import io.github.xiefrish2021.tag.array.ByteArrayTag;
-import io.github.xiefrish2021.tag.array.IntArrayTag;
-import io.github.xiefrish2021.tag.array.LongArrayTag;
-import io.github.xiefrish2021.tag.compound.CompoundTag;
-import io.github.xiefrish2021.tag.list.ListTag;
-import io.github.xiefrish2021.util.CommonUtil;
-import io.github.xiefrish2021.util.ReaderUtil;
-import org.jetbrains.annotations.ApiStatus;
+import me.coderfrish.ITag;
+import me.coderfrish.TagType;
+import me.coderfrish.tag.ByteTag;
+import me.coderfrish.tag.IntTag;
+import me.coderfrish.tag.LongTag;
+import me.coderfrish.tag.StringTag;
+import me.coderfrish.tag.array.ByteArrayTag;
+import me.coderfrish.tag.array.IntArrayTag;
+import me.coderfrish.tag.array.LongArrayTag;
+import me.coderfrish.tag.compound.CompoundTag;
+import me.coderfrish.tag.list.ListTag;
+import me.coderfrish.util.CommonUtil;
+import me.coderfrish.util.ReaderUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@ApiStatus.Internal
 public class SNBTReader {
     private final String snbt;
     private int readerIndex = 0;

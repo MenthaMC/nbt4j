@@ -1,19 +1,10 @@
 package me.coderfrish.test;
 
-import io.github.xiefrish2021.core.ObjectNBTMapper;
-import io.github.xiefrish2021.tag.IntTag;
-import io.github.xiefrish2021.tag.array.ByteArrayTag;
-import io.github.xiefrish2021.tag.compound.CompoundTag;
-import io.github.xiefrish2021.tag.StringTag;
-import io.github.xiefrish2021.NBT;
-import me.coderfrish.test.bean.TestBean;
-import me.coderfrish.test.bean.TestBean1;
+import me.coderfrish.NBT;
 import me.coderfrish.test.bean.TestBean2;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 
 public class NBTest {
     public static void main(String[] args) {
@@ -34,7 +25,7 @@ public class NBTest {
         testBean2.phone = 416546;
         testBean2.isGuangdong = true;
         try {
-            NBT.writeNamedNBT("ss", testBean2, new FileOutputStream("D:\\NBT\\src\\test\\resources\\test.nbt"));
+            NBT.writeNamedNBT("ss", testBean2, new FileOutputStream("D:\\NBT\\src\\test\\resources\\tes3.nbt"));
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }

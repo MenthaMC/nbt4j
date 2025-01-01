@@ -1,5 +1,10 @@
 # 版本更新 (3.0.0开始算起)：
 
+### 4.2.0 - 更新
+ - 修改了部分代码
+ - 把`io.github.xiefrish2021`的用法改成`me.coderfrish`
+ - 移除了`org.jetbrains.annotations`依赖
+
 ### 4.1.0 - 更新
 - 移除了4.0.0不稳定的Java Bean转NBT的支持
 - 重写了新的Java Bean转NBT的支持（基本稳定）

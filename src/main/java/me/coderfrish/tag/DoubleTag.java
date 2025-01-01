@@ -1,8 +1,8 @@
-package io.github.xiefrish2021.tag;
+package me.coderfrish.tag;
 
-import io.github.xiefrish2021.ITag;
-import io.github.xiefrish2021.TagType;
-import io.github.xiefrish2021.core.NBTException;
+import me.coderfrish.ITag;
+import me.coderfrish.TagType;
+import me.coderfrish.core.NBTException;
 
 public record DoubleTag(Double value) implements ITag {
     public DoubleTag {

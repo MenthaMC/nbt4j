@@ -1,9 +1,8 @@
-package io.github.xiefrish2021.tag.list;
+package me.coderfrish.tag.list;
 
-import org.jetbrains.annotations.NotNull;
-import io.github.xiefrish2021.core.NBTException;
-import io.github.xiefrish2021.ITag;
-import io.github.xiefrish2021.TagType;
+import me.coderfrish.TagType;
+import me.coderfrish.core.NBTException;
+import me.coderfrish.ITag;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -67,7 +66,7 @@ public class ListTag implements Iterable<ITag>, ITag {
     }
 
     @Override
-    public @NotNull Iterator<ITag> iterator() {
+    public Iterator<ITag> iterator() {
         return list.iterator();
     }
 

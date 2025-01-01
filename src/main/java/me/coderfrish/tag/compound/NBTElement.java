@@ -1,12 +1,12 @@
-package io.github.xiefrish2021.tag.compound;
+package me.coderfrish.tag.compound;
 
-import io.github.xiefrish2021.core.NBTException;
-import io.github.xiefrish2021.tag.array.ByteArrayTag;
-import io.github.xiefrish2021.tag.array.IntArrayTag;
-import io.github.xiefrish2021.tag.array.LongArrayTag;
-import io.github.xiefrish2021.tag.list.ListTag;
-import io.github.xiefrish2021.tag.*;
-import io.github.xiefrish2021.ITag;
+import me.coderfrish.core.NBTException;
+import me.coderfrish.tag.*;
+import me.coderfrish.tag.array.ByteArrayTag;
+import me.coderfrish.tag.array.IntArrayTag;
+import me.coderfrish.tag.array.LongArrayTag;
+import me.coderfrish.tag.list.ListTag;
+import me.coderfrish.ITag;
 
 public record NBTElement(ITag tag) {
     public ListTag getAsList() {

@@ -1,4 +1,4 @@
-package io.github.xiefrish2021.core;
+package me.coderfrish.core;
 
 public class NBTException extends RuntimeException {
     public NBTException(String message) {

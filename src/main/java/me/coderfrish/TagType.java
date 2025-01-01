@@ -1,4 +1,4 @@
-package io.github.xiefrish2021;
+package me.coderfrish;
 
 public enum TagType {
     END,

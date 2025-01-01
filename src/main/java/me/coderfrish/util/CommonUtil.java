@@ -1,4 +1,4 @@
-package io.github.xiefrish2021.util;
+package me.coderfrish.util;
 
 import java.util.List;
 

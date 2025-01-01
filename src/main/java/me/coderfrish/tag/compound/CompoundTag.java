@@ -1,9 +1,7 @@
-package io.github.xiefrish2021.tag.compound;
+package me.coderfrish.tag.compound;
 
-import org.jetbrains.annotations.NotNull;
-import io.github.xiefrish2021.ITag;
-import io.github.xiefrish2021.TagType;
-import org.jetbrains.annotations.Nullable;
+import me.coderfrish.TagType;
+import me.coderfrish.ITag;
 
 import java.util.*;
 import java.util.function.Consumer;
@@ -15,7 +13,7 @@ public class CompoundTag implements Iterable<CompoundTag.Entry>, ITag {
         return TagType.COMPOUND;
     }
 
-    public @NotNull Iterator<Entry> iterator() {
+    public Iterator<Entry> iterator() {
         List<Entry> list = new ArrayList<>();
         compounds.forEach((key, value) -> list.add(new Entry() {
             @Override
@@ -65,12 +63,12 @@ public class CompoundTag implements Iterable<CompoundTag.Entry>, ITag {
         return list.spliterator();
     }
 
-    public @NotNull CompoundTag put(@NotNull String key, @NotNull ITag value) {
+    public CompoundTag put(String key, ITag value) {
         compounds.put(key, value);
         return this;
     }
 
-    public @NotNull CompoundTag putAll(@NotNull CompoundTag compound) {
+    public CompoundTag putAll(CompoundTag compound) {
         for (Entry entry : this) {
             if (compound.containsKey(entry.key())) {
                 replace(entry.key(), entry.value());
@@ -100,11 +98,11 @@ public class CompoundTag implements Iterable<CompoundTag.Entry>, ITag {
         return this;
     }
 
-    public @NotNull NBTElement get(@NotNull String key) {
+    public NBTElement get(String key) {
         return new NBTElement(compounds.get(key));
     }
 
-    public @NotNull NBTElement get(@NotNull String key, @NotNull ITag defaultValue) {
+    public NBTElement get(String key, ITag defaultValue) {
         if (!containsKey(key)) return new NBTElement(defaultValue);
         return get(key);
     }

@@ -1,9 +1,8 @@
-package io.github.xiefrish2021.tag.array;
+package me.coderfrish.tag.array;
 
-import io.github.xiefrish2021.ITag;
-import io.github.xiefrish2021.core.NBTException;
-import io.github.xiefrish2021.TagType;
-import org.jetbrains.annotations.NotNull;
+import me.coderfrish.ITag;
+import me.coderfrish.core.NBTException;
+import me.coderfrish.TagType;
 
 import java.util.Iterator;
 import java.util.function.Consumer;
@@ -29,7 +28,7 @@ public class LongArrayTag implements ITag, Iterable<Long> {
     }
 
     @Override
-    public @NotNull Iterator<Long> iterator() {
+    public Iterator<Long> iterator() {
         return new Iterator<>() {
             private int index = 0;
 

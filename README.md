@@ -1,19 +1,19 @@
 # NBT
 
-[![MIT License](https://img.shields.io/github/license/XieFrish2021/NBT?style=flat-square)](LICENSE)
+[![MIT License](https://img.shields.io/github/license/CoderFrish/NBT?style=flat-square)](LICENSE)
 ![Version](https://img.shields.io/badge/version-Lastest-light_green?style=flat-square)
-![Releases Downloads](https://img.shields.io/github/downloads/XieFrish2021/NBT/total?style=flat-square)
-![Repo Stars](https://shields.io/github/stars/XieFrish2021/NBT?style=flat-square)
-![Repo Forks](https://shields.io/github/forks/XieFrish2021/NBT?style=flat-square)
+![Releases Downloads](https://img.shields.io/github/downloads/CoderFrish/NBT/total?style=flat-square)
+![Repo Stars](https://shields.io/github/stars/CoderFrish/NBT?style=flat-square)
+![Repo Forks](https://shields.io/github/forks/CoderFrish/NBT?style=flat-square)
 
 NBT(全称：二进制命名标签(`N`amed`B`inary `T`ags))\
 是Minecraft游戏存档及一些游戏数据的存储格式。
 
-<a href="https://github.com/XieFrish2021/NBT/wiki">Wiki</a>
+<a href="https://github.com/CoderFrish/NBT/wiki">Wiki</a>
 &nbsp;|&nbsp;
-<a href="https://github.com/XieFrish2021/NBT/issues">Issues</a>
+<a href="https://github.com/CoderFrish/NBT/issues">Issues</a>
 &nbsp;|&nbsp;
-<a href="https://github.com/XieFrish2021/NBT/blob/master/CHANGES.md">Updates</a>
+<a href="https://github.com/CoderFrish/NBT/blob/master/CHANGES.md">Updates</a>
 
 ## (2) 用法
 Maven
@@ -27,7 +27,7 @@ Maven
 
 <dependencies>
     <dependency>
-        <groupId>io.github.xiefrish2021</groupId>
+        <groupId>me.coderfrish</groupId>
         <artifactId>nbt</artifactId>
         <version>最新版本</version>
     </dependency>
@@ -46,7 +46,7 @@ repositories {
 }
 
 dependencies {
-    implementation group: 'io.github.xiefrish2021', name: 'nbt', version: '最新版本'
+    implementation group: 'me.coderfrish', name: 'nbt', version: '最新版本'
 }
 ```
 
@@ -59,7 +59,7 @@ repositories {
 }
 
 dependencies {
-    implementation("io.github.xiefrish2021:nbt:最新版本")
+    implementation("me.coderfrish:nbt:最新版本")
 }
 ```
 

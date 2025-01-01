@@ -1,18 +1,16 @@
-package io.github.xiefrish2021.tag.array;
+package me.coderfrish.tag.array;
 
-import io.github.xiefrish2021.ITag;
-import io.github.xiefrish2021.core.NBTException;
-import io.github.xiefrish2021.TagType;
-import org.jetbrains.annotations.NotNull;
+import me.coderfrish.ITag;
+import me.coderfrish.core.NBTException;
+import me.coderfrish.TagType;
 
 import java.util.Iterator;
 import java.util.function.Consumer;
 
-@SuppressWarnings("all")
-public class IntArrayTag implements ITag, Iterable<Integer> {
-    private final int[] array;
+public class ByteArrayTag implements ITag, Iterable<Byte> {
+    private final byte[] array;
 
-    public IntArrayTag(int[] array) {
+    public ByteArrayTag(byte[] array) {
         if (array == null) {
             throw new NBTException("The array type cannot be null.");
         }
@@ -20,8 +18,8 @@ public class IntArrayTag implements ITag, Iterable<Integer> {
         this.array = array;
     }
 
-    public IntArrayTag(int size) {
-        this(new int[size]);
+    public ByteArrayTag(int size) {
+        this(new byte[size]);
     }
 
     public int size() {
@@ -29,7 +27,7 @@ public class IntArrayTag implements ITag, Iterable<Integer> {
     }
 
     @Override
-    public @NotNull Iterator<Integer> iterator() {
+    public Iterator<Byte> iterator() {
         return new Iterator<>() {
             private int index = 0;
 
@@ -39,40 +37,40 @@ public class IntArrayTag implements ITag, Iterable<Integer> {
             }
 
             @Override
-            public Integer next() {
+            public Byte next() {
                 return array[index++];
             }
         };
     }
 
-    public int get(int index) {
+    public byte get(int index) {
         return array[index];
     }
 
-    public IntArrayTag set(int index, byte value) {
+    public ByteArrayTag set(int index, byte value) {
         array[index] = value;
         return this;
     }
 
-    public void forEach(Consumer<? super Integer> action) {
-        for (int v : array) {
+    public void forEach(Consumer<? super Byte> action) {
+        for (byte v : array) {
             action.accept(v);
         }
     }
 
     @Override
     public TagType type() {
-        return TagType.INT_ARRAY;
+        return TagType.BYTE_ARRAY;
     }
 
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("[I;");
+        builder.append("[B;");
 
         int i = 0;
-        for (int value : this) {
-            builder.append(value);
+        for (byte value : this) {
+            builder.append(value).append("B");
             if (i < size() - 1) {
                 builder.append(", ");
             }
