@@ -1,18 +1,25 @@
 plugins {
     java
     `maven-publish`
+    kotlin("jvm") version "1.8.0"
 }
-
-group = "me.coderfrish"
-version = "4.2.0"
 
 repositories {
     mavenCentral()
 }
 
+dependencies {
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
+    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.8.2")
+}
+
+tasks.test {
+    useJUnitPlatform()
+}
+
 java {
-    sourceCompatibility = JavaVersion.VERSION_21
-    targetCompatibility = JavaVersion.VERSION_21
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 
     withJavadocJar()
     withSourcesJar()
@@ -25,8 +32,8 @@ tasks.withType<Jar>() {
 publishing {
     repositories {
         repositories {
-            maven("https://repo.menthamc.com/repository/maven-releases/") {
-                name = "MenthaMC"
+            maven("https://frish.menthamc.com/repository/maven-releases/") {
+                name = "FrishRepo"
                 credentials {
                     username = System.getenv("MAVEN_USERNAME")
                     password = System.getenv("MAVEN_PASSWORD")

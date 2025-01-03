@@ -1,4 +1,4 @@
-package me.coderfrish;
+package me.coderfrish.nbt;
 
 public enum TagType {
     END,

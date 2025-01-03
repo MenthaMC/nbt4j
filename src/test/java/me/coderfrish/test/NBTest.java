@@ -1,44 +1,63 @@
 package me.coderfrish.test;
 
-import me.coderfrish.NBT;
-import me.coderfrish.test.bean.TestBean2;
+import me.coderfrish.nbt.NBT;
+import me.coderfrish.nbt.NBTInput;
+import me.coderfrish.nbt.NBTOutput;
+import me.coderfrish.nbt.type.*;
+import me.coderfrish.nbt.type.element.NBTElement;
+import org.junit.jupiter.api.Test;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.*;
 
 public class NBTest {
-    public static void main(String[] args) {
-        test();
-    }
-
-//    @Test
-    public static void test() {
-//        NBT nbt = NBT.getInstance();
-//        CompoundTag tag = new CompoundTag();
-//        tag.put("test", new StringTag("Frish2021"));
-//        tag.put("sfsdfs", new IntTag(4654));
-//        tag.put("he", new ByteArrayTag("sss".getBytes(StandardCharsets.UTF_8)));
-
-        TestBean2 testBean2 = new TestBean2();
-        testBean2.age = 10;
-        testBean2.name = "test";
-        testBean2.phone = 416546;
-        testBean2.isGuangdong = true;
-        try {
-            NBT.writeNamedNBT("ss", testBean2, new FileOutputStream("D:\\NBT\\src\\test\\resources\\tes3.nbt"));
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-
+    @Test
+    public void nbtTest() {
+        long time = System.currentTimeMillis();
+//        try(NBTOutput output = new NBTOutput(new File("D:\\NBT\\src\\test\\resources\\test.nbt"))) {
+//            TagObject entries = new TagObject();
+//            entries.set("Hello", "hello");
+//            entries.set("ss", 5);
 //
-//        tag.put("test1", tag1);
+//            TagByteArray array = new TagByteArray(new byte[]{21, 61, 80, 91});
+//            Collection<String> list = new HashSet<>();
+//            list.add("Hello");
+//            list.add("fsdf");
+//            list.add("sss");
 //
-//        System.out.println(nbt.generateSNBT(tag));
-
-//        for (Byte array : nbt.readUnnamedSNBT("{name: Frish2021, array: [B;1B, 2B, 3B]}").getByteArray("array")) {
-//            System.out.println(array);
+//            entries.set("sss", array);
+//            entries.set("sss545", list);
+//            entries.set("sssss", true);
+//
+//            me.coderfrish.test.Test test = new me.coderfrish.test.Test();
+//            test.age = 14;
+//            test.name = "Frish";
+//            test.phone = 65465;
+//
+//            entries.set("sssssss", test);
+//
+//            output.writeUnnamed(entries);
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
 //        }
 
-//        System.out.println(NBT.readUnnamedSNBT("{sss: [I;1,2,3]}").get("sss").getAsIntArray());
+//        try(NBTInput input = new NBTInput(new File("D:\\NBT\\src\\test\\resources\\test.nbt"))) {
+//            TagObject entries = input.readUnnamed();
+//            System.out.println(entries.get("sssssss").getObject(me.coderfrish.test.Test.class));
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+        try(RandomAccessFile raf = new RandomAccessFile(new File("D:\\NBT\\src\\test\\resources\\snbt.txt"), "rw")) {
+            byte[] buffer = new byte[(int) raf.length()];
+            raf.read(buffer);
+
+            System.out.println(NBT.readUnnamedSNBT(new String(buffer, StandardCharsets.UTF_8)).get("minecraft:dimension_type").getAsObject().get("type").getAsString());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println(System.currentTimeMillis() - time);
     }
 }

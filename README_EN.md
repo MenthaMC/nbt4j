@@ -1,6 +1,6 @@
 # NBT
 
-> Bean转NBT特性暂不支持kotlin的`data class`只能支持`Java class bean`和`java record bean`.
+> Beans to NBT features are not currently supported for kotlin's 'data class', only `Java class bean` and `java record bean`.
 
 [![MIT License](https://img.shields.io/github/license/CoderFrish/NBT?style=flat-square)](LICENSE)
 ![Version](https://img.shields.io/badge/version-5.0.0_Lastest-light_green?style=flat-square)
@@ -8,16 +8,16 @@
 ![Repo Stars](https://shields.io/github/stars/CoderFrish/NBT?style=flat-square)
 ![Repo Forks](https://shields.io/github/forks/CoderFrish/NBT?style=flat-square)
 
-NBT(全称：二进制命名标签(`N`amed`B`inary `T`ags))\
-是Minecraft游戏存档及一些游戏数据的存储格式。
+NBT (full name: binary naming tag (`N`amed`B`inary`T`ags))\
+It is a storage format for Minecraft game saves and some game data.
 
-<a href="https://github.com/CoderFrish/NBT/wiki">维基</a>
+<a href="https://github.com/CoderFrish/NBT/wiki">Wiki</a>
 &nbsp;|&nbsp;
-<a href="https://github.com/CoderFrish/NBT/issues">问题</a>
+<a href="https://github.com/CoderFrish/NBT/issues">Issues</a>
 &nbsp;|&nbsp;
-<a href="https://github.com/CoderFrish/NBT/blob/master/CHANGES.md">历史更新</a>
+<a href="https://github.com/CoderFrish/NBT/blob/master/CHANGES.md">Updates</a>
 &nbsp;|&nbsp;
-[English](README_EN.md)
+[中文](README.md)
 
 ## (2) 用法
 Maven
@@ -33,7 +33,7 @@ Maven
     <dependency>
         <groupId>me.coderfrish</groupId>
         <artifactId>nbt</artifactId>
-        <version>最新版本</version>
+        <version>Latest_Version</version>
     </dependency>
 </dependencies>
 ```
@@ -50,7 +50,7 @@ repositories {
 }
 
 dependencies {
-    implementation group: 'me.coderfrish', name: 'nbt', version: '最新版本'
+    implementation group: 'me.coderfrish', name: 'nbt', version: 'Latest_Version'
 }
 ```
 
@@ -63,13 +63,13 @@ repositories {
 }
 
 dependencies {
-    implementation("me.coderfrish:nbt:最新版本")
+    implementation("me.coderfrish:nbt:Latest_Version")
 }
 ```
 
-## (3) 其他
-如果要贡献代码的话可以把仓库Fork下来，并把你的代码提交到你的Fork上。\
-如果有BUG，请发布Issues，我们会尽量帮助你。
+## (3) Other
+If you want to contribute code, you can fork the repository and commit your code to your fork. \
+If there is a bug, please post an issue and we will try to help you.
 
-## (4) 请给我们一个免费的 Star⭐
-> 礼轻情谊重，你们每一个Star⭐是我们继续前进的动力
+## (4) Please give us a free Star⭐
+> Etiquette is light and friendship is important, and each of you is⭐ the driving force for us to continue to move forward

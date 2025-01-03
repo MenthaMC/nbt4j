@@ -1,23 +1,13 @@
-package me.coderfrish.core;
+package me.coderfrish.nbt;
 
-import me.coderfrish.ITag;
-import me.coderfrish.TagType;
-import me.coderfrish.tag.ByteTag;
-import me.coderfrish.tag.IntTag;
-import me.coderfrish.tag.LongTag;
-import me.coderfrish.tag.StringTag;
-import me.coderfrish.tag.array.ByteArrayTag;
-import me.coderfrish.tag.array.IntArrayTag;
-import me.coderfrish.tag.array.LongArrayTag;
-import me.coderfrish.tag.compound.CompoundTag;
-import me.coderfrish.tag.list.ListTag;
-import me.coderfrish.util.CommonUtil;
-import me.coderfrish.util.ReaderUtil;
+import me.coderfrish.nbt.type.*;
+
+import static me.coderfrish.nbt.Utility.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SNBTReader {
+class SNBTReader {
     private final String snbt;
     private int readerIndex = 0;
 
@@ -28,7 +18,7 @@ public class SNBTReader {
     private char readChar() {
         if (canRead()) {
             return snbt.charAt(readerIndex++);
-        } throw new NBTException("The string is no longer readable.");
+        } throw new RuntimeException("The string is no longer readable.");
     }
 
     private boolean canRead(int offset) {
@@ -43,7 +33,7 @@ public class SNBTReader {
         if (this.canRead() && this.peek() == c) {
             this.skip();
         } else {
-            throw new NBTException("String can no longer be read.");
+            throw new RuntimeException("String can no longer be read.");
         }
     }
 
@@ -79,7 +69,7 @@ public class SNBTReader {
     private String readKey() {
         this.skipWhitespace();
         if (!this.canRead()) {
-            throw new NBTException("String can no longer be read.");
+            throw new RuntimeException("String can no longer be read.");
         } else {
             return this.readString();
         }
@@ -126,7 +116,7 @@ public class SNBTReader {
             if (escaped) {
                 if (c != terminator && c != '\\') {
                     this.readerIndex = this.readerIndex - 1;
-                    throw new NBTException();
+                    throw new RuntimeException();
                 }
 
                 result.append(c);
@@ -142,7 +132,7 @@ public class SNBTReader {
             }
         }
 
-        throw new NBTException();
+        throw new RuntimeException();
     }
 
     private String readQuotedString() {
@@ -151,7 +141,7 @@ public class SNBTReader {
         } else {
             char next = this.peek();
             if (!isQuotedStringStart(next)) {
-                throw new NBTException("String is not quoted string start.");
+                throw new RuntimeException("String is not quoted string start.");
             } else {
                 this.skip();
                 return this.readStringUntil(next);
@@ -159,10 +149,10 @@ public class SNBTReader {
         }
     }
 
-    private ITag readValue() {
+    private Object readValue() {
         skipWhitespace();
         if (!canRead()) {
-            throw new NBTException("Unexpected end of tag.");
+            throw new RuntimeException("Unexpected end of tag.");
         } else {
             char c0 = peek();
             if (c0 == '{') {
@@ -173,70 +163,58 @@ public class SNBTReader {
         }
     }
 
-    private ITag readTypedValue() {
+    private Object readTypedValue() {
         skipWhitespace();
         int i = this.readerIndex;
         if (isQuotedStringStart(peek())) {
-            return new StringTag(readQuotedString());
+            return readQuotedString();
         } else {
             String s = this.readUnquotedString();
             if (s.isEmpty()) {
                 this.readerIndex = i;
-                throw new NBTException("Empty tag found.");
+                throw new RuntimeException("Empty tag found.");
             } else {
-                return ReaderUtil.snbtType(s);
+                return snbtType(s);
             }
         }
     }
 
-    private ITag readList() {
+    private Object readList() {
         return this.canRead(3) && !isQuotedStringStart(peek(1)) && peek(2) == ';' ? this.readArrayTag() : this.readListTag();
     }
 
-    private ITag readArrayTag() {
+    private Object readArrayTag() {
         this.expect('[');
         int i = this.readerIndex;
         char c0 = this.readChar();
         this.readChar();
         this.skipWhitespace();
         if (!this.canRead()) {
-            throw new NBTException("Unexpected end of tag.");
+            throw new RuntimeException("Unexpected end of tag.");
         } else if (c0 == 'B') {
-            return new ByteArrayTag(CommonUtil.numberList2ByteArray(this.readArray(TagType.BYTE)));
+            return new TagByteArray(convertListToByteArray(this.readArray()));
         } else if (c0 == 'L') {
-            return new LongArrayTag(CommonUtil.numberList2LongArray(this.readArray(TagType.LONG)));
+            return new TagLongArray(convertListToLongArray(this.readArray()));
         } else if (c0 == 'I') {
-            return new IntArrayTag(CommonUtil.numberList2IntArray(this.readArray(TagType.INT)));
+            return new TagIntArray(convertListToIntArray(this.readArray()));
         } else {
             this.readerIndex = i;
-            throw new NBTException("String can no longer be read.");
+            throw new RuntimeException("String can no longer be read.");
         }
     }
 
-    private List<Number> readArray(TagType p_129363_) {
-        List<Number> list = new ArrayList<>();
+    private List<Object> readArray() {
+        List<Object> list = new ArrayList<>();
 
         while(true) {
             if (peek() != ']') {
-                int i = readerIndex;
-                ITag tag = this.readValue();
-                TagType tagtype = tag.type();
-                if (tagtype != p_129363_) {
-                    this.readerIndex = i;
-                    throw new NBTException("Unknown reason.");
-                }
+                Object tag = this.readValue();
 
-                if (p_129363_ == TagType.BYTE) {
-                    list.add(((ByteTag)tag).value());
-                } else if (p_129363_ == TagType.LONG) {
-                    list.add(((LongTag)tag).value());
-                } else {
-                    list.add(((IntTag)tag).value());
-                }
+                list.add(tag);
 
                 if (hasElementSeparator()) {
                     if (!canRead()) {
-                        throw new NBTException("Unexpected end of tag.");
+                        throw new RuntimeException("Unexpected end of tag.");
                     }
                     continue;
                 }
@@ -247,24 +225,24 @@ public class SNBTReader {
         }
     }
 
-    private ITag readListTag() {
+    private Object readListTag() {
         expect('[');
         skipWhitespace();
         if (!canRead()) {
-            throw new NBTException("Unexpected end of tag.");
+            throw new RuntimeException("Unexpected end of tag.");
         } else {
-            ListTag listtag = new ListTag();
+            TagList listtag = new TagList();
             TagType tagtype = null;
 
             while(peek() != ']') {
                 int i = this.readerIndex;
-                ITag tag = this.readValue();
-                TagType tagtype1 = tag.type();
+                Object tag = this.readValue();
+                TagType tagtype1 = getType(tag);
                 if (tagtype == null) {
                     tagtype = tagtype1;
                 } else if (tagtype1 != tagtype) {
                     this.readerIndex = i;
-                    throw new NBTException("Unknown reason.");
+                    throw new RuntimeException("Unknown reason.");
                 }
 
                 listtag.add(tag);
@@ -273,7 +251,7 @@ public class SNBTReader {
                 }
 
                 if (!canRead()) {
-                    throw new NBTException("Unexpected end of tag.");
+                    throw new RuntimeException("Unexpected end of tag.");
                 }
             }
 
@@ -282,8 +260,8 @@ public class SNBTReader {
         }
     }
 
-    private CompoundTag readStruct() {
-        CompoundTag entries = new CompoundTag();
+    private TagObject readStruct() {
+        TagObject entries = new TagObject();
 
         expect('{');
         skipWhitespace();
@@ -292,16 +270,16 @@ public class SNBTReader {
             String key = readKey();
             if (key.isEmpty()) {
                 this.readerIndex = mark;
-                throw new NBTException("Empty tag found.");
+                throw new RuntimeException("Empty tag found.");
             }
 
             expect(':');
-            entries.put(key, readValue());
+            entries.set(key, readValue());
             if (!hasElementSeparator()) {
                 break;
             }
             if (!canRead()) {
-                throw new NBTException("Unexpected end of tag.");
+                throw new RuntimeException("Unexpected end of tag.");
             }
         }
 
@@ -309,12 +287,65 @@ public class SNBTReader {
         return entries;
     }
 
-    public CompoundTag parserSNBT() {
-        CompoundTag entries = this.readStruct();
+    public static byte[] convertListToByteArray(List<Object> list) {
+        byte[] byteArray = new byte[list.size()];
+        int index = 0;
+
+        for (Object obj : list) {
+            if (obj instanceof Byte) {
+                byteArray[index++] = (Byte) obj;
+            } else {
+                throw new IllegalArgumentException("List contains non-byte elements");
+            }
+        }
+
+        return byteArray;
+    }
+
+    public static int[] convertListToIntArray(List<Object> list) {
+        int[] intArray = new int[list.size()];
+        int index = 0;
+
+        for (Object obj : list) {
+            if (obj instanceof Integer) {
+                intArray[index++] = (Integer) obj;
+            } else if (obj instanceof Byte) {
+                intArray[index++] = (Byte) obj;
+            } else if (obj instanceof Long) {
+                intArray[index++] = ((Long) obj).intValue();
+            } else {
+                throw new IllegalArgumentException("List contains non-integer elements");
+            }
+        }
+
+        return intArray;
+    }
+
+    public static long[] convertListToLongArray(List<Object> list) {
+        long[] longArray = new long[list.size()];
+        int index = 0;
+
+        for (Object obj : list) {
+            if (obj instanceof Long) {
+                longArray[index++] = (Long) obj;
+            } else if (obj instanceof Integer) {
+                longArray[index++] = (Integer) obj;
+            } else if (obj instanceof Byte) {
+                longArray[index++] = (Byte) obj;
+            } else {
+                throw new IllegalArgumentException("List contains non-long elements");
+            }
+        }
+
+        return longArray;
+    }
+
+    public TagObject parserSNBT() {
+        TagObject entries = this.readStruct();
         skipWhitespace();
 
         if (canRead()) {
-            throw new NBTException("Failed to parser SNBT.");
+            throw new RuntimeException("Failed to parser SNBT.");
         } return entries;
     }
 }
