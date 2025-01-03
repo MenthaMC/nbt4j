@@ -50,14 +50,14 @@ public class NBTest {
 //        } catch (IOException e) {
 //            throw new RuntimeException(e);
 //        }
-        try(RandomAccessFile raf = new RandomAccessFile(new File("D:\\NBT\\src\\test\\resources\\snbt.txt"), "rw")) {
-            byte[] buffer = new byte[(int) raf.length()];
-            raf.read(buffer);
-
-            System.out.println(NBT.readUnnamedSNBT(new String(buffer, StandardCharsets.UTF_8)).get("minecraft:dimension_type").getAsObject().get("type").getAsString());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+//        try(RandomAccessFile raf = new RandomAccessFile(new File("D:\\NBT\\src\\test\\resources\\snbt.txt"), "rw")) {
+//            byte[] buffer = new byte[(int) raf.length()];
+//            raf.read(buffer);
+//
+//            System.out.println(NBT.readUnnamedSNBT(new String(buffer, StandardCharsets.UTF_8)).get("minecraft:dimension_type").getAsObject().get("type").getAsString());
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
         System.out.println(System.currentTimeMillis() - time);
     }
 }
