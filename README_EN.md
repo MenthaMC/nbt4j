@@ -19,7 +19,7 @@ It is a storage format for Minecraft game saves and some game data.
 &nbsp;|&nbsp;
 [中文](README.md)
 
-## (2) 用法
+## (2) How to use.
 Maven
 ```xml
 <repositories>
