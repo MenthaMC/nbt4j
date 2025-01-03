@@ -24,14 +24,14 @@ Maven
 ```xml
 <repositories>
     <repository>
-        <id>mentha-mc</id>
-        <url>https://repo.menthamc.com/repository/maven-public/</url>
+        <id>frish-repo</id>
+        <url>https://frish.menthamc.com/repository/maven-public/</url>
     </repository>
 </repositories>
 
 <dependencies>
     <dependency>
-        <groupId>me.coderfrish</groupId>
+        <groupId>me.coderfrish.nbt</groupId>
         <artifactId>nbt</artifactId>
         <version>最新版本</version>
     </dependency>
@@ -42,28 +42,28 @@ Gradle
 ```groovy
 repositories {
     maven {
-        url 'https://repo.menthamc.com/repository/maven-public/'
-        name 'mentha-mc'
+        url 'https://frish.menthamc.com/repository/maven-public/'
+        name 'frish-repo'
     }
     mavenLocal()
     mavenCentral()
 }
 
 dependencies {
-    implementation group: 'me.coderfrish', name: 'nbt', version: '最新版本'
+    implementation group: 'me.coderfrish.nbt', name: 'nbt', version: '最新版本'
 }
 ```
 
 Gradle (Kotlin)
 ```groovy
 repositories {
-    maven("https://repo.menthamc.com/repository/maven-public/")
+    maven("https://frish.menthamc.com/repository/maven-public/")
     mavenLocal()
     mavenCentral()
 }
 
 dependencies {
-    implementation("me.coderfrish:nbt:最新版本")
+    implementation("me.coderfrish.nbt:nbt:最新版本")
 }
 ```
 
