@@ -1,6 +1,6 @@
 # NBT
 
-> Beans to NBT features are not currently supported for kotlin's 'data class', only `Java class bean` and `java record bean`.
+> Serializable features can`t supported `kotlin data class` and `java record class` at this time. only supported `java class`.
 
 [![MIT License](https://img.shields.io/github/license/CoderFrish/NBT?style=flat-square)](LICENSE)
 ![Version](https://img.shields.io/badge/version-5.0.0_Lastest-light_green?style=flat-square)
@@ -9,7 +9,7 @@
 ![Repo Forks](https://shields.io/github/forks/CoderFrish/NBT?style=flat-square)
 
 NBT (full name: binary naming tag (`N`amed`B`inary`T`ags))\
-It is a storage format for Minecraft game saves and some game data.
+It is a format that Minecraft or some game saves data.
 
 <a href="https://github.com/CoderFrish/NBT/wiki">Wiki</a>
 &nbsp;|&nbsp;
@@ -19,21 +19,21 @@ It is a storage format for Minecraft game saves and some game data.
 &nbsp;|&nbsp;
 [中文](README.md)
 
-## (2) How to use.
+## (2) Usage
 Maven
 ```xml
 <repositories>
     <repository>
-        <id>mentha-mc</id>
-        <url>https://repo.menthamc.com/repository/maven-public/</url>
+        <id>frish-repo</id>
+        <url>https://frish.menthamc.com/repository/maven-public/</url>
     </repository>
 </repositories>
 
 <dependencies>
     <dependency>
-        <groupId>me.coderfrish</groupId>
+        <groupId>me.coderfrish.nbt</groupId>
         <artifactId>nbt</artifactId>
-        <version>Latest_Version</version>
+        <version>latest_version</version>
     </dependency>
 </dependencies>
 ```
@@ -42,34 +42,34 @@ Gradle
 ```groovy
 repositories {
     maven {
-        url 'https://repo.menthamc.com/repository/maven-public/'
-        name 'mentha-mc'
+        url 'https://frish.menthamc.com/repository/maven-public/'
+        name 'frish-repo'
     }
     mavenLocal()
     mavenCentral()
 }
 
 dependencies {
-    implementation group: 'me.coderfrish', name: 'nbt', version: 'Latest_Version'
+    implementation group: 'me.coderfrish.nbt', name: 'nbt', version: 'latest_version'
 }
 ```
 
 Gradle (Kotlin)
 ```groovy
 repositories {
-    maven("https://repo.menthamc.com/repository/maven-public/")
+    maven("https://frish.menthamc.com/repository/maven-public/")
     mavenLocal()
     mavenCentral()
 }
 
 dependencies {
-    implementation("me.coderfrish:nbt:Latest_Version")
+    implementation("me.coderfrish.nbt:nbt:latest_version")
 }
 ```
 
 ## (3) Other
-If you want to contribute code, you can fork the repository and commit your code to your fork. \
-If there is a bug, please post an issue and we will try to help you.
+If you want to contribute your code, you can Fork this code repository and commit your code in your code repository.  \
+If you found Bug, please you post Issue and we will try to help you.
 
 ## (4) Please give us a free Star⭐
-> Etiquette is light and friendship is important, and each of you is⭐ the driving force for us to continue to move forward
+> Although gift light, but among them friendship heavy. Your every star⭐ will be our power to move forward.
