@@ -1,7 +1,7 @@
 # NBT
 
 > [!NOTE]\
-> 该nbt库的序列化功能以支持kotlin数据类和kotlin类以及java类，但是仍旧不支持java记录类
+> 该nbt库的序列化功能以支持kotlin数据类和kotlin类以及java类，但是仍旧不支持java记录类\
 > 反序列化功能正在研究...
 
 [![MIT License](https://img.shields.io/github/license/CoderFrish/NBT?style=flat-square)](LICENSE)

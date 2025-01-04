@@ -1,7 +1,7 @@
 # NBT
 
 > [!NOTE]\
-> The serializable features of NBT library supported kotlin data class and kotlin class, java class, but still not supported java record class.
+> The serializable features of NBT library supported kotlin data class and kotlin class, java class, but still not supported java record class. \
 > The deserialization feature is being studied...
 
 [![MIT License](https://img.shields.io/github/license/CoderFrish/NBT?style=flat-square)](LICENSE)
