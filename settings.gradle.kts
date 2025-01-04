@@ -6,4 +6,5 @@ pluginManagement {
     }
 }
 
-rootProject.name = "NBT"
+rootProject.name = "nbt"
+include(":test", ":main")

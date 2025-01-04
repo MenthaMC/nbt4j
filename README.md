@@ -1,6 +1,8 @@
 # NBT
 
-> Bean转NBT特性暂不支持'kotlin data class'和'java record class'只能支持'Java class'.
+> [!NOTE]\
+> 该nbt库的序列化功能以支持kotlin数据类和kotlin类以及java类，但是仍旧不支持java记录类
+> 反序列化功能正在研究...
 
 [![MIT License](https://img.shields.io/github/license/CoderFrish/NBT?style=flat-square)](LICENSE)
 ![Version](https://img.shields.io/badge/version-5.0.0_Lastest-light_green?style=flat-square)

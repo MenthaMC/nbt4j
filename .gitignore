@@ -1,6 +1,8 @@
 ### Gradle ###
 .gradle/
 build/
+*/build/
+target/
 
 ### IntelliJ IDEA ###
 .idea/
@@ -10,4 +12,5 @@ out/
 .vscode/
 
 ### kotlin ###
+*/.kotlin/
 .kotlin/
