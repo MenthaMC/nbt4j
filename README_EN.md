@@ -1,6 +1,6 @@
 # NBT
 
-> Serializable features can\`t supported `kotlin data class` and `java record class` at this time. only supported `java class`.
+> Serializable features can\`t supported 'kotlin data class' and 'java record class' at this time. only supported 'java class'.
 
 [![MIT License](https://img.shields.io/github/license/CoderFrish/NBT?style=flat-square)](LICENSE)
 ![Version](https://img.shields.io/badge/version-5.0.0_Lastest-light_green?style=flat-square)
