@@ -22,10 +22,10 @@ jobs:
         architecture: x64
 
     - name: Make gradlew executable
-      run: chmod +x ./gradlew
+      run: chmod +x ../build.sh
 
     - name: build jar
-      run: ./gradlew build
+      run: bash ../build.sh
 
     - name: Upload artifacts
       uses: softprops/action-gh-release@v2
@@ -33,4 +33,7 @@ jobs:
         token: ${{ secrets.CREATE_RELEASE }}
         tag_name: '${{ inputs.version }}'
         name: 'NBT-${{inputs.version}}'
-        files: 'build/targets/NBT-${{inputs.version}}.jar'
+        files: |
+          'target/NBT-${{inputs.version}}.jar'
+          'target/NBT-${{inputs.version}}-javadoc.jar'
+          'target/NBT-${{inputs.version}}-sources.jar'
