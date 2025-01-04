@@ -22,10 +22,10 @@ jobs:
         architecture: x64
 
     - name: Make gradlew executable
-      run: chmod +x ../build.sh
+      run: chmod +x ./build.sh
 
     - name: build jar
-      run: bash ../build.sh
+      run: bash ./build.sh
 
     - name: Upload artifacts
       uses: softprops/action-gh-release@v2
