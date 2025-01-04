@@ -18,10 +18,10 @@ jobs:
         architecture: x64
 
     - name: Make gradlew executable
-      run: chmod +x ./publish.sh
+      run: chmod +x ./scripts/publish.sh
 
     - name: Publish package
-      run: bash ./publish.sh
+      run: bash ./scripts/publish.sh
       env:
         MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}
         MAVEN_PASSWORD: ${{ secrets.MAVEN_PASSWORD }}
