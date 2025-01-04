@@ -1,6 +1,6 @@
 # NBT
 
-> Serializable features can`t supported `kotlin data class` and `java record class` at this time. only supported `java class`.
+> Serializable features can\`t supported `kotlin data class` and `java record class` at this time. only supported `java class`.
 
 [![MIT License](https://img.shields.io/github/license/CoderFrish/NBT?style=flat-square)](LICENSE)
 ![Version](https://img.shields.io/badge/version-5.0.0_Lastest-light_green?style=flat-square)
@@ -8,7 +8,7 @@
 ![Repo Stars](https://shields.io/github/stars/CoderFrish/NBT?style=flat-square)
 ![Repo Forks](https://shields.io/github/forks/CoderFrish/NBT?style=flat-square)
 
-NBT (full name: binary naming tag (`N`amed`B`inary`T`ags))\
+NBT (full name: `N`amed`B`inary`T`ags)\
 It is a format that Minecraft or some game saves data.
 
 <a href="https://github.com/CoderFrish/NBT/wiki">Wiki</a>
