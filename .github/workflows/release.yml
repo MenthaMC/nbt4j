@@ -3,10 +3,6 @@ name: release
 
 on:
   workflow_dispatch:
-    inputs:
-      version:
-        type: string
-        description: A version input.
 
 jobs:
   build:
@@ -31,7 +27,6 @@ jobs:
       uses: softprops/action-gh-release@v2
       with:
         token: ${{ secrets.CREATE_RELEASE }}
-        tag_name: '${{ inputs.version }}'
-        name: 'NBT-${{inputs.version}}'
-        files: |
-          target/**
+        tag_name: '${{ env.version }}'
+        name: 'NBT-${{ env.version }}'
+        files: 'target/**'
