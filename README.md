@@ -5,7 +5,7 @@
 > 反序列化功能正在研究...
 
 [![MIT License](https://img.shields.io/github/license/CoderFrish/NBT?style=flat-square)](LICENSE)
-![Version](https://img.shields.io/badge/version-5.0.0_Lastest-light_green?style=flat-square)
+![Version](https://img.shields.io/badge/version-5.1.0_Lastest-light_green?style=flat-square)
 ![Releases Downloads](https://img.shields.io/github/downloads/CoderFrish/NBT/total?style=flat-square)
 ![Repo Stars](https://shields.io/github/stars/CoderFrish/NBT?style=flat-square)
 ![Repo Forks](https://shields.io/github/forks/CoderFrish/NBT?style=flat-square)
