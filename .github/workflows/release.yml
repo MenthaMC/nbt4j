@@ -34,6 +34,4 @@ jobs:
         tag_name: '${{ inputs.version }}'
         name: 'NBT-${{inputs.version}}'
         files: |
-          'target/NBT-${{inputs.version}}.jar'
-          'target/NBT-${{inputs.version}}-javadoc.jar'
-          'target/NBT-${{inputs.version}}-sources.jar'
+          target/**
