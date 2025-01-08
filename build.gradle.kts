@@ -6,3 +6,10 @@ allprojects {
         mavenCentral()
     }
 }
+
+tasks.getByName("clean") {
+    delete(
+        File(rootDir, ".kotlin"),
+        File(rootDir, "target")
+    )
+}
