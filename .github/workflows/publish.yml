@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    name: Publishing NBT to maven.
+    name: Publish NBT-Jar
     runs-on: ubuntu-latest
 
     steps:
@@ -17,11 +17,8 @@ jobs:
         distribution: 'temurin'
         architecture: x64
 
-    - name: Make gradlew executable
-      run: chmod +x ./scripts/publish.sh
-
     - name: Publish package
-      run: bash ./scripts/publish.sh
+      run: chmod +x ./scripts/publish.sh && bash ./scripts/publish.sh
       env:
         MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}
         MAVEN_PASSWORD: ${{ secrets.MAVEN_PASSWORD }}

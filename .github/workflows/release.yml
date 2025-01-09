@@ -17,11 +17,8 @@ jobs:
         distribution: 'temurin'
         architecture: x64
 
-    - name: Make gradlew executable
-      run: chmod +x ./scripts/build.sh
-
-    - name: build jar
-      run: bash ./scripts/build.sh
+    - name: Build Jar!
+      run: chmod +x ./scripts/build.sh && bash ./scripts/build.sh
 
     - name: Upload artifacts
       uses: softprops/action-gh-release@v2
