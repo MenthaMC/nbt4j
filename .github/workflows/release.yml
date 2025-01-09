@@ -23,7 +23,7 @@ jobs:
     - name: Upload artifacts
       uses: softprops/action-gh-release@v2
       with:
-        token: ${{ secrets.ACCESS_TOKEN }}
+        token: ${{ secrets.GITHUB_TOKEN }}
         tag_name: '${{ secrets.VERSION }}'
         name: 'NBT-${{ secrets.VERSION }}'
         files: 'target/**'
