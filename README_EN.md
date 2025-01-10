@@ -1,14 +1,12 @@
 # NBT
 
-> [!NOTE]\
-> The serializable features of NBT library supported kotlin data class and kotlin class, java class, but still not supported java record class. \
-> The deserialization feature is being studied...
-
 [![MIT License](https://img.shields.io/github/license/CoderFrish/NBT?style=flat-square)](LICENSE)
-![Version](https://img.shields.io/badge/version-5.1.0_Lastest-light_green?style=flat-square)
+![Version](https://img.shields.io/badge/version-6.0.0_Preview-yellow?style=flat-square)
 ![Releases Downloads](https://img.shields.io/github/downloads/CoderFrish/NBT/total?style=flat-square)
 ![Repo Stars](https://shields.io/github/stars/CoderFrish/NBT?style=flat-square)
 ![Repo Forks](https://shields.io/github/forks/CoderFrish/NBT?style=flat-square)
+
+[//]: # (![Version]&#40;https://img.shields.io/badge/version-6.0.0_Lastest-light_green?style=flat-square&#41;)
 
 NBT (Full name: `N`amed`B`inary`T`ags)\
 It is a format that Minecraft or some game saves data.
