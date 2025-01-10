@@ -1,6 +1,5 @@
 package me.coderfrish.nbt;
 
-import me.coderfrish.nbt.common.TagType;
 import me.coderfrish.nbt.io.input.DataInputStream;
 import me.coderfrish.nbt.type.NBTCompound;
 

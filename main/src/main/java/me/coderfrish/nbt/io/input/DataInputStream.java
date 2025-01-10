@@ -5,18 +5,15 @@ import me.coderfrish.nbt.type.*;
 
 import java.io.*;
 import java.lang.invoke.MethodHandles;
-import java.lang.invoke.VarHandle;
 import java.nio.ByteOrder;
 import java.nio.charset.StandardCharsets;
 
 public class DataInputStream extends BufferedInputStream implements Closeable {
-    private static final VarHandle SHORT = create(short[].class);
-    private static final VarHandle INT = create(int[].class);
-    private static final VarHandle LONG = create(long[].class);
-
     private static final int DEFAULT_BUFFER_SIZE = 8192;
 
-    private final byte[] readBuffer = new byte[8];
+    private final byte[] readLongBuffer = new byte[8];
+    private final byte[] readIntBuffer = new byte[4];
+    private final byte[] readShortBuffer = new byte[2];
 
     public DataInputStream(InputStream in) {
         super(in, DEFAULT_BUFFER_SIZE);
@@ -137,18 +134,25 @@ public class DataInputStream extends BufferedInputStream implements Closeable {
     }
 
     public short readShort() throws IOException {
-        readFully(readBuffer, 0, 2);
-        return (short) SHORT.get(readBuffer, 0);
+        readFully(readShortBuffer, 0, 2);
+        return (short) ((readShortBuffer[0] << 8) + (readShortBuffer[1]));
     }
 
     public int readInt() throws IOException {
-        readFully(readBuffer, 0, 4);
-        return (int) INT.get(readBuffer, 0);
+        readFully(readIntBuffer, 0, 4);
+        return ((readIntBuffer[0] << 24) + (readIntBuffer[1] << 16) + (readIntBuffer[2] << 8) + (readIntBuffer[3]));
     }
 
     public long readLong() throws IOException {
-        readFully(readBuffer, 0, 8);
-        return (long) LONG.get(readBuffer, 0);
+        readFully(readLongBuffer, 0, 8);
+        return (((long)readLongBuffer[0] << 56) +
+                ((long)(readLongBuffer[1] & 255) << 48) +
+                ((long)(readLongBuffer[2] & 255) << 40) +
+                ((long)(readLongBuffer[3] & 255) << 32) +
+                ((long)(readLongBuffer[4] & 255) << 24) +
+                ((readLongBuffer[5] & 255) << 16) +
+                ((readLongBuffer[6] & 255) <<  8) +
+                ((readLongBuffer[7] & 255)));
     }
 
     public float readFloat() throws IOException {
@@ -164,9 +168,5 @@ public class DataInputStream extends BufferedInputStream implements Closeable {
         readFully(strBytes);
 
         return new String(strBytes, StandardCharsets.UTF_8);
-    }
-
-    private static VarHandle create(Class<?> viewArrayClass) {
-        return MethodHandles.byteArrayViewVarHandle(viewArrayClass, ByteOrder.BIG_ENDIAN);
     }
 }

@@ -16,7 +16,7 @@ public class InputTest {
         try(NBTInput input = new NBTInput(new FileInputStream("D:\\NBT\\test\\src\\test\\resources\\test.nbt"))) {
             NBTCompound read = input.read();
 
-            System.out.println(read.get("aas").getAsBoolean());
+            System.out.println(read.get("safa").getAsInt());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
