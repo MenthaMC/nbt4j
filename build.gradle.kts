@@ -8,8 +8,11 @@ allprojects {
 }
 
 tasks.getByName("clean") {
-    delete(
-        File(rootDir, ".kotlin"),
-        File(rootDir, "target")
-    )
+    for (project in project.allprojects) {
+        val projectDir = project.projectDir
+
+        delete(File(projectDir, ".kotlin"))
+        delete(File(projectDir, "target"))
+        delete(File(projectDir, "build"))
+    }
 }
