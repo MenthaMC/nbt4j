@@ -1,4 +1,5 @@
-# NBT
+<div align="center">
+<h1>NBT</h1>
 
 [![MIT License](https://img.shields.io/github/license/CoderFrish/NBT?style=flat-square)](LICENSE)
 ![Version](https://img.shields.io/badge/version-6.0.0_Preview-yellow?style=flat-square)
@@ -18,6 +19,7 @@ It is a format that Minecraft or some game saves data.
 <a href="https://github.com/CoderFrish/NBT/blob/master/CHANGES.md">Updates</a>
 &nbsp;|&nbsp;
 [中文](README.md)
+</div>
 
 ## (2) Usage
 Maven
