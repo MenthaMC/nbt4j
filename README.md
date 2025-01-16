@@ -1,12 +1,11 @@
-# NBT
+<div align="center">
+<h1> NBT </h1>
 
 [![MIT License](https://img.shields.io/github/license/CoderFrish/NBT?style=flat-square)](LICENSE)
 ![Version](https://img.shields.io/badge/version-6.0.0_Preview-yellow?style=flat-square)
 ![Releases Downloads](https://img.shields.io/github/downloads/CoderFrish/NBT/total?style=flat-square)
 ![Repo Stars](https://shields.io/github/stars/CoderFrish/NBT?style=flat-square)
 ![Repo Forks](https://shields.io/github/forks/CoderFrish/NBT?style=flat-square)
-
-[//]: # (![Version]&#40;https://img.shields.io/badge/version-6.0.0_Lastest-light_green?style=flat-square&#41;)
 
 NBT(全称：二进制命名标签(`N`amed`B`inary `T`ags))\
 是Minecraft游戏存档及一些游戏数据的存储格式。
@@ -18,6 +17,7 @@ NBT(全称：二进制命名标签(`N`amed`B`inary `T`ags))\
 <a href="https://github.com/CoderFrish/NBT/blob/master/CHANGES.md">历史更新</a>
 &nbsp;|&nbsp;
 [English](README_EN.md)
+</div>
 
 ## (2) 用法
 Maven
