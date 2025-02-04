@@ -24,8 +24,8 @@ Maven
 ```xml
 <repositories>
     <repository>
-        <id>frish-repo</id>
-        <url>https://frish.menthamc.com/repository/maven-public/</url>
+        <id>menthamc</id>
+        <url>https://repo.menthamc.com/repository/maven-public/</url>
     </repository>
 </repositories>
 
@@ -42,8 +42,8 @@ Gradle
 ```groovy
 repositories {
     maven {
-        url 'https://frish.menthamc.com/repository/maven-public/'
-        name 'frish-repo'
+        url 'https://repo.menthamc.com/repository/maven-public/'
+        name 'menthamc'
     }
     mavenLocal()
     mavenCentral()
@@ -57,7 +57,7 @@ dependencies {
 Gradle (Kotlin)
 ```groovy
 repositories {
-    maven("https://frish.menthamc.com/repository/maven-public/")
+    maven("https://repo.menthamc.com/repository/maven-public/")
     mavenLocal()
     mavenCentral()
 }
