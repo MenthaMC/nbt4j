@@ -71,5 +71,5 @@ dependencies {
 如果要贡献代码的话可以把仓库Fork下来，并把你的代码提交到你的Fork上，并发布Pull Request。\
 如果有BUG，请发布Issues，我们会尽量帮助你。
 
-## (4) 请给我们一个免费的 Star⭐
-> 礼轻情谊重，你们每一个Star⭐是我们继续前进的动力
+## 获标星历史
+[![Star History Chart](https://api.star-history.com/svg?repos=CoderFrish/NBT&type=Date)](https://star-history.com/#CoderFrish/NBT&Date)
