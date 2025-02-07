@@ -73,5 +73,5 @@ dependencies {
 If you want to contribute your code, you can Fork this code repository and commit your code in your code repository.  \
 If you found Bug, please you post Issue and we will try to help you.
 
-## (4) Please give us a free Star⭐
-> Although gift light, but among them friendship heavy. Your every star⭐ will be our power to move forward.
+## Star History
+[![Star History Chart](https://api.star-history.com/svg?repos=CoderFrish/NBT&type=Date)](https://star-history.com/#CoderFrish/NBT&Date)
