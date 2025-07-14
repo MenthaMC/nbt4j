@@ -2,12 +2,10 @@
 <h1>NBT</h1>
 
 [![MIT License](https://img.shields.io/github/license/CoderFrish/NBT?style=flat-square)](LICENSE)
-![Version](https://img.shields.io/badge/version-6.0.0_Preview-yellow?style=flat-square)
+![Version](https://img.shields.io/badge/version-7.0.0_preview-yellow?style=flat-square)
 ![Releases Downloads](https://img.shields.io/github/downloads/CoderFrish/NBT/total?style=flat-square)
 ![Repo Stars](https://shields.io/github/stars/CoderFrish/NBT?style=flat-square)
 ![Repo Forks](https://shields.io/github/forks/CoderFrish/NBT?style=flat-square)
-
-[//]: # (![Version]&#40;https://img.shields.io/badge/version-6.0.0_Lastest-light_green?style=flat-square&#41;)
 
 NBT (Full name: `N`amed`B`inary`T`ags)\
 It is a format that Minecraft or some game saves data.
@@ -21,7 +19,7 @@ It is a format that Minecraft or some game saves data.
 [中文](README.md)
 </div>
 
-## (2) Usage
+## 1 | Usage
 Maven
 ```xml
 <repositories>
@@ -35,7 +33,7 @@ Maven
     <dependency>
         <groupId>me.coderfrish.nbt</groupId>
         <artifactId>nbt</artifactId>
-        <version>latest_version</version>
+        <version>7.0.0-preview-20250715-01</version>
     </dependency>
 </dependencies>
 ```
@@ -52,7 +50,7 @@ repositories {
 }
 
 dependencies {
-    implementation group: 'me.coderfrish.nbt', name: 'nbt', version: 'latest_version'
+    implementation group: 'me.coderfrish.nbt', name: 'nbt', version: '7.0.0-preview-20250715-01'
 }
 ```
 
@@ -65,13 +63,13 @@ repositories {
 }
 
 dependencies {
-    implementation("me.coderfrish.nbt:nbt:latest_version")
+    implementation("me.coderfrish.nbt:nbt:7.0.0-preview-20250715-01")
 }
 ```
 
-## (3) Other
+## 2 | Other
 If you want to contribute your code, you can Fork this code repository and commit your code in your code repository.  \
 If you found Bug, please you post Issue and we will try to help you.
 
-## Star History
+## 3 | Star History
 [![Star History Chart](https://api.star-history.com/svg?repos=CoderFrish/NBT&type=Date)](https://star-history.com/#CoderFrish/NBT&Date)
