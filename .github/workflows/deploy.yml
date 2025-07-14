@@ -5,7 +5,7 @@ on:
   push:
     branches: [ "master" ]
     paths:
-      - "main/**/*.java"
+      - "main/**/*"
       - '.github/workflows/deploy.yml'
 
 permissions: write-all

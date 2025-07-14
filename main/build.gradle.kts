@@ -15,8 +15,8 @@ tasks.withType<Jar> {
 publishing {
     repositories {
         repositories {
-            maven("https://frish.menthamc.com/repository/maven-releases/") {
-                name = "FrishRepo"
+            maven("https://repo.menthamc.com/repository/maven-releases/") {
+                name = "MenthaMC"
                 credentials {
                     username = System.getenv("MAVEN_USERNAME")
                     password = System.getenv("MAVEN_PASSWORD")
