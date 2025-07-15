@@ -1,5 +1,5 @@
 <div align="center">
-<h1> NBT </h1>
+<h1> EasyNBT </h1>
 
 [![MIT License](https://img.shields.io/github/license/CoderFrish/NBT?style=flat-square)](LICENSE)
 ![Version](https://img.shields.io/badge/version-7.0.0-green?style=flat-square)
