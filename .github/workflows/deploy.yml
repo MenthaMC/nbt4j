@@ -46,7 +46,7 @@ jobs:
       with:
         prerelease: ${{ github.prerelease }}
         token: ${{ secrets.GITHUB_TOKEN }}
-        tag: ${{ github.version }}
+        tag: "7.0.0"
         name: NBT ${{ github.version }}
         artifacts: |
           target/**
