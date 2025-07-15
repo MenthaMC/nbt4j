@@ -7,6 +7,7 @@ on:
     paths:
       - "main/**/*"
       - '.github/workflows/deploy.yml'
+      - 'gradle/wrapper/gradle-wrapper.properties'
 
 permissions: write-all
 
