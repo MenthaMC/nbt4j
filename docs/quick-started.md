@@ -30,8 +30,8 @@ next:
 ```groovy
 repositories {
     maven {
-        url 'https://repo.menthamc.com/repository/maven-public/'
-        name 'menthamc'
+        url = 'https://repo.menthamc.com/repository/maven-public/'
+        name = 'menthamc'
     }
 }
 
