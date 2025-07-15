@@ -46,7 +46,7 @@ jobs:
         prerelease: ${{ env.prerelease }}
         token: ${{ secrets.GITHUB_TOKEN }}
         tag_name: ${{ env.version }}
-        name: `NBT-${{ env.version }}`
+        name: NBT-${{ env.version }}
         files: |
           target/**
           LICENSE.md
