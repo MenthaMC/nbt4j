@@ -1,7 +1,7 @@
 package me.coderfrish.nbt.type;
 
 import me.coderfrish.nbt.api.TagType;
-import me.coderfrish.nbt.type.iterator.CompoundTag;
+import me.coderfrish.nbt.type.iterator.*;
 
 public abstract class ElementTag {
     public String getAsString() {
@@ -34,6 +34,22 @@ public abstract class ElementTag {
 
     public CompoundTag getAsCompound() {
         throw new IllegalArgumentException("This isn`t a compound tag.");
+    }
+
+    public IntArrayTag getAsIntArray() {
+        throw new IllegalArgumentException("This isn`t a int array tag.");
+    }
+
+    public LongArrayTag getAsLongArray() {
+        throw new IllegalArgumentException("This isn`t a long array tag.");
+    }
+
+    public ByteArrayTag getAsByteArray() {
+        throw new IllegalArgumentException("This isn`t a byte array tag.");
+    }
+
+    public ListTag getAsList() {
+        throw new IllegalArgumentException("This isn`t a list tag.");
     }
 
     public abstract TagType type();

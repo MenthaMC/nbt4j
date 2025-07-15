@@ -2,7 +2,7 @@ package me.coderfrish.nbt.utils.io;
 
 import me.coderfrish.nbt.api.TagType;
 import me.coderfrish.nbt.type.ElementTag;
-import me.coderfrish.nbt.type.iterator.CompoundTag;
+import me.coderfrish.nbt.type.iterator.*;
 import me.coderfrish.nbt.type.primitive.*;
 import me.coderfrish.nbt.utils.DecoderUtils;
 
@@ -22,11 +22,64 @@ public class InputBuffer extends DataInputStream {
             if (type == TagType.END) break;
 
             String key = readUTF();
-            ElementTag value = DecoderUtils.getDecoders().get(type).decode(this);
-            compound.put(key, value);
+            compound.put(key, DecoderUtils.decode(type, this));
         }
 
         return compound;
+    }
+
+    public ElementTag readTagList() throws IOException {
+        ListTag list = new ListTag();
+        TagType type = readType();
+        if (type == TagType.END) {
+            return new ListTag();
+        }
+
+        int length = readInt();
+        for (int i = 0; i < length; i++) {
+            list.add(DecoderUtils.decode(type, this));
+        }
+
+        return list;
+    }
+
+    public ElementTag readTagIntArray() throws IOException {
+        int size = this.readInt();
+        if (size < 0)
+            throw new RuntimeException("IntArray tag length must over or equals 0.");
+
+        int[] buffer = new int[size];
+
+        for (int i = 0; i < size; i++)
+            buffer[i] = this.readInt();
+
+        return new IntArrayTag(buffer);
+    }
+
+    public ElementTag readTagLongArray() throws IOException {
+        int size = this.readInt();
+        if (size < 0)
+            throw new RuntimeException("LongArray tag length must over or equals 0.");
+
+        long[] buffer = new long[size];
+
+        for (int i = 0; i < size; i++)
+            buffer[i] = this.readLong();
+
+        return new LongArrayTag(buffer);
+    }
+
+    public ElementTag readTagByteArray() throws IOException {
+        int size = this.readInt();
+        if (size < 0)
+            throw new RuntimeException("ByteArray tag length must over or equals 0.");
+
+        byte[] buffer = new byte[size];
+
+        for (int i = 0; i < size; i++)
+            buffer[i] = this.readByte();
+
+        return new ByteArrayTag(buffer);
     }
 
     public TagType readType() throws IOException {

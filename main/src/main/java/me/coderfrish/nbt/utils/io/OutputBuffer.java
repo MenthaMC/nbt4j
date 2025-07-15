@@ -2,6 +2,10 @@ package me.coderfrish.nbt.utils.io;
 
 import me.coderfrish.nbt.api.TagType;
 import me.coderfrish.nbt.type.ElementTag;
+import me.coderfrish.nbt.type.iterator.ByteArrayTag;
+import me.coderfrish.nbt.type.iterator.IntArrayTag;
+import me.coderfrish.nbt.type.iterator.ListTag;
+import me.coderfrish.nbt.type.iterator.LongArrayTag;
 import me.coderfrish.nbt.utils.EncoderUtils;
 
 import java.io.DataOutputStream;
@@ -26,10 +30,50 @@ public class OutputBuffer extends DataOutputStream {
 
             this.writeType(type);
             this.writeUTF(entry.getKey());
-            EncoderUtils.getEncoders().get(type).encode(this, entry.getValue());
+            EncoderUtils.encode(type, this, entry.getValue());
         }
 
         writeType(TagType.END);
+    }
+
+    public void writeTagList(ElementTag element) throws IOException {
+        ListTag value = element.getAsList();
+        if (value.isEmpty()) {
+            this.writeType(TagType.END);
+            this.writeInt(0);
+            return;
+        }
+
+        TagType type = value.getFirst().type();
+        this.writeType(type);
+        this.writeInt(value.size());
+        for (ElementTag tag : value) {
+            EncoderUtils.encode(type, this, tag);
+        }
+    }
+
+    public void writeTagIntArray(ElementTag tag) throws IOException {
+        IntArrayTag value = tag.getAsIntArray();
+        this.writeInt(value.size());
+        for (int item : value) {
+            this.writeInt(item);
+        }
+    }
+
+    public void writeTagLongArray(ElementTag tag) throws IOException {
+        LongArrayTag value = tag.getAsLongArray();
+        this.writeInt(value.size());
+        for (long item : value) {
+            this.writeLong(item);
+        }
+    }
+
+    public void writeTagByteArray(ElementTag tag) throws IOException {
+        ByteArrayTag value = tag.getAsByteArray();
+        this.writeInt(value.size());
+        for (byte item : value) {
+            this.writeByte(item);
+        }
     }
 
     public void writeType(TagType type) throws IOException {

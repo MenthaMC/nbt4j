@@ -1,5 +1,5 @@
 ### Author: Frish2021 ###
-name: deploy_7.0.0-preview-20250715-01
+name: deploy_7.0.0
 
 on:
   push:
@@ -23,6 +23,11 @@ jobs:
         distribution: 'zulu'
         architecture: x64
 
+    - name : Settings Environment
+      run: |
+        chmod +x ./scripts/set_env.sh
+        sh ./scripts/set_env.sh
+
     - name: Chmod Script
       run: chmod +x ./gradlew
 
@@ -38,10 +43,10 @@ jobs:
     - name: Upload artifacts
       uses: softprops/action-gh-release@v2
       with:
-        prerelease: true
+        prerelease: ${{ env.prerelease }}
         token: ${{ secrets.GITHUB_TOKEN }}
-        tag_name: '7.0.0-preview-20250715-01'
-        name: 'NBT-7.0.0-preview-20250715-01'
+        tag_name: ${{ env.version }}
+        name: `NBT-${{ env.version }}`
         files: |
           target/**
           LICENSE.md

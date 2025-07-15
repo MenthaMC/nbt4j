@@ -15,10 +15,11 @@ public class StreamUtils {
     }
 
     public static void toStream(String name, CompoundTag compound, OutputStream output) throws IOException {
-        OutputBuffer buffer = new OutputBuffer(output);
-        buffer.writeType(TagType.COMPOUND);
-        buffer.writeUTF(name);
-        buffer.writeTagCompound(compound);
+        try(OutputBuffer buffer = new OutputBuffer(output)) {
+            buffer.writeType(TagType.COMPOUND);
+            buffer.writeUTF(name);
+            buffer.writeTagCompound(compound);
+        }
     }
 
     public static CompoundTag fromStream(InputStream input) throws IOException {
