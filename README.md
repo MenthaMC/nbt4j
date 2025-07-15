@@ -45,8 +45,6 @@ repositories {
         url 'https://repo.menthamc.com/repository/maven-public/'
         name 'menthamc'
     }
-    mavenLocal()
-    mavenCentral()
 }
 
 dependencies {
@@ -58,8 +56,6 @@ Gradle (Kotlin)
 ```groovy
 repositories {
     maven("https://repo.menthamc.com/repository/maven-public/")
-    mavenLocal()
-    mavenCentral()
 }
 
 dependencies {
