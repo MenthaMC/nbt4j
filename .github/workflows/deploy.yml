@@ -44,10 +44,10 @@ jobs:
     - name: Upload artifacts
       uses: ncipollo/release-action@v1
       with:
-        prerelease: ${{ env.prerelease }}
+        prerelease: ${{ github.prerelease }}
         token: ${{ secrets.GITHUB_TOKEN }}
-        tag: ${{ env.version }}
-        name: NBT ${{ env.version }}
+        tag: ${{ github.version }}
+        name: NBT ${{ github.version }}
         artifacts: |
           target/**
           LICENSE.md
