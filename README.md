@@ -2,7 +2,7 @@
 <h1> EasyNBT </h1>
 
 [![MIT License](https://img.shields.io/github/license/CoderFrish/NBT?style=flat-square)](LICENSE)
-![Version](https://img.shields.io/badge/version-7.0.0-green?style=flat-square)
+![Version](https://img.shields.io/badge/version-7.1.0-green?style=flat-square)
 ![Releases Downloads](https://img.shields.io/github/downloads/CoderFrish/NBT/total?style=flat-square)
 ![Repo Stars](https://shields.io/github/stars/CoderFrish/NBT?style=flat-square)
 ![Repo Forks](https://shields.io/github/forks/CoderFrish/NBT?style=flat-square)

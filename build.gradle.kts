@@ -1,4 +1,4 @@
-allprojects {
+subprojects {
     apply(plugin = "java")
     apply(plugin = "maven-publish")
 
@@ -7,7 +7,9 @@ allprojects {
     }
 }
 
-tasks.getByName("clean") {
+tasks.register("clean") {
+    group = "build"
+
     for (project in project.allprojects) {
         val projectDir = project.projectDir
 

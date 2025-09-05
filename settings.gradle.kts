@@ -7,4 +7,4 @@ pluginManagement {
 }
 
 rootProject.name = "nbt"
-include(":test", ":main")
+include(":nbt-test", ":nbt-core", ":nbt-visitor")

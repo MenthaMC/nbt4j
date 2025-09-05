@@ -1,5 +1,5 @@
 {
-  "name": "@easy-nbt/docs",
+  "name": "@nbt/docs",
   "private": true,
   "main": "index.md",
   "scripts": {

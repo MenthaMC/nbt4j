@@ -5,7 +5,7 @@ on:
   push:
     branches: [ "master" ]
     paths:
-      - "docs/**/*"
+      - "../../nbt-docs/**/*"
       - '.github/workflows/deploy_pages.yml'
 
 permissions: write-all

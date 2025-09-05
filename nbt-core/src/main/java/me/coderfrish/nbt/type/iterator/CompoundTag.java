@@ -1,14 +1,15 @@
 package me.coderfrish.nbt.type.iterator;
 
+import me.coderfrish.nbt.api.TagEntry;
+import me.coderfrish.nbt.api.TagEntryImpl;
 import me.coderfrish.nbt.api.TagType;
 import me.coderfrish.nbt.type.ElementTag;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
-public class CompoundTag extends ElementTag {
+public class CompoundTag extends ElementTag implements Iterable<TagEntry> {
     private final Map<String, ElementTag> tags = new LinkedHashMap<>();
+    private final Set<TagEntry> tagsSet = new LinkedHashSet<>();
 
     public ElementTag get(String key) {
         return tags.get(key);
@@ -20,6 +21,7 @@ public class CompoundTag extends ElementTag {
 
     public CompoundTag put(String key, ElementTag value) {
         tags.put(key, value);
+        tagsSet.add(new TagEntryImpl(key, value));
         return this;
     }
 
@@ -35,5 +37,10 @@ public class CompoundTag extends ElementTag {
     @Override
     public TagType type() {
         return TagType.COMPOUND;
+    }
+
+    @Override
+    public Iterator<TagEntry> iterator() {
+        return tagsSet.iterator();
     }
 }
