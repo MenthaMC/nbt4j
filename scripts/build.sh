@@ -1,2 +1,2 @@
 #!/bin/bash
-./gradlew :main:build
+./gradlew :nbt-core:build

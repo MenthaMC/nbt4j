@@ -1,2 +1,2 @@
 #!/bin/bash
-./gradlew :main:publish
+./gradlew :nbt-core:publish
