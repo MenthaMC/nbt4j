@@ -1,0 +1,13 @@
+val libs = rootProject.libs
+
+dependencies {
+    testRuntimeOnly(libs.junit.platform.launcher)
+    testImplementation(libs.junit.jupiter.api)
+    testRuntimeOnly(libs.junit.jupiter.engine)
+}
+
+tasks {
+    withType<Test> {
+        useJUnitPlatform()
+    }
+}
