@@ -1,2 +1,2 @@
 rootProject.name = "nbt4j"
-include(":nbt4j-api", ":nbt4j-impl", ":nbt4j-serializer")
+include(":nbt4j-core", ":nbt4j-serializer", ":nbt4j-unit-test")
