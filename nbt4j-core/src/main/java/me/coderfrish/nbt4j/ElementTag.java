@@ -1,31 +1,25 @@
 package me.coderfrish.nbt4j;
 
+import java.io.DataInput;
+import java.io.DataOutput;
+import java.io.IOException;
+
 public abstract class ElementTag {
     public String getAsString() {
-        throw new IllegalArgumentException("This isn`t a string tag.");
+        throw new IllegalStateException("Not a String Tag.");
     }
 
     public Number getAsNumber() {
-        throw new IllegalArgumentException("This isn`t a number tag.");
+        throw new IllegalStateException("Not a Number Tag.");
     }
 
     public CompoundTag getAsCompound() {
-        throw new IllegalArgumentException("This isn`t a compound tag.");
+        throw new IllegalStateException("Not a Compound Tag.");
     }
 
-    public ListTag getAsList() {
-        throw new IllegalArgumentException("This isn`t a list tag.");
-    }
+    public abstract TagType type();
 
-    public byte[] getAsByteArray() {
-        throw new IllegalArgumentException("This isn`t a byte array tag.");
-    }
+    abstract void write(DataOutput output) throws IOException;
 
-    public long[] getAsLongArray() {
-        throw new IllegalArgumentException("This isn`t a long array tag.");
-    }
-
-    public int[] getAsIntArray() {
-        throw new IllegalArgumentException("This isn`t a int array tag.");
-    }
+    abstract void read(DataInput input) throws IOException;
 }
