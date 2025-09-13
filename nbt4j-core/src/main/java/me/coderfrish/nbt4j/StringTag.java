@@ -1,14 +1,33 @@
 package me.coderfrish.nbt4j;
 
-public class StringTag extends ElementTag {
-    private final String value;
+import java.io.DataInput;
+import java.io.DataOutput;
+import java.io.IOException;
 
-    public StringTag(String value) {
-        this.value = value;
+class StringTag extends ElementTag {
+    private String string;
+
+    public StringTag(String string) {
+        this.string = string;
     }
 
     @Override
     public String getAsString() {
-        return this.value;
+        return this.string;
+    }
+
+    @Override
+    public TagType type() {
+        return TagType.STRING;
+    }
+
+    @Override
+    void write(DataOutput output) throws IOException {
+        output.writeUTF(string);
+    }
+
+    @Override
+    void read(DataInput input) throws IOException {
+        this.string = input.readUTF();
     }
 }

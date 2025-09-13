@@ -1,8 +1,10 @@
 [versions]
 junit-jupiter-api = "5.9.3"
 junit-jupiter-engine = "5.9.3"
+junitperf = "2.0.7"
 
 [libraries]
+junitperf = { group = "com.github.houbb", name = "junitperf", version.ref = "junitperf" }
 junit-platform-launcher = { group = "org.junit.platform", name = "junit-platform-launcher" }
 junit-jupiter-api = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "junit-jupiter-api" }
 junit-jupiter-engine = { group = "org.junit.jupiter", name = "junit-jupiter-engine", version.ref = "junit-jupiter-engine" }
