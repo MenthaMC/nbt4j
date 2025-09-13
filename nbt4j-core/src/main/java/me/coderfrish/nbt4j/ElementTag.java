@@ -21,6 +21,18 @@ public abstract class ElementTag {
         throw new IllegalStateException("Not a Compound Tag.");
     }
 
+    public int[] getAsIntArray() {
+        throw new IllegalStateException("Not a Int Array Tag.");
+    }
+
+    public long[] getAsLongArray() {
+        throw new IllegalStateException("Not a Long Array Tag.");
+    }
+
+    public byte[] getAsByteArray() {
+        throw new IllegalStateException("Not a Byte Array Tag.");
+    }
+
     public abstract TagType type();
 
     abstract void write(DataOutput output) throws IOException;

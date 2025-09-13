@@ -30,6 +30,18 @@ public class CompoundTag extends ElementTag {
         tags.put(key, createNumberTag(value));
     }
 
+    public void addProperty(String key, int[] value) {
+        tags.put(key, new IntArrayTag(value));
+    }
+
+    public void addProperty(String key, long[] value) {
+        tags.put(key, new LongArrayTag(value));
+    }
+
+    public void addProperty(String key, byte[] value) {
+        tags.put(key, new ByteArrayTag(value));
+    }
+
     public ElementTag remove(String key) {
         return tags.remove(key);
     }

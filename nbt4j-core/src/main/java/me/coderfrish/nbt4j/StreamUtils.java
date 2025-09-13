@@ -78,6 +78,9 @@ public class StreamUtils {
             put(TagType.STRING, () -> new StringTag(null));
             put(TagType.COMPOUND, CompoundTag::new);
             put(TagType.LIST, ListTag::new);
+            put(TagType.INT_ARRAY, () -> new IntArrayTag(null));
+            put(TagType.BYTE_ARRAY, () -> new ByteArrayTag(null));
+            put(TagType.LONG_ARRAY, () -> new LongArrayTag(null));
         }
     };
 
