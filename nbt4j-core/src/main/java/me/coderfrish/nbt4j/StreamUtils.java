@@ -77,6 +77,7 @@ public class StreamUtils {
             put(TagType.DOUBLE, () -> new DoubleTag(null));
             put(TagType.STRING, () -> new StringTag(null));
             put(TagType.COMPOUND, CompoundTag::new);
+            put(TagType.LIST, ListTag::new);
         }
     };
 

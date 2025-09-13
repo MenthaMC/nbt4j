@@ -2,10 +2,7 @@ package me.coderfrish.test;
 
 import com.github.houbb.junitperf.core.annotation.JunitPerfConfig;
 import com.github.houbb.junitperf.core.report.impl.HtmlReporter;
-import me.coderfrish.nbt4j.CompoundTag;
-import me.coderfrish.nbt4j.ElementTag;
-import me.coderfrish.nbt4j.StreamUtils;
-import me.coderfrish.nbt4j.TagType;
+import me.coderfrish.nbt4j.*;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileInputStream;
@@ -32,10 +29,27 @@ public class CompoundTest {
     }
 
     @Test
+    public void testWrite() {
+        CompoundTag tags = new CompoundTag();
+
+        ListTag tag = new ListTag();
+        tag.addProperty("Frish2021");
+        tag.addProperty("CoderFrish");
+
+        tags.add("list", tag);
+
+        try(FileOutputStream outputStream = new FileOutputStream("D:\\nbt\\nbt4j-unit-test\\src\\test\\resources\\test.nbt")) {
+            StreamUtils.toStream(tags, outputStream);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Test
     public void testRead() {
         try(FileInputStream inputStream = new FileInputStream("D:\\nbt\\nbt4j-unit-test\\src\\test\\resources\\test.nbt")) {
             CompoundTag compoundTag = StreamUtils.fromStream(inputStream);
-            assert compoundTag.get("name").getAsString().equals("Frish2021");
+            assert compoundTag.get("list").getAsList().getFirst().getAsString().equals("Frish2021");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
