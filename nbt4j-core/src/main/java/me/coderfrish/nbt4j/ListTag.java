@@ -37,6 +37,30 @@ public class ListTag extends ElementTag implements Iterable<ElementTag> {
         tags.add(index, createNumberTag(tag));
     }
 
+    public void addProperty(int index, int[] value) {
+        tags.add(index, new IntArrayTag(value));
+    }
+
+    public void addProperty(int[] value) {
+        tags.add(new IntArrayTag(value));
+    }
+
+    public void addProperty(int index, long[] value) {
+        tags.add(index, new LongArrayTag(value));
+    }
+
+    public void addProperty(long[] value) {
+        tags.add(new LongArrayTag(value));
+    }
+
+    public void addProperty(int index, byte[] value) {
+        tags.add(index, new ByteArrayTag(value));
+    }
+
+    public void addProperty(byte[] value) {
+        tags.add(new ByteArrayTag(value));
+    }
+
     public ElementTag get(int index) {
         return tags.get(index);
     }
