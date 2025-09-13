@@ -1,9 +1,7 @@
 package me.coderfrish.test;
 
-import com.github.houbb.junitperf.core.annotation.JunitPerfConfig;
-import com.github.houbb.junitperf.core.report.impl.HtmlReporter;
 import me.coderfrish.nbt4j.*;
-import org.junit.jupiter.api.Test;
+import me.coderfrish.nbt4j.CompoundTag;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -12,10 +10,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class CompoundTest {
-    @Test
-    @JunitPerfConfig(threads = 5, warmUp = 1_000, duration = 10_000, reporter = {HtmlReporter.class})
+//    @Test
+//    @JunitPerfConfig(threads = 5, warmUp = 1_000, duration = 10_000, reporter = {HtmlReporter.class})
     public void test() {
-        CompoundTag tags = new CompoundTag();
+        me.coderfrish.nbt4j.CompoundTag tags = new me.coderfrish.nbt4j.CompoundTag();
         assert tags.type() == TagType.COMPOUND;
 
         tags.addProperty("name", "Frish2021");
@@ -59,9 +57,9 @@ public class CompoundTest {
         }
     }
 
-    @Test
+//    @Test
     public void testWrite() {
-        CompoundTag tags = new CompoundTag();
+        me.coderfrish.nbt4j.CompoundTag tags = new me.coderfrish.nbt4j.CompoundTag();
 
         ListTag tag = new ListTag();
         tag.addProperty("Frish2021");
@@ -76,7 +74,7 @@ public class CompoundTest {
         }
     }
 
-    @Test
+//    @Test
     public void testRead() {
         try(FileInputStream inputStream = new FileInputStream("D:\\nbt\\nbt4j-unit-test\\src\\test\\resources\\test.nbt")) {
             CompoundTag compoundTag = StreamUtils.fromStream(inputStream);

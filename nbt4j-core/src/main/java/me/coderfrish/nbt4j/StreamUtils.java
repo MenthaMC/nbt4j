@@ -3,7 +3,6 @@ package me.coderfrish.nbt4j;
 import java.io.*;
 import java.util.Map;
 import java.util.WeakHashMap;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -11,7 +10,7 @@ import static me.coderfrish.nbt4j.NumberTag.*;
 
 public class StreamUtils {
     public StreamUtils() {
-        throw new UnsupportedOperationException("Class `me.coderfrish.nbt4j.StreamUtils` don`t need to be instantiated.");
+        throw new UnsupportedOperationException("Class `StreamUtils` don`t need to be instantiated.");
     }
 
     public static void toStream(String name, CompoundTag compound, OutputStream output) throws IOException {
