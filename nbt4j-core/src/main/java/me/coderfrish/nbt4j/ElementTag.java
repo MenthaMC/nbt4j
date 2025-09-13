@@ -13,6 +13,10 @@ public abstract class ElementTag {
         throw new IllegalStateException("Not a Number Tag.");
     }
 
+    public ListTag getAsList() {
+        throw new IllegalStateException("Not a List Tag.");
+    }
+
     public CompoundTag getAsCompound() {
         throw new IllegalStateException("Not a Compound Tag.");
     }

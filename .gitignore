@@ -8,3 +8,4 @@ target/
 
 ### kotlin ###
 .kotlin/
+nbt4j-unit-test/src/test/resources/
